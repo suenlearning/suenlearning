@@ -22,11 +22,23 @@
         <!-- regrouping vs no regrouping -->
         <div>
           <p>
-            <input type="radio" id="noRegroup" :value="false" v-model="regrouping" />
+            <input
+              type="radio"
+              id="noRegroup"
+              :value="false"
+              name="regrouping"
+              v-model="regrouping"
+            />
             <label for="noRegrouping">no regrouping</label>
           </p>
           <p>
-            <input type="radio" id="regroup" :value="true" v-model="regrouping" />
+            <input
+              type="radio"
+              id="regroup"
+              :value="true"
+              name="regrouping"
+              v-model="regrouping"
+            />
             <label for="regrouping">regrouping</label>
           </p>
         </div>
@@ -52,11 +64,11 @@
     </section>
 
     <!-- button PRINT -->
-    <section class="print-button">
+    <!-- <section class="print-button">
       <div class="generateWorksheetButton">
         <button @click="saveFile">save file</button>
       </div>
-    </section>
+    </section> -->
 
     <!-- VISIBLE RESULTS -->
     <section class="preview-document">
@@ -66,7 +78,11 @@
           <p v-show="title">{{ noOfDigits }}-digit addition</p>
         </div>
         <div class="workspace">
-          <div class="single-problem" v-for="number in numbers" :key="number.index">
+          <div
+            class="single-problem"
+            v-for="number in numbers"
+            :key="number.index"
+          >
             <p class="fstAddend">{{ number.fstAddend }}</p>
             <span class="opSign">+</span>
             <p class="sndAddend">{{ number.sndAddend }}</p>
