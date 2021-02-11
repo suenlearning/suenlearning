@@ -1,11 +1,12 @@
 <template>
-  <section class="main__home">
+  <main class="main__home">
+    <!-- <section class="main__home"> -->
     <ul class="home__cards--container">
       <li class="home__cards--item" v-for="(card, index) in cards" :key="index">
         <router-link :to="card.path" class="card__link">
           <article class="card">
             <img
-              class="card__img"
+              class="card__thumb"
               :src="require(`@/assets/img/${card.image}`)"
               :alt="card.alt"
             />
@@ -15,7 +16,8 @@
         </router-link>
       </li>
     </ul>
-  </section>
+    <!-- </section> -->
+  </main>
 </template>
 
 <script>
@@ -45,7 +47,9 @@ export default {
 
 <style scoped>
 .main__home {
-  height: 100%; /* to fill whole main element */
+  width: 100%;
+  height: 100vh;
+  /* height: 100%; /* to fill whole main element */
 }
 
 .home__cards--container {
@@ -70,7 +74,7 @@ export default {
   width: 100%;
 } */
 
-.card__img {
+.card__thumb {
   /* options: use only images of the same size and alpha background or set fixed height to the lowest of the images */
   /* width: 100%; */
   max-height: 70px;
@@ -106,7 +110,7 @@ export default {
     border: 2px solid var(--colorBorder);
   }
 
-  .card__img {
+  .card__thumb {
     max-height: 100px;
   }
 

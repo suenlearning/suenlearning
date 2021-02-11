@@ -1,5 +1,6 @@
 <template>
   <header class="header">
+    <!-- add hidden title -->
     <img :src="imagePath" alt="logo" class="logo" />
     <nav>
       <ul class="header__nav">
@@ -51,7 +52,7 @@ export default {
 
 <style>
 .header {
-  /* width: 100%; */
+  width: 100%;
   padding: 10px 20px;
   position: fixed;
   top: 0;
@@ -60,6 +61,8 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: white;
+  z-index: 1000;
 }
 
 .header__nav {

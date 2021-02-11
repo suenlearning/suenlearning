@@ -1,32 +1,33 @@
 <template>
-  <div class="container">
-    <section class="titleHeading">
-      <blockquote>
-        <h3>Worksheet generator</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
-        </p>
-      </blockquote>
+  <main class="main__workspace">
+    <section class="workspace__intro">
+      <h3>Worksheet generator</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.
+      </p>
     </section>
-    <section id="availableWorksheets" class="availableWorksheets">
+    <section class="workspace__worksheets">
       <!-- later on change to seperate component with vfor -->
-      <div
-        class="boxItem"
-        v-for="worksheet in worksheets"
-        :key="worksheet.name"
-        @click="selectedWorksheet = worksheet"
-      >
-        <figure class="thumb">
-          <img
-            :src="require(`@/assets/img/${worksheet.image}`)"
-            :alt="worksheet.alt"
-          />
-        </figure>
-        <p>{{ worksheet.name }}</p>
-      </div>
+      <ul class="workspace__cards--container">
+        <li
+          class="workspace__cards--item"
+          v-for="worksheet in worksheets"
+          :key="worksheet.name"
+          @click="selectedWorksheet = worksheet"
+        >
+          <article class="card">
+            <img
+              class="card__thumb"
+              :src="require(`@/assets/img/${worksheet.image}`)"
+              :alt="worksheet.alt"
+            />
+            <h3 class="card__title">{{ worksheet.name }}</h3>
+          </article>
+        </li>
+      </ul>
     </section>
     <section id="worksheetGenerator" class="worksheetGenerator">
       <div class="chosenComponent" v-if="selectedWorksheet">
@@ -36,7 +37,7 @@
         />
       </div>
     </section>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -86,67 +87,62 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.main__workspace {
+  width: 100%;
+  min-height: calc(100vh - 60px);
+  margin-top: 60px;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
-  margin: 0px auto;
-  width: 100%;
   align-content: center;
   position: relative;
   top: 0px;
 }
 
-.titleHeading {
+/* INTRO */
+
+.workspace__intro {
   text-align: left;
-  margin-bottom: 50px;
-  margin-top: 15px;
-  padding-left: 20px;
+  margin: 30px 0 40px 28px;
+  padding: 8px 0 8px 16px;
+  border-left: 8px solid #8cc63f;
 }
 
-.titleHeading blockquote {
-  margin: 2em;
-  padding: 5px 0px 5px 20px;
-  border-left: 4px solid #8cc63f;
-}
+/* AVAILABLE WORKSHEETS */
 
-.availableWorksheets {
-  display: flex;
+.workspace__cards--container {
+  /* display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  width: 100%;
-  margin-bottom: 50px;
+  justify-content: flex-start; */
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(5, 1fr);
+  text-align: center;
 }
 
-.boxItem {
-  padding: 15px;
-  border: 1px solid #f04f4b;
-  border-radius: 13%;
-  width: 150px;
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-  /* align-content: space-around;   <-- this one is not working & I cannot figure why...; the idea is that the lines should be towards center */
-  box-sizing: border-box;
+.workspace__cards--item {
+  margin: 12px 0;
+  padding: 20px 12px;
+  width: 154px;
+  border: 2px solid var(--colorBorder);
+  border-radius: 10px;
 }
 
-.boxItem:hover {
+.workspace__cards--item:hover {
   cursor: pointer;
 }
 
-/* reseting general figure style for my thumbnailes with the .class */
-.thumb {
-  margin: 0;
-  padding-left: 30px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding: 0px;
+.card__thumb {
+  max-height: 100px;
 }
 
-.thumb img {
-  max-width: 100%;
-  height: auto;
+.card__title {
+  font-size: 18px;
+  font-weight: 400;
+  margin-top: 20px;
 }
+
+/* WORKSHEET GENERATOR */
 
 .worksheetGenerator {
   display: flex;
@@ -157,4 +153,6 @@ export default {
 .chosenComponent {
   width: 100%;
 }
+
+/* ADD MEDIA */
 </style>
