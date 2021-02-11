@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
 
 /* here will go all global styles I want to be shared between components; then they might be modified under scoped */
 
@@ -6,10 +6,12 @@
   --colorMain: #521818;
   --colorHeader: #f04f4b;
   --colorFooter: #30b2e7;
+  --colorBorder: #fdbe59;
+  --colorDetails: #bcc63f;
 }
 
-.pageColumn {
+/* .pageColumn {
   padding: 0 20px;
   min-width: 320px;
   max-width: 1200px;
-}
+} */

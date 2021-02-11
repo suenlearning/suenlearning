@@ -49,17 +49,17 @@ export default {
 
 .main {
   width: 100%;
-  max-width: 1200px;
+  /* max-width: 1200px; */
   height: 100vh;
-  text-align: center;
   /* background: url(./assets/img/wrkst-bottom-right.png) no-repeat bottom right
       20px / auto 40px,
     url(./assets/img/wrkst-bottom-left.png) bottom left 20px / auto 40px
       no-repeat;
   border-bottom: 8px solid var(--colorFooter); */
-  display: flex;
+  /* seems that flex comes from home */
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
 /* when using background in % it calculates based on parent container not the image size */
@@ -70,7 +70,6 @@ export default {
   background-color: var(--colorFooter);
   height: 50px;
   position: relative;
-  bottom: 0px;
 }
 
 /* it has to have height, otherwise background doesn't appear; for now height arbitrary, search if I can find  */

@@ -91,7 +91,7 @@ export default {
   flex-direction: column;
   margin: 0px auto;
   width: 100%;
-  align-content: space-between;
+  align-content: center;
   position: relative;
   top: 0px;
 }
