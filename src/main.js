@@ -6,6 +6,18 @@ import store from './store'
 import './assets/styles/reset.css'
 import './assets/styles/appstyles.css'
 
+// font awesome start
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(faUserSecret)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+// font awesome finish
+
 Vue.config.productionTip = false
 
 new Vue({

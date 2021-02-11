@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <header class="header pageColumn">
+    <!-- <header class="header pageColumn"> -->
       <TheNavigation
         :image-path="require('./assets/img/wrkst-logo-book.png')"
       />
-    </header>
+    <!-- </header> -->
     <main class="main pageColumn">
       <router-view />
     </main>
