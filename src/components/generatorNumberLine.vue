@@ -45,7 +45,7 @@
           <label for="descOrder">descending</label>
         </p>
       </div>
-      <!-- how many liness -->
+      <!-- how many lines -->
       <div>
         <label for="noOfLines">
           <p>Choose how many problems</p>
@@ -59,7 +59,7 @@
       <!-- how many numbers per line -->
       <div>
         <label for="noPerLine">
-          <p>Choose how many numbers per lines</p>
+          <p>Choose how many numbers per line</p>
         </label>
         <select id="noPerLine" v-model.number="noPerLine">
           <option>8</option>
@@ -85,7 +85,9 @@
           v-for="(line, index) in numberLine"
           :key="index"
           :class="line === 0 ? 'hiddenElement' : ''"
-        >{{ line }}</li>
+        >
+          {{ line }}
+        </li>
       </ul>
     </div>
   </div>
@@ -152,8 +154,8 @@ export default {
         }
       }
       return this.changeSomeNumbersToZero(elementsToHide, newSingleLine)
-      // return newSingleLine
     },
+    // numbers to hide - these are the numbers the kids will have to fill in
     createArrayOfIndexesToHide: function() {
       let newArrayOfIndexes = []
       while (newArrayOfIndexes.length < this.noPerLine - 3) {

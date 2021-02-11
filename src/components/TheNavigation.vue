@@ -3,7 +3,7 @@
     <figure class="logo">
       <img :src="imagePath" alt="logo" />
     </figure>
-    <ul class="nav-links">
+    <ul class="navLinks">
       <li class="link" v-for="(link, index) in navLinks" :key="index">
         <router-link :to="link.path">{{ link.text }}</router-link>
       </li>
@@ -19,28 +19,23 @@ export default {
       navLinks: [
         {
           text: 'home',
-          path: '/',
-          icon: 'home-outline'
+          path: '/'
         },
         {
           text: 'workspace',
-          path: '/workspace',
-          icon: 'bulb-outline'
+          path: '/workspace'
         },
         {
           text: 'patreon',
-          path: '#',
-          icon: 'cafe-outline'
+          path: '#'
         },
         {
           text: 'about',
-          path: '/about',
-          icon: 'ion-ios-business'
+          path: '/about'
         },
         {
           text: 'contact',
-          path: '/contact',
-          icon: 'at-outline'
+          path: '/contact'
         }
       ]
     }
@@ -52,9 +47,9 @@ export default {
 #nav {
   display: flex;
   height: 60px;
-  width: 100%;
+  max-width: 1200px;
   padding: 10px 0px;
-  margin: 10px 0px;
+  margin: 0 auto;
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
@@ -68,7 +63,7 @@ export default {
 #nav a.router-link-exact-active {
   color: #30b2e7;
 }
-.nav-links {
+.navLinks {
   display: flex;
   align-items: center;
   height: 100%;

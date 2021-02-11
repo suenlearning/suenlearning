@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <section class="title-heading">
+    <section class="titleHeading">
       <blockquote>
         <h3>Worksheet generator</h3>
         <p>
@@ -11,23 +11,29 @@
         </p>
       </blockquote>
     </section>
-    <section id="available-worksheets" class="available-worksheets">
+    <section id="availableWorksheets" class="availableWorksheets">
       <!-- later on change to seperate component with vfor -->
       <div
-        class="box-item"
+        class="boxItem"
         v-for="worksheet in worksheets"
         :key="worksheet.name"
         @click="selectedWorksheet = worksheet"
       >
         <figure class="thumb">
-          <img :src="require(`@/assets/img/${worksheet.image}`)" :alt="worksheet.alt" />
+          <img
+            :src="require(`@/assets/img/${worksheet.image}`)"
+            :alt="worksheet.alt"
+          />
         </figure>
         <p>{{ worksheet.name }}</p>
       </div>
     </section>
-    <section id="worksheet-generator" class="worksheet-generator">
-      <div class="chosen-component" v-if="selectedWorksheet">
-        <component :is="selectedWorksheet.generator" :msg="selectedWorksheet.name" />
+    <section id="worksheetGenerator" class="worksheetGenerator">
+      <div class="chosenComponent" v-if="selectedWorksheet">
+        <component
+          :is="selectedWorksheet.generator"
+          :msg="selectedWorksheet.name"
+        />
       </div>
     </section>
   </div>
@@ -90,20 +96,20 @@ export default {
   top: 0px;
 }
 
-.title-heading {
+.titleHeading {
   text-align: left;
   margin-bottom: 50px;
   margin-top: 15px;
   padding-left: 20px;
 }
 
-.title-heading blockquote {
+.titleHeading blockquote {
   margin: 2em;
   padding: 5px 0px 5px 20px;
   border-left: 4px solid #8cc63f;
 }
 
-.available-worksheets {
+.availableWorksheets {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -111,7 +117,7 @@ export default {
   margin-bottom: 50px;
 }
 
-.box-item {
+.boxItem {
   padding: 15px;
   border: 1px solid #f04f4b;
   border-radius: 13%;
@@ -123,7 +129,7 @@ export default {
   box-sizing: border-box;
 }
 
-.box-item:hover {
+.boxItem:hover {
   cursor: pointer;
 }
 
@@ -142,13 +148,13 @@ export default {
   height: auto;
 }
 
-.worksheet-generator {
+.worksheetGenerator {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.chosen-component {
+.chosenComponent {
   width: 100%;
 }
 </style>
