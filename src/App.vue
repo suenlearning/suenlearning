@@ -27,7 +27,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--colorMain);
-  width: 100%;
 }
 
 /* HEADER */
