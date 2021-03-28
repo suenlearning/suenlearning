@@ -1,7 +1,6 @@
 <template>
   <div>
-    <p>{{ msg }}</p>
-    <h3>this will be number line files generator</h3>
+    <h3>{{ wrkstTitle }} worksheet generator</h3>
 
     <!-- CHOICE SELECTORS FOR TEACHERS -->
     <form class="chooseOptionsPanel">
@@ -96,7 +95,7 @@
 export default {
   name: 'generatorNumberLine',
   props: {
-    msg: String
+    wrkstTitle: String
   },
   data() {
     return {

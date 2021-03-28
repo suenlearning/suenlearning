@@ -6,17 +6,28 @@ import store from './store'
 import './assets/styles/reset.css'
 import './assets/styles/appstyles.css'
 
-// font awesome start
+// base component global registration
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import upperFirst from 'lodash/upperFirst'
+import camelCase from 'lodash/camelCase'
 
-library.add(faUserSecret)
+const requireComponent = require.context(
+  './components',
+  false,
+  /Base[A-Z]\w+\.(vue|js)$/
+)
 
-Vue.component('font-awesome-icon', FontAwesomeIcon)
+requireComponent.keys().forEach(fileName => {
+  const componentConfig = requireComponent(fileName)
 
-// font awesome finish
+  const componentName = upperFirst(
+    camelCase(fileName.replace(/^\.\/(.*)\.\w+$/, '$1'))
+  )
+
+  Vue.component(componentName, componentConfig.default || componentConfig)
+})
+
+// base component global registration finish
 
 Vue.config.productionTip = false
 

@@ -1,6 +1,6 @@
 <template>
   <main class="main__workspace">
-    <section class="workspace__intro">
+    <div class="workspace__intro">
       <h3>Choose a generator</h3>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -8,32 +8,31 @@
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
         commodo consequat.
       </p>
-    </section>
-    <section class="workspace__worksheets">
-      <!-- later on change to seperate component with vfor -->
-      <ul class="workspace__cards--container">
-        <li
-          class="workspace__cards--item"
-          v-for="worksheet in worksheets"
-          :key="worksheet.name"
-          @click="selectedWorksheet = worksheet"
-        >
-          <article class="card">
-            <img
-              class="card__thumb"
-              :src="require(`@/assets/img/${worksheet.image.src}`)"
-              :alt="worksheet.image.alt"
-            />
-            <h3 class="card__title">{{ worksheet.name }}</h3>
-          </article>
-        </li>
-      </ul>
-    </section>
+    </div>
+
+    <ul class="workspace__cards--container">
+      <li
+        class="workspace__cards--item"
+        v-for="worksheet in worksheets"
+        :key="worksheet.name"
+        @click="selectedWorksheet = worksheet"
+      >
+        <article class="card">
+          <img
+            class="card__thumb"
+            :src="require(`@/assets/img/${worksheet.image.src}`)"
+            :alt="worksheet.image.alt"
+          />
+          <h3 class="card__title">{{ worksheet.name }}</h3>
+        </article>
+      </li>
+    </ul>
+
     <section id="worksheetGenerator" class="worksheetGenerator">
       <div class="chosenComponent" v-if="selectedWorksheet">
         <component
           :is="selectedWorksheet.generator"
-          :msg="selectedWorksheet.name"
+          :wrkstTitle="selectedWorksheet.name"
         />
       </div>
     </section>
@@ -45,9 +44,6 @@ import generatorBasicOperations from '@/components/generatorBasicOperations.vue'
 import generator100Board from '@/components/generator100Board.vue'
 import generatorNumberLine from '@/components/generatorNumberLine.vue'
 
-//  I'll have to try to generilise and create one base component
-// import WorksheetGenerator from '@/components/WorksheetGenerator.vue'
-
 import WrkstService from '@/services/WrkstService.js'
 
 export default {
@@ -56,12 +52,11 @@ export default {
     generatorBasicOperations,
     generator100Board,
     generatorNumberLine
-    // WorksheetGenerator
   },
   data() {
     return {
       worksheets: [],
-      selectedWorksheet: '' // we will select thorugh the array[i]
+      selectedWorksheet: ''
     }
   },
   created() {
@@ -82,6 +77,8 @@ export default {
   min-height: calc(100vh - 60px);
   margin-top: 60px;
   padding: 0 20px;
+  /* additional padding to accomodate footer images */
+  padding-bottom: 9vh;
   display: flex;
   flex-direction: column;
   align-content: center;

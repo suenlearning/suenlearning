@@ -1,14 +1,14 @@
 <template>
   <div>
-    <p>{{ msg }}</p>
-    <h3>this will be a 100 board files generator</h3>
+    <h3>{{ wrkstTitle }} worksheet generator</h3>
+    <p>this will be a 100 board files generator</p>
   </div>
 </template>
 <script>
 export default {
   name: 'generator100Board',
   props: {
-    msg: String
+    wrkstTitle: String
   }
 }
 </script>

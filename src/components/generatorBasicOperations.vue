@@ -1,67 +1,66 @@
 <template>
   <div class="main-content">
-    <section class="title-intro">
-      <p>{{ msg }}</p>
-    </section>
+    <h3 class="title-intro">{{ wrkstTitle }} worksheet generator</h3>
 
     <!-- CHOICE SELECTORS FOR TEACHERS -->
-    <section class="options-panel">
-      <form>
-        <!-- how many digits -->
-        <div>
-          <label for="noOfDigits">
-            <p>Choose how many digits</p>
-          </label>
-          <select id="noOfDigits" v-model.number="noOfDigits">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-          </select>
-        </div>
-        <!-- regrouping vs no regrouping -->
-        <div>
-          <p>
-            <input
-              type="radio"
-              id="noRegroup"
-              :value="false"
-              name="regrouping"
-              v-model="regrouping"
-            />
-            <label for="noRegrouping">no regrouping</label>
-          </p>
-          <p>
-            <input
-              type="radio"
-              id="regroup"
-              :value="true"
-              name="regrouping"
-              v-model="regrouping"
-            />
-            <label for="regrouping">regrouping</label>
-          </p>
-        </div>
-        <!-- how many problems -->
-        <div>
-          <label for="noOfEquations">
-            <p>Choose how many problems</p>
-          </label>
-          <select id="noOfEquations" v-model.number="noOfEquations">
-            <option>4</option>
-            <option>8</option>
-            <option>12</option>
-            <option>16</option>
-            <option>20</option>
-          </select>
-        </div>
-      </form>
-
+    <form action="" method="" class="options-panel" v-on:submit.prevent>
+      <!-- how many digits -->
+      <div>
+        <label for="noOfDigits">
+          <p>Choose how many digits</p>
+        </label>
+        <select id="noOfDigits" v-model.number="noOfDigits">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+        </select>
+      </div>
+      <!-- regrouping vs no regrouping -->
+      <div>
+        <p>
+          <input
+            type="radio"
+            id="noRegroup"
+            :value="false"
+            name="regrouping"
+            v-model="regrouping"
+          />
+          <label for="noRegrouping">no regrouping</label>
+        </p>
+        <p>
+          <input
+            type="radio"
+            id="regroup"
+            :value="true"
+            name="regrouping"
+            v-model="regrouping"
+          />
+          <label for="regrouping">regrouping</label>
+        </p>
+      </div>
+      <!-- how many problems -->
+      <div>
+        <label for="noOfEquations">
+          <p>Choose how many problems</p>
+        </label>
+        <select id="noOfEquations" v-model.number="noOfEquations">
+          <option>4</option>
+          <option>8</option>
+          <option>12</option>
+          <option>16</option>
+          <option>20</option>
+        </select>
+      </div>
       <!-- BUTTON - generate worksheet: later on - should it be submit? -->
+      <BaseButton @generate-worksheet="generateNumbers">
+        generate worksheet</BaseButton
+      >
+      <BaseButton>save pdf</BaseButton>
       <div class="generateWorksheetButton">
         <button @click.prevent="generateNumbers">generate numbers</button>
       </div>
-    </section>
+    </form>
 
     <!-- button PRINT -->
     <!-- <section class="print-button">
@@ -71,35 +70,30 @@
     </section> -->
 
     <!-- VISIBLE RESULTS -->
-    <section class="preview-document">
-      <p>Preview</p>
-      <div ref="savePdf" id="save-document" class="save-document">
-        <div>
-          <p v-show="title">{{ noOfDigits }}-digit addition</p>
-        </div>
-        <div class="workspace">
-          <div
-            class="single-problem"
-            v-for="number in numbers"
-            :key="number.index"
-          >
-            <p class="fstAddend">{{ number.fstAddend }}</p>
-            <span class="opSign">+</span>
-            <p class="sndAddend">{{ number.sndAddend }}</p>
-          </div>
+    <BasePreview preview-document>
+      <div class="workspace">
+        <div
+          class="single-problem"
+          v-for="number in numbers"
+          :key="number.index"
+        >
+          <p class="fstAddend">{{ number.fstAddend }}</p>
+          <span class="opSign">+</span>
+          <p class="sndAddend">{{ number.sndAddend }}</p>
         </div>
       </div>
-    </section>
+    </BasePreview>
   </div>
 </template>
 
 <script>
 // import jsPDF from 'jspdf'
 export default {
-  name: 'generatorBasicOperations',
   props: {
-    msg: String
+    wrkstTitle: String
   },
+  // I don't like this name here, it should probably be moved to data
+  name: 'generatorBasicOperations',
   data() {
     return {
       numbers: [],
@@ -110,12 +104,12 @@ export default {
     }
   },
   methods: {
-    getRandomNumber: function(min, max) {
+    getRandomNumber(min, max) {
       min = Math.ceil(min)
       max = Math.floor(max)
       return Math.floor(Math.random() * (max - min + 1)) + min
     },
-    createArrayOfDigits: function() {
+    createArrayOfDigits() {
       let nDigitArray = []
       // to make sure the first number in array != 0
       for (let i = 0; i < 1; i++) {
@@ -130,7 +124,7 @@ export default {
       return nDigitArray
     },
     // takes in an array and returns a number
-    createSingleNumber: function(tempArr) {
+    createSingleNumber(tempArr) {
       // let tempArr = this.createArrayOfDigits(this.noOfDigits)
       let singleNumber = 0
       for (let i = tempArr.length - 1; i >= 0; i--) {
@@ -139,7 +133,7 @@ export default {
       return singleNumber
     },
     // creates two arrays which will later be converted to numbers; with those two we assure noRegrouping
-    generateEquationsArray: function() {
+    generateEquationsArray() {
       let newEquationsArray = [
         this.createArrayOfDigits(),
         this.createArrayOfDigits()
@@ -176,13 +170,13 @@ export default {
       }
       return newEquationsArray
     },
-    convertFromArraysToNumbers: function(newEquationsArray) {
+    convertFromArraysToNumbers(newEquationsArray) {
       return {
         fstAddend: this.createSingleNumber(newEquationsArray[0]),
         sndAddend: this.createSingleNumber(newEquationsArray[1])
       }
     },
-    generateNumbers: function() {
+    generateNumbers() {
       this.title = true
       this.numbers = []
       for (let i = 0; i < this.noOfEquations; i++) {
@@ -190,34 +184,6 @@ export default {
         this.numbers.push(newNumber)
       }
     }
-    // saveFile: function() {
-    //   // jsPDF: portrait, points, a4
-    //   const doc = new jsPDF('p', 'pt', 'a4')
-
-    //   let pdfName = this.noOFDigits + '-digits-addition'
-
-    //   const prt = document.getElementById('save-document')
-    //   const d = document.createElement('div')
-
-    //   d.innerHTML = prt.innerHTML
-
-    //   // d.appendChild(prt)
-    //   d.setAttribute('class', 'forPrint')
-
-    //   // d.className += 'forPrint'
-    //   // d.setAttribute('id', 'newDivToPrint')
-    //   // d.setAttribute(':class', p.getAttribute('class'))
-    //   // d.innerHTML = p.innerHTML
-    //   // now I need to apply new styles
-    //   // const css = "<style>.classname { color:black; }</style>";
-
-    //   doc.html(d, {
-    //     callback: function(doc) {
-    //       doc.save(pdfName + '.pdf')
-    //       doc.output('dataurlnewwindow', {})
-    //     }
-    //   })
-    // }
   }
 }
 </script>
@@ -231,8 +197,7 @@ export default {
   grid-template-rows: 50px 1fr 50px;
   grid-template-areas:
     'intro intro'
-    'options preview'
-    'button button';
+    'options preview';
 }
 
 .title-intro {
@@ -243,18 +208,9 @@ export default {
   grid-area: options;
 }
 
-.print-button {
-  grid-area: button;
-}
-
 .preview-document {
   grid-area: preview;
 }
-
-/* .save-document {
-  font-family: Lato, sans-serif;
-  color: blue;
-} */
 
 .single-problem {
   display: grid;
