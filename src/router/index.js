@@ -28,6 +28,13 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "contact" */ '../views/Contact.vue')
   }
+  // for dynamic generator routes: Real World Vue 2.5
+  // {
+  //   path: '/generator/:worksheet',
+  //   name: 'user',
+  //   component: User,
+  //   props: true
+  // }
 ]
 
 // mode history to remove the "#" from url

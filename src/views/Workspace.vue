@@ -1,7 +1,7 @@
 <template>
   <main class="main__workspace">
     <section class="workspace__intro">
-      <h3>Worksheet generator</h3>
+      <h3>Choose a generator</h3>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -14,15 +14,15 @@
       <ul class="workspace__cards--container">
         <li
           class="workspace__cards--item"
-          v-for="worksheet in worksheets"
+          v-for="worksheet in worksheetData"
           :key="worksheet.name"
           @click="selectedWorksheet = worksheet"
         >
           <article class="card">
             <img
               class="card__thumb"
-              :src="require(`@/assets/img/${worksheet.image}`)"
-              :alt="worksheet.alt"
+              :src="require(`@/assets/img/${worksheet.image.src}`)"
+              :alt="worksheet.image.alt"
             />
             <h3 class="card__title">{{ worksheet.name }}</h3>
           </article>
@@ -45,12 +45,18 @@ import generatorBasicOperations from '@/components/generatorBasicOperations.vue'
 import generator100Board from '@/components/generator100Board.vue'
 import generatorNumberLine from '@/components/generatorNumberLine.vue'
 
+//  I'll have to try to generilise and create one base component
+// import WorksheetGenerator from '@/components/WorksheetGenerator.vue'
+
+import WrkstService from '@/services/WrkstService.js'
+
 export default {
   name: 'Workspace',
   components: {
     generatorBasicOperations,
     generator100Board,
     generatorNumberLine
+    // WorksheetGenerator
   },
   data() {
     return {
@@ -80,8 +86,18 @@ export default {
           alt: 'number line generator'
         }
       ],
+      worksheetData: [],
       selectedWorksheet: '' // we will select thorugh the array[i]
     }
+  },
+  created() {
+    WrkstService.getWorksheets()
+      .then(response => {
+        this.worksheetData = response.data
+      })
+      .catch(error => {
+        console.log('There was an error:' + error.response)
+      })
   }
 }
 </script>

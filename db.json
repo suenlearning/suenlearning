@@ -1,0 +1,40 @@
+{
+  "worksheet-types": [
+    {
+      "id": "m-bo-add-001",
+      "category": "math",
+      "name": "addition",
+      "slug": "addition",
+      "generator": "generatorBasicOperations",
+      "path": "#",
+      "image": {
+        "src": "worksheets.png",
+        "alt": "addition generator"
+      }
+    },
+    {
+      "id": "m-lc-hb-001",
+      "category": "math",
+      "name": "100 board",
+      "slug": "100-board",
+      "generator": "generator100Board",
+      "path": "#",
+      "image": {
+        "src": "worksheets.png",
+        "alt": "hundred board generator"
+      }
+    },
+    {
+      "id": "m-lc-nl-001",
+      "category": "math",
+      "name": "number line",
+      "slug": "number-line",
+      "generator": "generatorNumberLine",
+      "path": "#",
+      "image": {
+        "src": "worksheets.png",
+        "alt": "number line generator"
+      }
+    }
+  ]
+}

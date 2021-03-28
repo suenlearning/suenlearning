@@ -2,7 +2,7 @@
   <div id="app">
     <TheNavigation :image-path="require('./assets/img/wrkst-logo-book.png')" />
     <router-view />
-    <footer class="footer pageColumn"></footer>
+    <footer class="footer">© marcjnn 2021</footer>
   </div>
 </template>
 
@@ -66,6 +66,7 @@ export default {
   background-color: var(--colorFooter);
   height: 50px;
   position: relative;
+  color: white;
 }
 
 /* it has to have height, otherwise background doesn't appear; for now height arbitrary, search if I can find  */
