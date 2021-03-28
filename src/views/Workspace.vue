@@ -14,7 +14,7 @@
       <ul class="workspace__cards--container">
         <li
           class="workspace__cards--item"
-          v-for="worksheet in worksheetData"
+          v-for="worksheet in worksheets"
           :key="worksheet.name"
           @click="selectedWorksheet = worksheet"
         >
@@ -60,40 +60,14 @@ export default {
   },
   data() {
     return {
-      worksheets: [
-        {
-          name: 'addition',
-          slug: 'addition',
-          generator: 'generatorBasicOperations',
-          path: '#',
-          image: 'worksheets.png',
-          alt: 'addition generator'
-        },
-        {
-          name: '100 board',
-          slug: '100-board',
-          generator: 'generator100Board',
-          path: '#',
-          image: 'worksheets.png',
-          alt: 'hundred board generator'
-        },
-        {
-          name: 'number line',
-          slug: 'number-line',
-          generator: 'generatorNumberLine',
-          path: '#',
-          image: 'worksheets.png',
-          alt: 'number line generator'
-        }
-      ],
-      worksheetData: [],
+      worksheets: [],
       selectedWorksheet: '' // we will select thorugh the array[i]
     }
   },
   created() {
     WrkstService.getWorksheets()
       .then(response => {
-        this.worksheetData = response.data
+        this.worksheets = response.data
       })
       .catch(error => {
         console.log('There was an error:' + error.response)
