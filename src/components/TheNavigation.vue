@@ -1,17 +1,35 @@
 <template>
   <header class="header">
-    <!-- add hidden title -->
-    <img :src="imagePath" alt="logo" class="logo" />
+    <h1 class="hidden">Worksheet Generator</h1>
+    <router-link to="/" class="nav__link"
+      ><img :src="imagePath" alt="logo" class="logo"
+    /></router-link>
     <nav>
       <ul class="header__nav">
-        <li
-          v-for="(link, index) in navLinks"
-          :key="index"
-          class="header__nav--item"
-        >
-          <router-link :to="link.path" class="nav__link"
-            >{{ link.text }}
-          </router-link>
+        <li class="header__nav--item">
+          <router-link :to="{ name: 'home' }" class="nav__link"
+            >home</router-link
+          >
+        </li>
+        <li class="header__nav--item">
+          <router-link :to="{ name: 'workspace' }" class="nav__link"
+            >workspace</router-link
+          >
+        </li>
+        <li class="header__nav--item">
+          <router-link :to="{ name: 'home' }" class="nav__link"
+            >patreon</router-link
+          >
+        </li>
+        <li class="header__nav--item">
+          <router-link :to="{ name: 'about' }" class="nav__link"
+            >about</router-link
+          >
+        </li>
+        <li class="header__nav--item">
+          <router-link :to="{ name: 'contact' }" class="nav__link"
+            >contact</router-link
+          >
         </li>
       </ul>
     </nav>
@@ -20,33 +38,7 @@
 
 <script>
 export default {
-  props: ['imagePath'],
-  data() {
-    return {
-      navLinks: [
-        {
-          text: 'home',
-          path: '/'
-        },
-        {
-          text: 'workspace',
-          path: '/workspace'
-        },
-        {
-          text: 'patreon',
-          path: '#'
-        },
-        {
-          text: 'about',
-          path: '/about'
-        },
-        {
-          text: 'contact',
-          path: '/contact'
-        }
-      ]
-    }
-  }
+  props: ['imagePath']
 }
 </script>
 

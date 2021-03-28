@@ -98,4 +98,8 @@ export default {
         90%;
   } */
 }
+
+.hidden {
+  display: none;
+}
 </style>
