@@ -57,20 +57,14 @@
         generate worksheet</BaseButton
       >
       <BaseButton>save pdf</BaseButton>
-      <div class="generateWorksheetButton">
-        <button @click.prevent="generateNumbers">generate numbers</button>
-      </div>
     </form>
 
-    <!-- button PRINT -->
-    <!-- <section class="print-button">
-      <div class="generateWorksheetButton">
-        <button @click="saveFile">save file</button>
-      </div>
-    </section> -->
-
     <!-- VISIBLE RESULTS -->
-    <BasePreview preview-document>
+    <BasePreview
+      class="preview-document"
+      :isTitle="title"
+      :previewWrkstTitle="getPreviewWrkstTitle"
+    >
       <div class="workspace">
         <div
           class="single-problem"
@@ -92,10 +86,11 @@ export default {
   props: {
     wrkstTitle: String
   },
-  // I don't like this name here, it should probably be moved to data
-  name: 'generatorBasicOperations',
+  // I don't like this name here, it should probably be moved to data: when updating, make sure to update computed previewWrkstTitle as well
+
   data() {
     return {
+      name: 'generatorAddition',
       numbers: [],
       noOfDigits: null,
       noOfEquations: null,
@@ -184,6 +179,21 @@ export default {
         this.numbers.push(newNumber)
       }
     }
+  },
+  computed: {
+    getPreviewWrkstTitle() {
+      const withOrWithout = this.regrouping ? 'with' : 'without'
+      const digits = this.noOfDigits === 1 ? 'digit' : 'digits'
+      const createWrkstTitle = () => {
+        return this.noOfDigits
+          ? `${this.noOfDigits.toString()}-${digits} ${
+              this.wrkstTitle
+            } ${withOrWithout} regrouping`
+          : ''
+      }
+      console.log(createWrkstTitle())
+      return this.title ? createWrkstTitle() : ''
+    }
   }
 }
 </script>
@@ -255,11 +265,5 @@ export default {
   display: flex;
   /* flex-direction: column; */
   justify-content: space-between;
-}
-
-/* change button classes names - either one name or two short names to combine */
-.generateWorksheetButton {
-  display: flex;
-  justify-content: center;
 }
 </style>

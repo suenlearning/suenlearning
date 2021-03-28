@@ -5,7 +5,7 @@
       "category": "math",
       "name": "addition",
       "slug": "addition",
-      "generator": "generatorBasicOperations",
+      "generator": "generatorAddition",
       "path": "#",
       "image": {
         "src": "worksheets.png",

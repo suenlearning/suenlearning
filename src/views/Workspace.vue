@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import generatorBasicOperations from '@/components/generatorBasicOperations.vue'
+import generatorAddition from '@/components/generatorAddition.vue'
 import generator100Board from '@/components/generator100Board.vue'
 import generatorNumberLine from '@/components/generatorNumberLine.vue'
 
@@ -49,7 +49,7 @@ import WrkstService from '@/services/WrkstService.js'
 export default {
   name: 'Workspace',
   components: {
-    generatorBasicOperations,
+    generatorAddition,
     generator100Board,
     generatorNumberLine
   },

@@ -1,6 +1,8 @@
 <template>
   <div>
-    <button @click="generateWorksheet"><slot></slot></button>
+    <button @click="generateWorksheet" class="generateWrkstBtn">
+      <slot></slot>
+    </button>
   </div>
 </template>
 
@@ -14,4 +16,10 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+/* change class name when applying proper styling */
+.generateWrkstBtn {
+  display: flex;
+  justify-content: center;
+}
+</style>
