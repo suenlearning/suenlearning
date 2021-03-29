@@ -6,7 +6,7 @@
 </template>
 <script>
 export default {
-  name: 'generator100Board',
+  name: 'Generator100Board',
   props: {
     wrkstTitle: String
   }

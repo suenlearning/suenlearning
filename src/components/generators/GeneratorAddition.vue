@@ -81,16 +81,13 @@
 </template>
 
 <script>
-// import jsPDF from 'jspdf'
 export default {
+  name: 'GeneratorAddition',
   props: {
     wrkstTitle: String
   },
-  // I don't like this name here, it should probably be moved to data: when updating, make sure to update computed previewWrkstTitle as well
-
   data() {
     return {
-      name: 'generatorAddition',
       numbers: [],
       noOfDigits: null,
       noOfEquations: null,

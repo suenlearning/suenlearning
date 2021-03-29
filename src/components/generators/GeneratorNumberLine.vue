@@ -93,7 +93,7 @@
 </template>
 <script>
 export default {
-  name: 'generatorNumberLine',
+  name: 'GeneratorNumberLine',
   props: {
     wrkstTitle: String
   },

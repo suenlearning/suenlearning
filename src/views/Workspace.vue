@@ -28,8 +28,8 @@
       </li>
     </ul>
 
-    <section id="worksheetGenerator" class="worksheetGenerator">
-      <div class="chosenComponent" v-if="selectedWorksheet">
+    <section v-if="selectedWorksheet" class="worksheetGenerator">
+      <div class="chosenComponent">
         <component
           :is="selectedWorksheet.generator"
           :wrkstTitle="selectedWorksheet.name"
@@ -40,18 +40,18 @@
 </template>
 
 <script>
-import generatorAddition from '@/components/generatorAddition.vue'
-import generator100Board from '@/components/generator100Board.vue'
-import generatorNumberLine from '@/components/generatorNumberLine.vue'
+import GeneratorAddition from '@/components/generators/GeneratorAddition.vue'
+import Generator100Board from '@/components/generators/Generator100Board.vue'
+import GeneratorNumberLine from '@/components/generators/GeneratorNumberLine.vue'
 
 import WrkstService from '@/services/WrkstService.js'
 
 export default {
   name: 'Workspace',
   components: {
-    generatorAddition,
-    generator100Board,
-    generatorNumberLine
+    GeneratorAddition,
+    Generator100Board,
+    GeneratorNumberLine
   },
   data() {
     return {

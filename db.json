@@ -5,7 +5,7 @@
       "category": "math",
       "name": "addition",
       "slug": "addition",
-      "generator": "generatorAddition",
+      "generator": "GeneratorAddition",
       "path": "#",
       "image": {
         "src": "worksheets.png",
@@ -17,7 +17,7 @@
       "category": "math",
       "name": "100 board",
       "slug": "100-board",
-      "generator": "generator100Board",
+      "generator": "Generator100Board",
       "path": "#",
       "image": {
         "src": "worksheets.png",
@@ -29,7 +29,7 @@
       "category": "math",
       "name": "number line",
       "slug": "number-line",
-      "generator": "generatorNumberLine",
+      "generator": "GeneratorNumberLine",
       "path": "#",
       "image": {
         "src": "worksheets.png",
