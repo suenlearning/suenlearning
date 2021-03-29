@@ -12,7 +12,7 @@ import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 
 const requireComponent = require.context(
-  './components',
+  './components/ui',
   false,
   /Base[A-Z]\w+\.(vue|js)$/
 )
