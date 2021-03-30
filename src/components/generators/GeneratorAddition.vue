@@ -1,11 +1,13 @@
 <template>
-  <div class="main-content">
-    <h3 class="title-intro">{{ wrkstTitle }} worksheet generator</h3>
+  <div class="generator">
+    <h3 class="generator__title">{{ wrkstTitle }} worksheet generator</h3>
 
     <!-- CHOICE SELECTORS FOR TEACHERS -->
-    <form action="" method="" class="options-panel" v-on:submit.prevent>
+    <form action="" method="" class="generator__options" v-on:submit.prevent>
       <!-- how many digits -->
-      <div>
+      <fieldset>
+        <legend></legend>
+
         <label for="noOfDigits">
           <p>Choose how many digits</p>
         </label>
@@ -15,9 +17,9 @@
           <option>3</option>
           <option>4</option>
         </select>
-      </div>
+      </fieldset>
       <!-- regrouping vs no regrouping -->
-      <div>
+      <fieldset>
         <p>
           <input
             type="radio"
@@ -38,30 +40,33 @@
           />
           <label for="regrouping">regrouping</label>
         </p>
-      </div>
+      </fieldset>
       <!-- how many problems -->
-      <div>
-        <label for="noOfEquations">
+      <fieldset>
+        <!-- <label for="noOfEquations">
           <p>Choose how many problems</p>
-        </label>
+        </label> -->
         <select id="noOfEquations" v-model.number="noOfEquations">
-          <option>4</option>
-          <option>8</option>
-          <option>12</option>
-          <option>16</option>
-          <option>20</option>
+          <option value="" disabled>Choose how many problems</option>
+          <option value="4">4</option>
+          <option value="8">8</option>
+          <option value="12">12</option>
+          <option value="16">16</option>
+          <option value="20">20</option>
         </select>
-      </div>
+      </fieldset>
       <!-- BUTTON - generate worksheet: later on - should it be submit? -->
-      <BaseButton @generate-worksheet="generateNumbers">
-        generate worksheet</BaseButton
-      >
-      <BaseButton>save pdf</BaseButton>
+      <fieldset>
+        <BaseButton @generate-worksheet="generateNumbers">
+          generate worksheet</BaseButton
+        >
+        <BaseButton>save pdf</BaseButton>
+      </fieldset>
     </form>
 
     <!-- VISIBLE RESULTS -->
     <BasePreview
-      class="preview-document"
+      class="generator__preview"
       :isTitle="title"
       :previewWrkstTitle="getPreviewWrkstTitle"
     >
@@ -196,28 +201,34 @@ export default {
 </script>
 
 <style scoped>
-/* choose a different, better name - I did it fast to remove the main tag */
-.main-content {
+.generator {
   display: grid;
   width: inherit;
-  grid-template-columns: 1fr 34%;
-  grid-template-rows: 50px 1fr 50px;
+  grid-template-columns: 40% 1fr;
+  grid-template-rows: auto 1fr;
   grid-template-areas:
     'intro intro'
     'options preview';
+  column-gap: 2vw;
 }
 
-.title-intro {
+.generator__title {
   grid-area: intro;
+  justify-self: center;
+  margin: 2vw 0;
 }
 
-.options-panel {
+.generator__options {
   grid-area: options;
+  background-color: burlywood;
 }
 
-.preview-document {
+.generator__preview {
   grid-area: preview;
+  background-color: cadetblue;
 }
+
+/* preview styling */
 
 .single-problem {
   display: grid;
@@ -228,10 +239,6 @@ export default {
     'opSign sndAddend';
   align-items: center;
 }
-
-/* .forPrint {
-  color: red;
-} */
 
 .fstAddend {
   grid-area: fstAddend;
