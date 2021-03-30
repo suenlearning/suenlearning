@@ -42,15 +42,14 @@
       </li>
     </ul>
 
+    <!-- router-view might be needed if I introduce the general Generator.vue view within which I'll be rendering single generators; with the v-if however, it is not needed -->
     <!-- <router-view :key="$route.path" /> -->
 
-    <section v-if="selectedWorksheet" class="worksheetGenerator">
-      <div class="chosenComponent">
-        <component
-          :is="selectedWorksheet.generator"
-          :wrkstTitle="selectedWorksheet.name"
-        />
-      </div>
+    <section v-if="selectedWorksheet" class="workspace__generator">
+      <component
+        :is="selectedWorksheet.generator"
+        :wrkstTitle="selectedWorksheet.name"
+      />
     </section>
   </main>
 </template>
@@ -156,15 +155,11 @@ export default {
 
 /* WORKSHEET GENERATOR */
 
-.worksheetGenerator {
+/* .workspace__generator {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.chosenComponent {
-  width: 100%;
-}
+} */
 
 /* ADD MEDIA */
 </style>
