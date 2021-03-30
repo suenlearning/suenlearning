@@ -12,7 +12,7 @@
           >
         </li>
         <li class="header__nav--item">
-          <router-link :to="{ name: 'workspace' }" class="nav__link"
+          <router-link :to="{ name: 'generators' }" class="nav__link"
             >workspace</router-link
           >
         </li>

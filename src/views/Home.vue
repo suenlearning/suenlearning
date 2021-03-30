@@ -1,49 +1,37 @@
 <template>
   <main class="main__home">
-    <!-- <section class="main__home"> -->
     <ul class="home__cards--container">
-      <li class="home__cards--item" v-for="(card, index) in cards" :key="index">
-        <router-link :to="card.path" class="card__link">
+      <li class="home__cards--item">
+        <router-link :to="{ name: 'generators' }" class="card__link">
           <article class="card">
             <img
               class="card__thumb"
-              :src="require(`@/assets/img/${card.image}`)"
-              :alt="card.alt"
+              :src="require(`@/assets/img/generator.png`)"
+              alt="worksheet generator"
             />
-            <h3 class="card__title">{{ card.name }}</h3>
-            <p class="card__description">{{ card.description }}</p>
+            <h3 class="card__title">generator</h3>
+            <p class="card__description">create your own worksheets</p>
+          </article>
+        </router-link>
+      </li>
+      <li class="home__cards--item">
+        <router-link :to="{ name: 'about' }" class="card__link">
+          <article class="card">
+            <img
+              class="card__thumb"
+              :src="require(`@/assets/img/solids.png`)"
+              alt="browse database"
+            />
+            <h3 class="card__title">browse</h3>
+            <p class="card__description">explore our database</p>
           </article>
         </router-link>
       </li>
     </ul>
-    <!-- </section> -->
   </main>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      cards: [
-        {
-          name: 'generator',
-          description: 'create your own worksheets',
-          path: '/workspace',
-          image: 'generator.png',
-          alt: 'worksheet generator'
-        },
-        {
-          name: 'browse',
-          description: 'explore our database',
-          path: '/about',
-          image: 'solids.png',
-          alt: 'files'
-        }
-      ]
-    }
-  }
-}
-</script>
+<script></script>
 
 <style scoped>
 .main__home {

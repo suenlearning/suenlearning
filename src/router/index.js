@@ -18,9 +18,9 @@ const routes = [
   },
   {
     path: '/workspace',
-    name: 'workspace',
+    name: 'generators',
     component: () =>
-      import(/* webpackChunkName: "workspace" */ '../views/Workspace.vue')
+      import(/* webpackChunkName: "generators" */ '../views/Generators.vue')
   },
   {
     path: '/contact',
