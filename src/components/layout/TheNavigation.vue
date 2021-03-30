@@ -75,13 +75,13 @@ export default {
 }
 
 .nav__link {
-  color: #521818;
+  color: var(--colorMain);
   text-decoration: none;
   font-size: 17px;
 }
 
 .header__nav a.router-link-exact-active {
-  color: #30b2e7;
+  color: var(--colorFooter);
 }
 
 .logo {

@@ -17,16 +17,32 @@
         :key="worksheet.name"
         @click="selectedWorksheet = worksheet"
       >
-        <article class="card">
-          <img
-            class="card__thumb"
-            :src="require(`@/assets/img/${worksheet.image.src}`)"
-            :alt="worksheet.image.alt"
-          />
-          <h3 class="card__title">{{ worksheet.name }}</h3>
-        </article>
+        <router-link
+          :to="{
+            name: 'singleGenerator',
+            params: { generatorType: worksheet.slug }
+          }"
+          class="nav__link"
+        >
+          <article
+            class="card"
+            :class="{
+              selectedWorksheet:
+                selectedWorksheet.generator === worksheet.generator
+            }"
+          >
+            <img
+              class="card__thumb"
+              :src="require(`@/assets/img/${worksheet.image.src}`)"
+              :alt="worksheet.image.alt"
+            />
+            <h3 class="card__title">{{ worksheet.name }}</h3>
+          </article></router-link
+        >
       </li>
     </ul>
+
+    <!-- <router-view :key="$route.path" /> -->
 
     <section v-if="selectedWorksheet" class="worksheetGenerator">
       <div class="chosenComponent">
@@ -119,6 +135,11 @@ export default {
   cursor: pointer;
 }
 
+.workspace__cards--item .nav__link {
+  color: var(--colorMain);
+  text-decoration: none;
+}
+
 .card__thumb {
   max-height: 100px;
 }
@@ -127,6 +148,10 @@ export default {
   font-size: 18px;
   font-weight: 400;
   margin-top: 20px;
+}
+
+.workspace__cards--item a.router-link-exact-active {
+  color: var(--colorDetails);
 }
 
 /* WORKSHEET GENERATOR */
