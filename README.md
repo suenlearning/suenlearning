@@ -1,4 +1,6 @@
-# wrkst
+# WRKST
+
+A SPA created with Vue.js + Axios for teachers and educators to create personalised materials for their students.
 
 ![WIP screen](screen01.png)
 ![WIP screen](screen03.png)
