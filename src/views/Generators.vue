@@ -155,11 +155,10 @@ export default {
 
 /* WORKSHEET GENERATOR */
 
-/* .workspace__generator {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
+/* temporary, to imitate a full page */
+.workspace__generator {
+  height: 100vh;
+}
 
 /* ADD MEDIA */
 </style>

@@ -203,7 +203,7 @@ export default {
 <style scoped>
 .generator {
   display: grid;
-  width: inherit;
+  height: 100%;
   grid-template-columns: 40% 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
@@ -226,6 +226,7 @@ export default {
 .generator__preview {
   grid-area: preview;
   background-color: cadetblue;
+  height: 100%;
 }
 
 /* preview styling */
