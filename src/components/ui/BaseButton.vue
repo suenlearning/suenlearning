@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <button @click="onClick" class="button">
-      <slot>Button</slot>
-    </button>
-  </div>
+  <button @click="onClick" class="button">
+    <slot>Button</slot>
+  </button>
 </template>
 
 <script setup>
@@ -14,11 +12,6 @@ export default {
       required: true
     }
   }
-  // methods: {
-  //   generateWorksheet() {
-  //     this.$emit('generate-worksheet')
-  //   }
-  // }
 }
 </script>
 
@@ -28,5 +21,17 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem;
+  text-transform: uppercase;
+  background-color: var(--colorDetails);
+  outline: none;
+  color: white;
+  /* 14px */
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-shadow: 0 0 4px 0 rgb(0 0 0 / 10%);
+  cursor: pointer;
 }
 </style>
