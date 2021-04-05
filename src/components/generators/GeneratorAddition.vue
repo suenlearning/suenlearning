@@ -15,38 +15,41 @@
           v-model.number="noOfDigits"
           class="form__options--select"
         >
-          <option value="" class="form__options" disabled
-            >Choose how many digits</option
-          >
-          <option value="1" class="form__options">1</option>
-          <option value="2" class="form__options">2</option>
-          <option value="3" class="form__options">3</option>
-          <option value="4" class="form__options">4</option>
+          <option value="" disabled>Choose how many digits</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
         </select>
       </fieldset>
+
       <!-- regrouping vs no regrouping -->
       <fieldset class="form__fieldset">
-        <p>
+        <div class="form__options--radio">
           <input
             type="radio"
-            id="noRegroup"
+            id="no-regroup"
             :value="false"
             name="regrouping"
             v-model="regrouping"
           />
-          <label for="noRegrouping">no regrouping</label>
-        </p>
-        <p>
+          <label for="no-regroup" class="options__radio--label"
+            >no regrouping</label
+          >
+        </div>
+
+        <div class="form__options--radio">
           <input
             type="radio"
             id="regroup"
             :value="true"
-            name="regrouping"
+            name="regroup"
             v-model="regrouping"
           />
-          <label for="regrouping">regrouping</label>
-        </p>
+          <label for="regroup" class="options__radio--label">regrouping</label>
+        </div>
       </fieldset>
+
       <!-- how many problems -->
       <fieldset class="form__fieldset">
         <!-- <label for="noOfEquations">
@@ -57,14 +60,12 @@
           v-model.number="noOfEquations"
           class="form__options--select"
         >
-          <option value="" class="form__options" disabled
-            >Choose how many problems</option
-          >
-          <option value="4" class="form__options">4</option>
-          <option value="8" class="form__options">8</option>
-          <option value="12" class="form__options">12</option>
-          <option value="16" class="form__options">16</option>
-          <option value="20" class="form__options">20</option>
+          <option value="" disabled>Choose how many problems</option>
+          <option value="4">4</option>
+          <option value="8">8</option>
+          <option value="12">12</option>
+          <option value="16">16</option>
+          <option value="20">20</option>
         </select>
       </fieldset>
       <!-- BUTTON - generate worksheet: later on - should it be submit? -->
@@ -236,7 +237,9 @@ export default {
 }
 
 .form__fieldset {
-  padding: 0.5vw 0.7vw;
+  padding: 1vw 0.7vw;
+  border: none;
+  border-top: 1px solid #d8d8d8;
 }
 
 .form__options--select {
@@ -259,8 +262,20 @@ export default {
 
 .form__options--select:hover {
 }
+/* to vertically align in the middle */
+input[type='radio'] {
+  margin-top: -1px;
+  vertical-align: middle;
+}
 
-.form__options {
+.form__options--radio {
+}
+
+.options__radio--label {
+  /* possible variable for size; when adding SASS */
+  /* 14px */
+  font-size: 0.875rem;
+  padding-left: 0.4em;
 }
 
 /* preview styling */
