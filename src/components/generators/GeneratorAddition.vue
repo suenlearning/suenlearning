@@ -13,7 +13,7 @@
         <select
           id="noOfDigits"
           v-model.number="noOfDigits"
-          class="form__options--container"
+          class="form__options--select"
         >
           <option value="" class="form__options" disabled
             >Choose how many digits</option
@@ -55,7 +55,7 @@
         <select
           id="noOfEquations"
           v-model.number="noOfEquations"
-          class="form__options--container"
+          class="form__options--select"
         >
           <option value="" class="form__options" disabled
             >Choose how many problems</option
@@ -232,17 +232,32 @@ export default {
 
 .generator__options {
   grid-area: options;
-  background-color: burlywood;
+  /* background-color: burlywood; */
 }
 
 .form__fieldset {
   padding: 0.5vw 0.7vw;
 }
 
-.form__options--container {
+.form__options--select {
+  display: block;
+  /* 14px */
+  font-size: 0.875rem;
+  /* font-family: ; */
+  /* font-weight: ; */
+  color: var(--colorMain);
+  line-height: 1.3;
   width: 50%;
-  max-width: 200px;
+  max-width: 220px;
   padding: 3px;
+  padding: 0.6em 0.4em;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0px 0px 0px 1px var(--colorFooter-shadow);
+  background-image: linear-gradient(to bottom, #ffffff 0%, #f5f5f5 100%);
+}
+
+.form__options--select:hover {
 }
 
 .form__options {
