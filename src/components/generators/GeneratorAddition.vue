@@ -5,21 +5,27 @@
     <!-- CHOICE SELECTORS FOR TEACHERS -->
     <form action="" method="" class="generator__options" v-on:submit.prevent>
       <!-- how many digits -->
-      <fieldset>
+      <fieldset class="form__fieldset">
         <legend></legend>
-
-        <label for="noOfDigits">
+        <!-- <label for="noOfDigits">
           <p>Choose how many digits</p>
-        </label>
-        <select id="noOfDigits" v-model.number="noOfDigits">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
+        </label> -->
+        <select
+          id="noOfDigits"
+          v-model.number="noOfDigits"
+          class="form__options--container"
+        >
+          <option value="" class="form__options" disabled
+            >Choose how many digits</option
+          >
+          <option value="1" class="form__options">1</option>
+          <option value="2" class="form__options">2</option>
+          <option value="3" class="form__options">3</option>
+          <option value="4" class="form__options">4</option>
         </select>
       </fieldset>
       <!-- regrouping vs no regrouping -->
-      <fieldset>
+      <fieldset class="form__fieldset">
         <p>
           <input
             type="radio"
@@ -42,21 +48,27 @@
         </p>
       </fieldset>
       <!-- how many problems -->
-      <fieldset>
+      <fieldset class="form__fieldset">
         <!-- <label for="noOfEquations">
           <p>Choose how many problems</p>
         </label> -->
-        <select id="noOfEquations" v-model.number="noOfEquations">
-          <option value="" disabled>Choose how many problems</option>
-          <option value="4">4</option>
-          <option value="8">8</option>
-          <option value="12">12</option>
-          <option value="16">16</option>
-          <option value="20">20</option>
+        <select
+          id="noOfEquations"
+          v-model.number="noOfEquations"
+          class="form__options--container"
+        >
+          <option value="" class="form__options" disabled
+            >Choose how many problems</option
+          >
+          <option value="4" class="form__options">4</option>
+          <option value="8" class="form__options">8</option>
+          <option value="12" class="form__options">12</option>
+          <option value="16" class="form__options">16</option>
+          <option value="20" class="form__options">20</option>
         </select>
       </fieldset>
       <!-- BUTTON - generate worksheet: later on - should it be submit? -->
-      <fieldset>
+      <fieldset class="form__fieldset">
         <BaseButton @generate-worksheet="generateNumbers">
           generate worksheet</BaseButton
         >
@@ -89,13 +101,13 @@
 export default {
   name: 'GeneratorAddition',
   props: {
-    wrkstTitle: String
+    worksheetTitle: String
   },
   data() {
     return {
       numbers: [],
-      noOfDigits: null,
-      noOfEquations: null,
+      noOfDigits: '',
+      noOfEquations: '',
       regrouping: null,
       title: false
     }
@@ -223,13 +235,26 @@ export default {
   background-color: burlywood;
 }
 
-.generator__preview {
-  grid-area: preview;
-  background-color: cadetblue;
-  height: 100%;
+.form__fieldset {
+  padding: 0.5vw 0.7vw;
+}
+
+.form__options--container {
+  width: 50%;
+  max-width: 200px;
+  padding: 3px;
+}
+
+.form__options {
 }
 
 /* preview styling */
+
+.generator__preview {
+  grid-area: preview;
+  padding: 0.5vw 0.7vw;
+  background-color: cadetblue;
+}
 
 .single-problem {
   display: grid;
