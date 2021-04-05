@@ -70,10 +70,8 @@
       </fieldset>
       <!-- BUTTON - generate worksheet: later on - should it be submit? -->
       <fieldset class="form__fieldset">
-        <BaseButton @generate-worksheet="generateNumbers">
-          generate worksheet</BaseButton
-        >
-        <BaseButton>save pdf</BaseButton>
+        <BaseButton :onClick="generateNumbers">generate worksheet</BaseButton>
+        <!-- <BaseButton>save pdf</BaseButton> -->
       </fieldset>
     </form>
 

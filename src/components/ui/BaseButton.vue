@@ -1,25 +1,32 @@
 <template>
   <div>
-    <button @click="generateWorksheet" class="generateWrkstBtn">
-      <slot></slot>
+    <button @click="onClick" class="button">
+      <slot>Button</slot>
     </button>
   </div>
 </template>
 
 <script setup>
 export default {
-  methods: {
-    generateWorksheet() {
-      this.$emit('generate-worksheet')
+  props: {
+    onClick: {
+      type: Function,
+      required: true
     }
   }
+  // methods: {
+  //   generateWorksheet() {
+  //     this.$emit('generate-worksheet')
+  //   }
+  // }
 }
 </script>
 
 <style scoped>
 /* change class name when applying proper styling */
-.generateWrkstBtn {
+.button {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 </style>
