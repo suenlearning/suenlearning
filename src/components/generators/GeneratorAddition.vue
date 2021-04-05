@@ -1,6 +1,6 @@
 <template>
   <div class="generator">
-    <h3 class="generator__title">{{ wrkstTitle }} worksheet generator</h3>
+    <h3 class="generator__title">{{ worksheetTitle }} worksheet generator</h3>
 
     <!-- CHOICE SELECTORS FOR TEACHERS -->
     <form action="" method="" class="generator__options" v-on:submit.prevent>
@@ -80,7 +80,7 @@
     <BasePreview
       class="generator__preview"
       :isTitle="title"
-      :previewWrkstTitle="getPreviewWrkstTitle"
+      :previewWorksheetTitle="getPreviewWorksheetTitle"
     >
       <div class="workspace">
         <div
@@ -195,18 +195,18 @@ export default {
     }
   },
   computed: {
-    getPreviewWrkstTitle() {
+    getPreviewWorksheetTitle() {
       const withOrWithout = this.regrouping ? 'with' : 'without'
       const digits = this.noOfDigits === 1 ? 'digit' : 'digits'
-      const createWrkstTitle = () => {
+      const createWorksheetTitle = () => {
         return this.noOfDigits
           ? `${this.noOfDigits.toString()}-${digits} ${
-              this.wrkstTitle
+              this.worksheetTitle
             } ${withOrWithout} regrouping`
           : ''
       }
-      console.log(createWrkstTitle())
-      return this.title ? createWrkstTitle() : ''
+      console.log(createWorksheetTitle())
+      return this.title ? createWorksheetTitle() : ''
     }
   }
 }

@@ -48,7 +48,7 @@
     <section v-if="selectedWorksheet" class="workspace__generator">
       <component
         :is="selectedWorksheet.generator"
-        :wrkstTitle="selectedWorksheet.name"
+        :worksheetTitle="selectedWorksheet.name"
       />
     </section>
   </main>
