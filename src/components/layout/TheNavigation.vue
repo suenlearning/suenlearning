@@ -47,7 +47,7 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  border-top: 8px solid var(--colorHeader);
+  border-top: 6px solid var(--colorHeader);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -83,6 +83,6 @@ export default {
 }
 
 .logo {
-  height: 30px;
+  height: 48px;
 }
 </style>

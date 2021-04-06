@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <TheNavigation :image-path="require('./assets/img/wrkst-logo-book.png')" />
+    <TheNavigation :image-path="require('./assets/img/logo-s.png')" />
     <router-view />
     <TheFooter />
   </div>
@@ -35,7 +35,7 @@ ul {
   font-family: var(--fontMain);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--colorMain);
+  color: var(--colorTextMain);
 }
 
 .hidden {
@@ -45,13 +45,22 @@ ul {
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
 
 :root {
-  --colorMain: #521818;
+  --colorMain: #9b054c;
+  --colorMain-shadow: rgba(155, 5, 75, 0.5);
+  --colorHeader: #f40905;
+  --colorFooter: #00c6d1;
+  --colorFooter-shadow: rgba(0, 198, 209, 0.5);
+  --colorBorder: #fe6902;
+  --colorDetails: #a4d001;
+  --colorTextMain: #4b473c;
+  --colorTextHeader: #4254a5;
+  /* --colorMain: #521818;
   --colorMain-shadow: rgba(82, 24, 24, 0.5);
   --colorHeader: #f04f4b;
   --colorFooter: #30b2e7;
   --colorFooter-shadow: rgba(48, 179, 231, 0.5);
   --colorBorder: #fdbe59;
-  --colorDetails: #bcc63f;
+  --colorDetails: #bcc63f; */
 
   --fontMain: Lato, sans-serif;
 }

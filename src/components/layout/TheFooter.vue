@@ -46,6 +46,7 @@ export default {}
   justify-content: space-around;
   font-size: 14px;
   padding: 1vw;
+  margin-top: -10px;
 }
 
 .footer .patreon {
@@ -67,7 +68,7 @@ export default {}
 }
 
 /* it has to have height, otherwise background doesn't appear; for now height arbitrary, search if I can find  */
-.footer::before {
+/* .footer::before {
   content: '';
   height: 9vh;
   width: 100%;
@@ -78,7 +79,7 @@ export default {}
   border-bottom: 4px solid var(--colorFooter);
   position: absolute;
   /* -height -border */
-  top: calc(-9vh - 4px);
+/* top: calc(-9vh - 4px);
   left: 0;
-}
+} */
 </style>

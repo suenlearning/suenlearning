@@ -1,6 +1,6 @@
 <template>
   <main class="main__home">
-    <ul class="home__cards--container">
+    <!-- <ul class="home__cards--container">
       <li class="home__cards--item">
         <router-link :to="{ name: 'generators' }" class="card__link">
           <article class="card">
@@ -27,7 +27,43 @@
           </article>
         </router-link>
       </li>
+    </ul> -->
+    <ul class="fiveReasons">
+      <li class="reasons__reason">
+        <h2 class="reasons__title">Fast & Easy</h2>
+        <p class="reasons__text">
+          Prepare engaging activities within just few moments - choose the
+          conditions and click "create"
+        </p>
+      </li>
+      <li class="reasons__reason">
+        <h2 class="reasons__title">Build Your Collection</h2>
+        <p class="reasons__text">
+          Save created activities in the cloud to have easy access whenever
+          needed
+        </p>
+      </li>
+      <li class="reasons__reason">
+        <h2 class="reasons__title">No More Printing</h2>
+        <p class="reasons__text">
+          Send assignment directly to your students. And add something more so
+          it makes two lines
+        </p>
+      </li>
+      <li class="reasons__reason">
+        <h2 class="reasons__title">Share With Others</h2>
+        <p class="reasons__text">
+          And browse what other teachers have created
+        </p>
+      </li>
     </ul>
+    <figure class="infographic">
+      <img
+        src="@/assets/img/edu.png"
+        alt="infographic"
+        class="infographic__image"
+      />
+    </figure>
   </main>
 </template>
 
@@ -35,9 +71,43 @@
 
 <style scoped>
 .main__home {
+  margin-top: 30px;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 30px);
   /* height: 100%; /* to fill whole main element */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fiveReasons {
+  width: 40vw;
+}
+
+.reasons__reason {
+  margin: 1vw 0;
+}
+
+.reasons__title {
+  color: var(--colorTextHeader);
+  /* 20px */
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.reasons__text {
+  font-size: 16px;
+  line-height: 1.3;
+  font-weight: 300;
+}
+
+.infographic {
+  height: 60vh;
+  margin-left: 3vw;
+}
+
+.infographic__image {
+  height: 100%;
 }
 
 .home__cards--container {
