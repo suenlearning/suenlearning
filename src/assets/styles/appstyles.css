@@ -47,6 +47,10 @@
 .form__options--select:focus {
 }
 
+.form__options--select:disabled {
+  color: var(--colorMain-shadow);
+}
+
 /* -- radio buttons -- */
 
 /* to vertically align in the middle */

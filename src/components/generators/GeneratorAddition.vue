@@ -6,20 +6,16 @@
     <form action="" method="" class="generator__options" v-on:submit.prevent>
       <!-- how many digits -->
       <fieldset class="form__fieldset">
-        <legend></legend>
-        <!-- <label for="noOfDigits">
-          <p>Choose how many digits</p>
-        </label> -->
         <select
-          id="noOfDigits"
-          v-model.number="noOfDigits"
+          id="numberOfDigits"
+          name="numberOfDigits"
+          v-model.number="numberOfDigits"
           class="form__options--select"
         >
-          <option value="" disabled>Choose how many digits</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
+          <option value="" disabled>How many digits</option>
+          <option v-for="option in numberOfDigitsOptions" :key="option">{{
+            option
+          }}</option>
         </select>
       </fieldset>
 
@@ -52,26 +48,22 @@
 
       <!-- how many problems -->
       <fieldset class="form__fieldset">
-        <!-- <label for="noOfEquations">
-          <p>Choose how many problems</p>
-        </label> -->
         <select
-          id="noOfEquations"
-          v-model.number="noOfEquations"
+          id="numberOfEquations"
+          v-model.number="numberOfEquations"
           class="form__options--select"
         >
-          <option value="" disabled>Choose how many problems</option>
-          <option value="4">4</option>
-          <option value="8">8</option>
-          <option value="12">12</option>
-          <option value="16">16</option>
-          <option value="20">20</option>
+          <option value="" disabled>How many problems</option>
+          <option v-for="option in numberOfEquationsOptions" :key="option">{{
+            option
+          }}</option>
         </select>
       </fieldset>
+
       <!-- BUTTON - generate worksheet: later on - should it be submit? -->
       <fieldset class="form__fieldset">
-        <BaseButton :onClick="generateNumbers">generate worksheet</BaseButton>
-        <!-- <BaseButton>save pdf</BaseButton> -->
+        <BaseButton :onClick="generateWorksheet">generate worksheet</BaseButton>
+        <!-- <BaseButton>save</BaseButton> -->
       </fieldset>
     </form>
 
@@ -106,44 +98,26 @@ export default {
   data() {
     return {
       numbers: [],
-      noOfDigits: '',
-      noOfEquations: '',
+      numberOfDigits: '',
+      numberOfDigitsOptions: [1, 2, 3, 4],
+      numberOfEquations: '',
+      numberOfEquationsOptions: [4, 8, 12, 16, 20],
       regrouping: null,
       title: false
     }
   },
   methods: {
-    getRandomNumber(min, max) {
-      min = Math.ceil(min)
-      max = Math.floor(max)
-      return Math.floor(Math.random() * (max - min + 1)) + min
-    },
-    createArrayOfDigits() {
-      let nDigitArray = []
-      // to make sure the first number in array != 0
-      for (let i = 0; i < 1; i++) {
-        let addDigit = this.getRandomNumber(1, 8)
-        nDigitArray.push(addDigit)
+    generateWorksheet() {
+      this.title = true
+      this.numbers = []
+      for (let i = 0; i < this.numberOfEquations; i++) {
+        const newNumber = this.generateEquationsArray()
+        this.numbers.push(newNumber)
       }
-      // for 2nd and following numbers in array
-      for (let i = 1; i < this.noOfDigits; i++) {
-        let addDigit = this.getRandomNumber(0, 9)
-        nDigitArray.push(addDigit)
-      }
-      return nDigitArray
     },
-    // takes in an array and returns a number
-    createSingleNumber(tempArr) {
-      // let tempArr = this.createArrayOfDigits(this.noOfDigits)
-      let singleNumber = 0
-      for (let i = tempArr.length - 1; i >= 0; i--) {
-        singleNumber += tempArr[i] * Math.pow(10, tempArr.length - 1 - i)
-      }
-      return singleNumber
-    },
-    // creates two arrays which will later be converted to numbers; with those two we assure noRegrouping
+    // creates two arrays which will later be converted to numbers; with these two we assure noRegrouping
     generateEquationsArray() {
-      let newEquationsArray = [
+      const newEquationsArray = [
         this.createArrayOfDigits(),
         this.createArrayOfDigits()
       ]
@@ -153,25 +127,45 @@ export default {
         // i starts at 1 because at 0 it's always false
         // let firstChild = newEquationsArray[0]
         // let secondChild = newEquationsArray[1]
-        for (let i = 1; i < this.noOfDigits; i++) {
+        for (let i = 1; i < this.numberOfDigits; i++) {
           this.ensureDigitsDontSum10OrMore(i, newEquationsArray)
         }
       }
       return this.convertFromArraysToNumbers(newEquationsArray)
     },
-    ensureDigitsDontSum10OrMore(digitPos, newEquationsArray) {
+    createArrayOfDigits() {
+      const nDigitArray = []
+      // to make sure the first number in array != 0
+      for (let i = 0; i < 1; i++) {
+        const addDigit = this.getRandomNumber(1, 8)
+        nDigitArray.push(addDigit)
+      }
+      // for 2nd and following numbers in array
+      for (let i = 1; i < this.numberOfDigits; i++) {
+        const addDigit = this.getRandomNumber(0, 9)
+        nDigitArray.push(addDigit)
+      }
+      return nDigitArray
+    },
+    getRandomNumber(min, max) {
+      min = Math.ceil(min)
+      max = Math.floor(max)
+      return Math.floor(Math.random() * (max - min + 1)) + min
+    },
+    ensureDigitsDontSum10OrMore(digitPosition, newEquationsArray) {
       if (
-        newEquationsArray[0][digitPos] + newEquationsArray[1][digitPos] >=
+        newEquationsArray[0][digitPosition] +
+          newEquationsArray[1][digitPosition] >=
         10
       ) {
-        let remainder = 10 - newEquationsArray[0][digitPos]
-        if (digitPos === 0) {
-          newEquationsArray[1][digitPos] = this.getRandomNumber(
+        const remainder = 10 - newEquationsArray[0][digitPosition]
+        if (digitPosition === 0) {
+          newEquationsArray[1][digitPosition] = this.getRandomNumber(
             1,
             remainder - 1
           )
         } else {
-          newEquationsArray[1][digitPos] = this.getRandomNumber(
+          newEquationsArray[1][digitPosition] = this.getRandomNumber(
             0,
             remainder - 1
           )
@@ -189,27 +183,26 @@ export default {
         result
       }
     },
-    generateNumbers() {
-      this.title = true
-      this.numbers = []
-      for (let i = 0; i < this.noOfEquations; i++) {
-        let newNumber = this.generateEquationsArray()
-        this.numbers.push(newNumber)
+    // takes in an array of numbers and returns a number
+    createSingleNumber(arr) {
+      let singleNumber = 0
+      for (let i = arr.length - 1; i >= 0; i--) {
+        singleNumber += arr[i] * Math.pow(10, arr.length - 1 - i)
       }
+      return singleNumber
     }
   },
   computed: {
     getPreviewWorksheetTitle() {
       const withOrWithout = this.regrouping ? 'with' : 'without'
-      const digits = this.noOfDigits === 1 ? 'digit' : 'digits'
+      const digits = this.numberOfDigits === 1 ? 'digit' : 'digits'
       const createWorksheetTitle = () => {
-        return this.noOfDigits
-          ? `${this.noOfDigits.toString()}-${digits} ${
+        return this.numberOfDigits
+          ? `${this.numberOfDigits.toString()}-${digits} ${
               this.worksheetTitle
             } ${withOrWithout} regrouping`
           : ''
       }
-      console.log(createWorksheetTitle())
       return this.title ? createWorksheetTitle() : ''
     }
   }
@@ -238,10 +231,18 @@ export default {
   grid-area: options;
 }
 
-/* preview styling */
+/* -- preview -- */
 
 .generator__preview {
   grid-area: preview;
+}
+
+.activity {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-align: center;
+  justify-items: center;
+  row-gap: 2vw;
 }
 
 .singleProblem {
@@ -253,6 +254,10 @@ export default {
     'operationSign secondAddend'
     'emptySpace2 result';
   align-items: center;
+}
+
+.activity .singleProblem {
+  width: 25%;
 }
 
 .addend {
@@ -275,18 +280,5 @@ export default {
 .result {
   grid-area: result;
   padding: 2px 2px 4px;
-  display: inline-flex;
-}
-
-.activity {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  text-align: center;
-  justify-items: center;
-  row-gap: 2vw;
-}
-
-.activity .singleProblem {
-  width: 25%;
 }
 </style>

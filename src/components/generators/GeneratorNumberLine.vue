@@ -10,6 +10,7 @@
           <input
             type="radio"
             id="fst-half"
+            name="numberRange"
             :value="0"
             v-model="firstNumberRange"
           />
@@ -21,6 +22,7 @@
           <input
             type="radio"
             id="snd-half"
+            name="numberRange"
             :value="1"
             v-model="firstNumberRange"
           />
@@ -32,6 +34,7 @@
           <input
             type="radio"
             id="custom"
+            name="numberRange"
             :value="2"
             v-model="firstNumberRange"
           />
@@ -79,18 +82,15 @@
       </fieldset>
       <!-- how many lines -->
       <fieldset class="form__fieldset">
-        <!-- <label for="numberOfLines">
-        Choose how many problems
-        </label> -->
         <select
           id="numberOfLines"
           v-model.number="numberOfLines"
           class="form__options--select"
         >
-          <option value="" disabled>Choose how many problems</option>
-          <option>5</option>
-          <option>7</option>
-          <option>9</option>
+          <option value="" disabled>How many problems</option>
+          <option v-for="option in numberOfLinesOptions" :key="option">{{
+            option
+          }}</option>
         </select>
       </fieldset>
       <!-- how many numbers per line -->
@@ -100,15 +100,15 @@
           v-model.number="numberPerLine"
           class="form__options--select"
         >
-          <option value="" disabled>Choose how many numbers per line</option>
-          <option>8</option>
-          <option>9</option>
-          <option>10</option>
+          <option value="" disabled>How many numbers per line</option>
+          <option v-for="option in numberPerLineOptions" :key="option">{{
+            option
+          }}</option>
         </select>
       </fieldset>
       <fieldset class="form__fieldset">
         <BaseButton :onClick="generateWorksheet">generate worksheet</BaseButton>
-        <!-- <BaseButton>save pdf</BaseButton> -->
+        <!-- <BaseButton>save</BaseButton> -->
       </fieldset>
     </form>
 
@@ -118,18 +118,21 @@
       :isTitle="title"
       :previewWorksheetTitle="getPreviewWorksheetTitle"
     >
-      <!-- <div v-for="(numberLine, index) in numberLines" :key="index"> -->
       <ul class="activity">
-        <li v-for="(numberLine, index) in numberLines" :key="index">
+        <li v-for="(line, index) in numberLines" :key="index">
           <ul class="numberLine">
-            <li class="line" v-for="(line, index) in numberLine" :key="index">
-              <p :class="line === 0 ? 'hiddenElement' : ''">{{ line }}</p>
+            <li
+              class="numberLine__element"
+              v-for="(n, index) in line"
+              :key="index"
+            >
+              <p :class="n === 0 ? 'numberLine__element--hidden' : ''">
+                {{ n }}
+              </p>
             </li>
           </ul>
         </li>
       </ul>
-
-      <!-- </div> -->
     </BasePreview>
   </div>
 </template>
@@ -143,7 +146,9 @@ export default {
     return {
       numberLines: [],
       numberOfLines: '',
+      numberOfLinesOptions: [3, 4, 5, 6, 7, 8, 9],
       numberPerLine: '',
+      numberPerLineOptions: [8, 9, 10],
       ascendingOrder: null,
       firstNumberRange: 0,
       optionalRange: { min: null, max: null },
@@ -151,12 +156,49 @@ export default {
     }
   },
   methods: {
-    getRandomNumber: function(min, max) {
-      min = Math.ceil(min)
-      max = Math.floor(max)
-      return Math.floor(Math.random() * (max - min + 1)) + min
+    generateWorksheet() {
+      this.title = true
+      this.numberLines = []
+      for (let i = 0; i < this.numberOfLines; i++) {
+        const newSingleLine = this.createSingleLine()
+        this.numberLines.push(newSingleLine)
+      }
     },
-    setNumbersRangeAscending: function() {
+    createSingleLine() {
+      let newSingleLine = []
+      const elementsToHide = this.createArrayOfIndexesToHide()
+      if (this.ascendingOrder) {
+        const n = this.setNumbersRangeAscending()
+        for (let i = 0; i < this.numberPerLine; i++) {
+          newSingleLine.push(n + i)
+        }
+      } else {
+        const n = this.setNumbersRangeDescending()
+        for (let i = 0; i < this.numberPerLine; i++) {
+          newSingleLine.push(n - i)
+        }
+      }
+      return this.changeSomeNumbersToZero(elementsToHide, newSingleLine)
+    },
+    // numbers to hide - these are the numbers the kids will have to fill in
+    createArrayOfIndexesToHide() {
+      const newArrayOfIndexes = []
+      while (newArrayOfIndexes.length < this.numberPerLine - 3) {
+        const newIndex = Math.floor(Math.random() * this.numberPerLine)
+        if (newArrayOfIndexes.indexOf(newIndex) === -1) {
+          newArrayOfIndexes.push(newIndex)
+        }
+      }
+      return newArrayOfIndexes
+    },
+    changeSomeNumbersToZero(arrOfIndexes, singleLine) {
+      for (let i = 0; i < arrOfIndexes.length; i++) {
+        const n = arrOfIndexes[i]
+        singleLine[n] = 0
+      }
+      return singleLine
+    },
+    setNumbersRangeAscending() {
       let x, y
       if (this.firstNumberRange === 0) {
         ;(x = 10), (y = 40)
@@ -168,7 +210,7 @@ export default {
       }
       return this.getRandomNumber(x, y)
     },
-    setNumbersRangeDescending: function() {
+    setNumbersRangeDescending() {
       let x, y
       if (this.firstNumberRange === 0) {
         ;(x = 20), (y = 50)
@@ -180,47 +222,10 @@ export default {
       }
       return this.getRandomNumber(x, y)
     },
-    createSingleLine: function() {
-      let newSingleLine = []
-      let elementsToHide = this.createArrayOfIndexesToHide()
-      if (this.ascendingOrder) {
-        let n = this.setNumbersRangeAscending()
-        for (let i = 0; i < this.numberPerLine; i++) {
-          newSingleLine.push(n + i)
-        }
-      } else {
-        let n = this.setNumbersRangeDescending()
-        for (let i = 0; i < this.numberPerLine; i++) {
-          newSingleLine.push(n - i)
-        }
-      }
-      return this.changeSomeNumbersToZero(elementsToHide, newSingleLine)
-    },
-    // numbers to hide - these are the numbers the kids will have to fill in
-    createArrayOfIndexesToHide: function() {
-      let newArrayOfIndexes = []
-      while (newArrayOfIndexes.length < this.numberPerLine - 3) {
-        let newIndex = Math.floor(Math.random() * this.numberPerLine)
-        if (newArrayOfIndexes.indexOf(newIndex) === -1) {
-          newArrayOfIndexes.push(newIndex)
-        }
-      }
-      return newArrayOfIndexes
-    },
-    changeSomeNumbersToZero: function(arrOfInd, singleLine) {
-      for (let i = 0; i < arrOfInd.length; i++) {
-        let num = arrOfInd[i]
-        singleLine[num] = 0
-      }
-      return singleLine
-    },
-    generateWorksheet: function() {
-      this.title = true
-      this.numberLines = []
-      for (let i = 0; i < this.numberOfLines; i++) {
-        let newSingleLine = this.createSingleLine()
-        this.numberLines.push(newSingleLine)
-      }
+    getRandomNumber(min, max) {
+      min = Math.ceil(min)
+      max = Math.floor(max)
+      return Math.floor(Math.random() * (max - min + 1)) + min
     }
   },
   computed: {
@@ -253,7 +258,7 @@ export default {
   grid-area: options;
 }
 
-/* preview styling */
+/* -- preview -- */
 
 .generator__preview {
   grid-area: preview;
@@ -266,18 +271,12 @@ export default {
 }
 
 .numberLine {
-  /* display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-auto-columns: 1fr;
-  grid-template-rows: 1fr;
-  grid-auto-flow: column;
-  gap: 6px;
-  justify-items: center; */
   list-style-type: none;
   display: flex;
   justify-content: space-between;
 }
-.line {
+
+.numberLine__element {
   /* 18px */
   font-size: 1.125rem;
   border: 1px solid var(--colorFooter);
@@ -288,7 +287,8 @@ export default {
   justify-content: center;
   align-items: center;
 }
-.hiddenElement {
+
+.numberLine__element--hidden {
   visibility: hidden;
 }
 </style>

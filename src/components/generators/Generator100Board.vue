@@ -11,10 +11,9 @@
           class="form__options--select"
         >
           <option value="" disabled>How many numbers visible</option>
-          <option value="20">20</option>
-          <option value="40">40</option>
-          <option value="60">60</option>
-          <option value="80">80</option>
+          <option v-for="option in numbersVisibleOptions" :key="option">{{
+            option
+          }}</option>
         </select>
       </fieldset>
 
@@ -32,13 +31,18 @@
       :previewWorksheetTitle="getPreviewWorksheetTitle"
     >
       <div class="activity">
-        <ul class="numbers--container">
+        <ul
+          class="numbers__container"
+          :class="numbers.length === 0 ? '' : 'numbers__container--filled'"
+        >
           <li
             v-for="(number, index) in numbers"
             :key="index"
-            class="numbers__single"
+            class="numbers__singleNumber"
           >
-            <p :class="number === 0 ? 'hiddenElement' : ''">{{ number }}</p>
+            <p :class="number === 0 ? 'numbers__singleNumber--hidden' : ''">
+              {{ number }}
+            </p>
           </li>
         </ul>
       </div>
@@ -54,6 +58,7 @@ export default {
   data() {
     return {
       numbersVisible: '',
+      numbersVisibleOptions: [20, 40, 60, 80],
       numbers: [],
       title: false
     }
@@ -65,32 +70,30 @@ export default {
       for (let i = 1; i <= 100; i++) {
         this.numbers.push(i)
       }
-      let tempArray = this.create100BoardElements()
-      console.log(tempArray)
-    },
-    changeSomeNumbersToZero: function(arrOfInd, numbersArray) {
-      for (let i = 0; i < arrOfInd.length; i++) {
-        let num = arrOfInd[i]
-        numbersArray[num] = 0
-      }
-      return numbersArray
+      this.create100BoardElements()
     },
     create100BoardElements() {
-      let elementsToHide = this.createArrayOfIndexesToHide()
+      const elementsToHide = this.createArrayOfIndexesToHide()
       return this.changeSomeNumbersToZero(elementsToHide, this.numbers)
     },
     // numbers to hide - these are the numbers the kids will have to fill in
     createArrayOfIndexesToHide() {
-      let newArrayOfIndexes = []
-      let numbersToHide = 100 - this.numbersVisible
+      const newArrayOfIndexes = []
+      const numbersToHide = 100 - this.numbersVisible
       while (newArrayOfIndexes.length < numbersToHide) {
         let newIndex = Math.floor(Math.random() * 100)
         if (newArrayOfIndexes.indexOf(newIndex) === -1) {
           newArrayOfIndexes.push(newIndex)
         }
       }
-      console.log(newArrayOfIndexes)
       return newArrayOfIndexes
+    },
+    changeSomeNumbersToZero(arrOfIndexes, numbersArray) {
+      for (let i = 0; i < arrOfIndexes.length; i++) {
+        let n = arrOfIndexes[i]
+        numbersArray[n] = 0
+      }
+      return numbersArray
     }
   },
   computed: {
@@ -122,20 +125,23 @@ export default {
   grid-area: options;
 }
 
-/* preview styling */
+/* -- preview -- */
 
 .generator__preview {
   grid-area: preview;
 }
 
-.numbers--container {
+.numbers__container {
   display: grid;
   grid-template: repeat(10, 1fr) / repeat(10, 1fr);
   padding: 3px;
+}
+
+.numbers__container--filled {
   border: 1px solid var(--colorFooter);
 }
 
-.numbers__single {
+.numbers__singleNumber {
   /* width: 50px; */
   height: 50px;
   display: flex;
@@ -146,7 +152,7 @@ export default {
   border: 1px solid var(--colorFooter);
 }
 
-.hiddenElement {
+.numbers__singleNumber--hidden {
   visibility: hidden;
 }
 </style>
