@@ -1,110 +1,140 @@
 <template>
-  <div>
-    <h3>{{ wrkstTitle }} worksheet generator</h3>
+  <div class="generator">
+    <h3 class="generator__title">{{ worksheetTitle }} worksheet generator</h3>
 
     <!-- CHOICE SELECTORS FOR TEACHERS -->
-    <form class="chooseOptionsPanel">
+    <form action="" method="" class="generator__options" v-on:submit.prevent>
       <!-- first number in line range -->
-      <div>
-        <p>
-          <input type="radio" id="fstHalf" :value="0" v-model="fstNoRange" />
-          <label for="fstHalf">from 10 to 50</label>
-        </p>
-        <p>
-          <input type="radio" id="sndHalf" :value="1" v-model="fstNoRange" />
-          <label for="sndHalf">from 50 to 100</label>
-        </p>
-        <p>
+      <fieldset class="form__fieldset">
+        <div class="form__options--radio">
+          <input type="radio" id="fst-half" :value="0" v-model="fstNoRange" />
+          <label for="fst-half" class="options__radio--label"
+            >from 10 to 50</label
+          >
+        </div>
+        <div class="form__options--radio">
+          <input type="radio" id="snd-half" :value="1" v-model="fstNoRange" />
+          <label for="snd-half" class="options__radio--label"
+            >from 50 to 100</label
+          >
+        </div>
+        <div class="form__options--radio">
           <input type="radio" id="custom" :value="2" v-model="fstNoRange" />
-          <label for="custom">custom value:</label>
-          <input type="text" placeholder="min" v-model="optionalRange.min" />
-          <input type="text" placeholder="max" v-model="optionalRange.max" />
-        </p>
-      </div>
+          <label for="custom" class="options__radio--label"
+            >custom value:</label
+          >
+          <input
+            type="text"
+            placeholder="min"
+            v-model="optionalRange.min"
+            class="form__options--input"
+          />
+          <input
+            type="text"
+            placeholder="max"
+            v-model="optionalRange.max"
+            class="form__options--input"
+          />
+        </div>
+      </fieldset>
       <!-- ascending vs descending -->
-      <div>
-        <p>
+      <fieldset class="form__fieldset">
+        <div class="form__options--radio">
           <input
             type="radio"
-            id="ascOrder"
-            name="ascendingOrder"
+            id="ascending"
+            name="order"
             :value="true"
             v-model="ascendingOrder"
           />
-          <label for="ascOrder">ascending</label>
-        </p>
-        <p>
+          <label for="ascending" class="options__radio--label">ascending</label>
+        </div>
+        <div class="form__options--radio">
           <input
             type="radio"
-            id="descOrder"
-            name="ascendingOrder"
+            id="descending"
+            name="order"
             :value="false"
             v-model="ascendingOrder"
           />
-          <label for="descOrder">descending</label>
-        </p>
-      </div>
+          <label for="descending" class="options__radio--label"
+            >descending</label
+          >
+        </div>
+      </fieldset>
       <!-- how many lines -->
-      <div>
-        <label for="noOfLines">
-          <p>Choose how many problems</p>
-        </label>
-        <select id="noOfLines" v-model.number="noOfLines">
+      <fieldset class="form__fieldset">
+        <!-- <label for="noOfLines">
+        Choose how many problems
+        </label> -->
+        <select
+          id="noOfLines"
+          v-model.number="noOfLines"
+          class="form__options--select"
+        >
+          <option value="" disabled>Choose how many problems</option>
           <option>5</option>
           <option>7</option>
           <option>9</option>
         </select>
-      </div>
+      </fieldset>
       <!-- how many numbers per line -->
-      <div>
-        <label for="noPerLine">
-          <p>Choose how many numbers per line</p>
-        </label>
-        <select id="noPerLine" v-model.number="noPerLine">
+      <fieldset class="form__fieldset">
+        <select
+          id="noPerLine"
+          v-model.number="noPerLine"
+          class="form__options--select"
+        >
+          <option value="" disabled>Choose how many numbers per line</option>
           <option>8</option>
           <option>9</option>
           <option>10</option>
         </select>
-      </div>
+      </fieldset>
+      <fieldset class="form__fieldset">
+        <BaseButton :onClick="generateWorksheet">generate worksheet</BaseButton>
+        <!-- <BaseButton>save pdf</BaseButton> -->
+      </fieldset>
     </form>
 
-    <!-- BUTTON -->
-    <div class="generateWorksheetButton">
-      <button @click.prevent="generateWorksheet">generate</button>
-    </div>
-
     <!-- VISIBLE RESULTS -->
-    <div>
-      <p v-show="title">Number Line</p>
-    </div>
-    <div v-for="(numberLine, index) in numberLines" :key="index">
-      <ul class="numberLine">
-        <li
-          class="line"
-          v-for="(line, index) in numberLine"
-          :key="index"
-          :class="line === 0 ? 'hiddenElement' : ''"
-        >
-          {{ line }}
-        </li>
-      </ul>
-    </div>
+    <BasePreview
+      class="generator__preview"
+      :isTitle="title"
+      :previewWorksheetTitle="getPreviewWorksheetTitle"
+    >
+      <div>
+        <p v-show="title">Number Line</p>
+      </div>
+      <div v-for="(numberLine, index) in numberLines" :key="index">
+        <ul class="numberLine">
+          <li
+            class="line"
+            v-for="(line, index) in numberLine"
+            :key="index"
+            :class="line === 0 ? 'hiddenElement' : ''"
+          >
+            {{ line }}
+          </li>
+        </ul>
+      </div>
+    </BasePreview>
   </div>
 </template>
 <script>
 export default {
   name: 'GeneratorNumberLine',
   props: {
-    wrkstTitle: String
+    worksheetTitle: String
   },
   data() {
     return {
       numberLines: [],
-      noOfLines: null,
-      noPerLine: null,
+      noOfLines: '',
+      noPerLine: '',
       ascendingOrder: null,
       fstNoRange: 0,
-      optionalRange: { min: 0, max: 0 },
+      optionalRange: { min: null, max: null },
       title: false
     }
   },
@@ -199,5 +229,34 @@ export default {
 }
 .hiddenElement {
   visibility: hidden;
+}
+.generator {
+  display: grid;
+  height: 100%;
+  grid-template-columns: 40% 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    'intro intro'
+    'options preview';
+  column-gap: 2vw;
+}
+
+.generator__title {
+  grid-area: intro;
+  justify-self: center;
+  margin: 2vw 0;
+}
+
+.generator__options {
+  grid-area: options;
+  /* background-color: burlywood; */
+}
+
+/* preview styling */
+
+.generator__preview {
+  grid-area: preview;
+  padding: 0.5vw 0.7vw;
+  background-color: cadetblue;
 }
 </style>

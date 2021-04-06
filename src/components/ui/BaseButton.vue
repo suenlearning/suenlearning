@@ -30,8 +30,9 @@ export default {
   color: white;
   /* 14px */
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 700;
   box-shadow: 0 0 4px 0 rgb(0 0 0 / 10%);
   cursor: pointer;
+  font-family: var(--fontMain);
 }
 </style>

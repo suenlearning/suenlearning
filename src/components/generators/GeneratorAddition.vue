@@ -234,8 +234,6 @@ export default {
   /* background-color: burlywood; */
 }
 
-
-
 /* preview styling */
 
 .generator__preview {
