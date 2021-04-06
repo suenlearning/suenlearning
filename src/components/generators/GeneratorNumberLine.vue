@@ -278,8 +278,6 @@ export default {
   justify-content: space-between;
 }
 .line {
-  /* list-style-type: none; */
-  padding: 16px 0;
   /* 18px */
   font-size: 1.125rem;
   border: 1px solid var(--colorFooter);
