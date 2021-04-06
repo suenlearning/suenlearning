@@ -157,7 +157,8 @@ export default {
 
 /* temporary, to imitate a full page */
 .workspace__generator {
-  height: 100vh;
+  /* min-height: 100vh; */
+  margin-bottom: 6vw;
 }
 
 /* ADD MEDIA */

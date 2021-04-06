@@ -81,15 +81,16 @@
       :isTitle="title"
       :previewWorksheetTitle="getPreviewWorksheetTitle"
     >
-      <div class="workspace">
+      <div class="activity">
         <div
-          class="single-problem"
+          class="singleProblem"
           v-for="number in numbers"
           :key="number.index"
         >
-          <p class="fstAddend">{{ number.fstAddend }}</p>
-          <span class="opSign">+</span>
-          <p class="sndAddend">{{ number.sndAddend }}</p>
+          <p class="addend addend--first">{{ number.firstAddend }}</p>
+          <p class="operationSign">+</p>
+          <p class="addend addend--second">{{ number.secondAddend }}</p>
+          <p class="result"></p>
         </div>
       </div>
     </BasePreview>
@@ -179,9 +180,13 @@ export default {
       return newEquationsArray
     },
     convertFromArraysToNumbers(newEquationsArray) {
+      const firstAddend = this.createSingleNumber(newEquationsArray[0])
+      const secondAddend = this.createSingleNumber(newEquationsArray[1])
+      const result = firstAddend + secondAddend
       return {
-        fstAddend: this.createSingleNumber(newEquationsArray[0]),
-        sndAddend: this.createSingleNumber(newEquationsArray[1])
+        firstAddend,
+        secondAddend,
+        result
       }
     },
     generateNumbers() {
@@ -231,49 +236,57 @@ export default {
 
 .generator__options {
   grid-area: options;
-  /* background-color: burlywood; */
 }
 
 /* preview styling */
 
 .generator__preview {
   grid-area: preview;
-  padding: 0.5vw 0.7vw;
-  background-color: cadetblue;
 }
 
-.single-problem {
+.singleProblem {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(3, 1fr);
   grid-template-areas:
-    'empty fstAddend'
-    'opSign sndAddend';
+    'emptySpace1 firstAddend'
+    'operationSign secondAddend'
+    'emptySpace2 result';
   align-items: center;
 }
 
-.fstAddend {
-  grid-area: fstAddend;
+.addend {
+  padding: 2px 2px 4px;
+}
+.addend--first {
+  grid-area: firstAddend;
 }
 
-.sndAddend {
-  grid-area: sndAddend;
+.addend--second {
+  grid-area: secondAddend;
   border-bottom: 1px solid black;
 }
 
-.opSign {
-  grid-area: opSign;
+.operationSign {
+  grid-area: operationSign;
+  padding: 2px 2px 4px;
 }
 
-.workspace {
-  display: flex;
-  flex-wrap: wrap;
-  /* flex-direction: column; */
+.result {
+  grid-area: result;
+  padding: 2px 2px 4px;
+  display: inline-flex;
+}
+
+.activity {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   text-align: center;
-  justify-content: center;
+  justify-items: center;
+  row-gap: 2vw;
 }
 
-.workspace > div {
+.activity .singleProblem {
   width: 25%;
 }
 

@@ -249,14 +249,11 @@ export default {
 
 .generator__options {
   grid-area: options;
-  /* background-color: burlywood; */
 }
 
 /* preview styling */
 
 .generator__preview {
   grid-area: preview;
-  padding: 0.5vw 0.7vw;
-  background-color: cadetblue;
 }
 </style>
