@@ -164,7 +164,7 @@ export default {
         ;(x = 50), (y = 90)
       } else {
         ;(x = parseInt(this.optionalRange.min)),
-          (y = parseInt(this.optionalRange.max) - 10)
+          (y = parseInt(this.optionalRange.max) - parseInt(this.numberPerLine))
       }
       return this.getRandomNumber(x, y)
     },
@@ -175,7 +175,7 @@ export default {
       } else if (this.firstNumberRange === 1) {
         ;(x = 60), (y = 100)
       } else {
-        ;(x = parseInt(this.optionalRange.min) + 10),
+        ;(x = parseInt(this.optionalRange.min) + parseInt(this.numberPerLine)),
           (y = parseInt(this.optionalRange.max))
       }
       return this.getRandomNumber(x, y)

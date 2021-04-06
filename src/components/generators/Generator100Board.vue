@@ -11,10 +11,10 @@
           class="form__options--select"
         >
           <option value="" disabled>How many numbers visible</option>
-          <option value="1">20</option>
-          <option value="2">40</option>
-          <option value="3">60</option>
-          <option value="4">80</option>
+          <option value="20">20</option>
+          <option value="40">40</option>
+          <option value="60">60</option>
+          <option value="80">80</option>
         </select>
       </fieldset>
 
@@ -33,8 +33,12 @@
     >
       <div class="activity">
         <ul class="numbers--container">
-          <li v-for="number in numbers" :key="number" class="numbers__single">
-            {{ number }}
+          <li
+            v-for="(number, index) in numbers"
+            :key="index"
+            class="numbers__single"
+          >
+            <p :class="number === 0 ? 'hiddenElement' : ''">{{ number }}</p>
           </li>
         </ul>
       </div>
@@ -57,9 +61,36 @@ export default {
   methods: {
     generateWorksheet() {
       this.title = true
+      this.numbers = []
       for (let i = 1; i <= 100; i++) {
         this.numbers.push(i)
       }
+      let tempArray = this.create100BoardElements()
+      console.log(tempArray)
+    },
+    changeSomeNumbersToZero: function(arrOfInd, numbersArray) {
+      for (let i = 0; i < arrOfInd.length; i++) {
+        let num = arrOfInd[i]
+        numbersArray[num] = 0
+      }
+      return numbersArray
+    },
+    create100BoardElements() {
+      let elementsToHide = this.createArrayOfIndexesToHide()
+      return this.changeSomeNumbersToZero(elementsToHide, this.numbers)
+    },
+    // numbers to hide - these are the numbers the kids will have to fill in
+    createArrayOfIndexesToHide() {
+      let newArrayOfIndexes = []
+      let numbersToHide = 100 - this.numbersVisible
+      while (newArrayOfIndexes.length < numbersToHide) {
+        let newIndex = Math.floor(Math.random() * 100)
+        if (newArrayOfIndexes.indexOf(newIndex) === -1) {
+          newArrayOfIndexes.push(newIndex)
+        }
+      }
+      console.log(newArrayOfIndexes)
+      return newArrayOfIndexes
     }
   },
   computed: {
@@ -113,5 +144,9 @@ export default {
   /* 18px */
   font-size: 1.125rem;
   border: 1px solid var(--colorFooter);
+}
+
+.hiddenElement {
+  visibility: hidden;
 }
 </style>
