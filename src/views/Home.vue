@@ -103,6 +103,7 @@
 
 .infographic {
   height: 60vh;
+  max-height: 400px;
   margin-left: 3vw;
 }
 

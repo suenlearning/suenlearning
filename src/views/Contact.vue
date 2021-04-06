@@ -1,7 +1,7 @@
 <template>
   <main class="main__contact">
     <div class="contact">
-      <h2 class="contact__title">Contact Us</h2>
+      <h2 class="contact__title">Contact us</h2>
       <p class="contact__text">
         suen.learning@gmail.com
       </p>
@@ -36,6 +36,7 @@
   /* 20px */
   font-size: 1.25rem;
   font-weight: 500;
+  text-transform: capitalize;
 }
 
 .contact__text {
@@ -46,11 +47,11 @@
 
 .infographic {
   height: 60vh;
+  max-height: 300px;
   margin-left: 3vw;
 }
 
 .infographic__image {
   height: 100%;
 }
-/* h3 is on page but belowe the header */
 </style>
