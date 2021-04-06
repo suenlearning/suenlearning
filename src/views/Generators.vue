@@ -1,7 +1,10 @@
 <template>
   <main class="main__workspace">
     <div class="workspace__intro">
-      <h3>Choose a generator</h3>
+      <h3 class="intro__title">Choose a generator</h3>
+      <p class="intro__text">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+      </p>
     </div>
 
     <ul class="workspace__cards--container">
@@ -87,12 +90,12 @@ export default {
   margin-top: 60px;
   padding: 0 20px;
   /* additional padding to accomodate footer images */
-  padding-bottom: 9vh;
+  /* padding-bottom: 9vh; */
   display: flex;
   flex-direction: column;
   align-content: center;
-  position: relative;
-  top: 0px;
+  /* position: relative; */
+  /* top: 0px; */
 }
 
 /* INTRO */
@@ -100,19 +103,30 @@ export default {
 .workspace__intro {
   text-align: left;
   margin: 30px 0 40px 28px;
-  padding: 8px 0 8px 16px;
-  border-left: 8px solid #8cc63f;
+  padding: 6px 0 6px 12px;
+  border-left: 6px solid var(--colorDetails);
+}
+
+.intro__title {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.intro__text {
+  margin-top: 2px;
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 /* AVAILABLE WORKSHEETS */
 
 .workspace__cards--container {
-  /* display: flex;
+  display: flex;
   align-items: center;
-  justify-content: flex-start; */
-  display: grid;
+  justify-content: space-evenly;
+  /* display: grid;
   justify-items: center;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, 1fr); */
   text-align: center;
 }
 
@@ -120,7 +134,8 @@ export default {
   margin: 12px 0;
   padding: 20px 12px;
   width: 154px;
-  border: 2px solid var(--colorBorder);
+  border: 2px solid var(--colorDetails);
+  box-shadow: 0px 0px 0px 2px var(--colorBorder-shadow);
   border-radius: 10px;
 }
 
@@ -144,7 +159,7 @@ export default {
 }
 
 .workspace__cards--item a.router-link-exact-active {
-  color: var(--colorDetails);
+  color: var(--colorBorder);
 }
 
 /* WORKSHEET GENERATOR */

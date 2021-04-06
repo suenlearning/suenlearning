@@ -51,6 +51,7 @@ ul {
   --colorFooter: #00c6d1;
   --colorFooter-shadow: rgba(0, 198, 209, 0.5);
   --colorBorder: #fe6902;
+  --colorBorder-shadow: rgba(254, 105, 2, 0.5);
   --colorDetails: #a4d001;
   --colorTextMain: #4b473c;
   --colorTextHeader: #4254a5;
@@ -118,6 +119,7 @@ input[type='radio'] {
   /* 14px */
   font-size: 0.875rem;
   padding: 0 0.4em;
+  color: var(--colorMain);
 }
 
 /* --> input-text <-- */

@@ -31,7 +31,8 @@ export default {
 }
 .preview__word {
   font-weight: 300;
-  font-size: 16px;
+  /* 18px */
+  font-size: 1.125rem;
 }
 .activity__title {
   /* 18px */
