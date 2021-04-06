@@ -289,10 +289,4 @@ export default {
 .activity .singleProblem {
   width: 25%;
 }
-
-.chooseOptionsPanel {
-  display: flex;
-  /* flex-direction: column; */
-  justify-content: space-between;
-}
 </style>

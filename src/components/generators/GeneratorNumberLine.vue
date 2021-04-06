@@ -7,19 +7,34 @@
       <!-- first number in line range -->
       <fieldset class="form__fieldset">
         <div class="form__options--radio">
-          <input type="radio" id="fst-half" :value="0" v-model="fstNoRange" />
+          <input
+            type="radio"
+            id="fst-half"
+            :value="0"
+            v-model="firstNumberRange"
+          />
           <label for="fst-half" class="options__radio--label"
             >from 10 to 50</label
           >
         </div>
         <div class="form__options--radio">
-          <input type="radio" id="snd-half" :value="1" v-model="fstNoRange" />
+          <input
+            type="radio"
+            id="snd-half"
+            :value="1"
+            v-model="firstNumberRange"
+          />
           <label for="snd-half" class="options__radio--label"
             >from 50 to 100</label
           >
         </div>
         <div class="form__options--radio">
-          <input type="radio" id="custom" :value="2" v-model="fstNoRange" />
+          <input
+            type="radio"
+            id="custom"
+            :value="2"
+            v-model="firstNumberRange"
+          />
           <label for="custom" class="options__radio--label"
             >custom value:</label
           >
@@ -64,12 +79,12 @@
       </fieldset>
       <!-- how many lines -->
       <fieldset class="form__fieldset">
-        <!-- <label for="noOfLines">
+        <!-- <label for="numberOfLines">
         Choose how many problems
         </label> -->
         <select
-          id="noOfLines"
-          v-model.number="noOfLines"
+          id="numberOfLines"
+          v-model.number="numberOfLines"
           class="form__options--select"
         >
           <option value="" disabled>Choose how many problems</option>
@@ -81,8 +96,8 @@
       <!-- how many numbers per line -->
       <fieldset class="form__fieldset">
         <select
-          id="noPerLine"
-          v-model.number="noPerLine"
+          id="numberPerLine"
+          v-model.number="numberPerLine"
           class="form__options--select"
         >
           <option value="" disabled>Choose how many numbers per line</option>
@@ -103,21 +118,18 @@
       :isTitle="title"
       :previewWorksheetTitle="getPreviewWorksheetTitle"
     >
-      <div>
-        <p v-show="title">Number Line</p>
-      </div>
-      <div v-for="(numberLine, index) in numberLines" :key="index">
-        <ul class="numberLine">
-          <li
-            class="line"
-            v-for="(line, index) in numberLine"
-            :key="index"
-            :class="line === 0 ? 'hiddenElement' : ''"
-          >
-            {{ line }}
-          </li>
-        </ul>
-      </div>
+      <!-- <div v-for="(numberLine, index) in numberLines" :key="index"> -->
+      <ul class="activity">
+        <li v-for="(numberLine, index) in numberLines" :key="index">
+          <ul class="numberLine">
+            <li class="line" v-for="(line, index) in numberLine" :key="index">
+              <p :class="line === 0 ? 'hiddenElement' : ''">{{ line }}</p>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- </div> -->
     </BasePreview>
   </div>
 </template>
@@ -130,10 +142,10 @@ export default {
   data() {
     return {
       numberLines: [],
-      noOfLines: '',
-      noPerLine: '',
+      numberOfLines: '',
+      numberPerLine: '',
       ascendingOrder: null,
-      fstNoRange: 0,
+      firstNumberRange: 0,
       optionalRange: { min: null, max: null },
       title: false
     }
@@ -146,9 +158,9 @@ export default {
     },
     setNumbersRangeAscending: function() {
       let x, y
-      if (this.fstNoRange === 0) {
+      if (this.firstNumberRange === 0) {
         ;(x = 10), (y = 40)
-      } else if (this.fstNoRange === 1) {
+      } else if (this.firstNumberRange === 1) {
         ;(x = 50), (y = 90)
       } else {
         ;(x = parseInt(this.optionalRange.min)),
@@ -158,9 +170,9 @@ export default {
     },
     setNumbersRangeDescending: function() {
       let x, y
-      if (this.fstNoRange === 0) {
+      if (this.firstNumberRange === 0) {
         ;(x = 20), (y = 50)
-      } else if (this.fstNoRange === 1) {
+      } else if (this.firstNumberRange === 1) {
         ;(x = 60), (y = 100)
       } else {
         ;(x = parseInt(this.optionalRange.min) + 10),
@@ -173,12 +185,12 @@ export default {
       let elementsToHide = this.createArrayOfIndexesToHide()
       if (this.ascendingOrder) {
         let n = this.setNumbersRangeAscending()
-        for (let i = 0; i < this.noPerLine; i++) {
+        for (let i = 0; i < this.numberPerLine; i++) {
           newSingleLine.push(n + i)
         }
       } else {
         let n = this.setNumbersRangeDescending()
-        for (let i = 0; i < this.noPerLine; i++) {
+        for (let i = 0; i < this.numberPerLine; i++) {
           newSingleLine.push(n - i)
         }
       }
@@ -187,8 +199,8 @@ export default {
     // numbers to hide - these are the numbers the kids will have to fill in
     createArrayOfIndexesToHide: function() {
       let newArrayOfIndexes = []
-      while (newArrayOfIndexes.length < this.noPerLine - 3) {
-        let newIndex = Math.floor(Math.random() * this.noPerLine)
+      while (newArrayOfIndexes.length < this.numberPerLine - 3) {
+        let newIndex = Math.floor(Math.random() * this.numberPerLine)
         if (newArrayOfIndexes.indexOf(newIndex) === -1) {
           newArrayOfIndexes.push(newIndex)
         }
@@ -205,35 +217,25 @@ export default {
     generateWorksheet: function() {
       this.title = true
       this.numberLines = []
-      for (let i = 0; i < this.noOfLines; i++) {
+      for (let i = 0; i < this.numberOfLines; i++) {
         let newSingleLine = this.createSingleLine()
         this.numberLines.push(newSingleLine)
       }
+    }
+  },
+  computed: {
+    getPreviewWorksheetTitle() {
+      return this.title ? this.worksheetTitle : ''
     }
   }
 }
 </script>
 
 <style scoped>
-.chooseOptionsPanel {
-  display: flex;
-  /* flex-direction: column; */
-  justify-content: space-between;
-}
-.numberLine {
-  display: flex;
-  justify-content: space-evenly;
-}
-.line {
-  list-style-type: none;
-}
-.hiddenElement {
-  visibility: hidden;
-}
 .generator {
   display: grid;
   height: 100%;
-  grid-template-columns: 40% 1fr;
+  grid-template-columns: 30% 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
     'intro intro'
@@ -255,5 +257,40 @@ export default {
 
 .generator__preview {
   grid-area: preview;
+}
+
+.activity {
+  display: grid;
+  gap: 24px;
+  padding: 0 16px;
+}
+
+.numberLine {
+  /* display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-auto-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-auto-flow: column;
+  gap: 6px;
+  justify-items: center; */
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+}
+.line {
+  /* list-style-type: none; */
+  padding: 16px 0;
+  /* 18px */
+  font-size: 1.125rem;
+  border: 1px solid var(--colorFooter);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hiddenElement {
+  visibility: hidden;
 }
 </style>

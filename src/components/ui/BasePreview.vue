@@ -39,4 +39,7 @@ export default {
   margin: 12px 0 24px;
   text-align: center;
 }
+.activity__title::first-letter {
+  text-transform: uppercase;
+}
 </style>
