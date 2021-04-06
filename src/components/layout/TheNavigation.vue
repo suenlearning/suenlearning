@@ -16,11 +16,9 @@
             >workspace</router-link
           >
         </li>
-        <li class="header__nav--item">
-          <router-link :to="{ name: 'home' }" class="nav__link"
-            >patreon</router-link
-          >
-        </li>
+        <!-- <li class="header__nav--item">
+          <a href="/" class="nav__link">patreon</a>
+        </li> -->
         <li class="header__nav--item">
           <router-link :to="{ name: 'about' }" class="nav__link"
             >about</router-link
