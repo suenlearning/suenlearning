@@ -18,9 +18,17 @@
       </fieldset>
 
       <!-- BUTTON - generate worksheet: later on - should it be submit? -->
-      <fieldset class="form__fieldset">
-        <BaseButton :onClick="generateActivity">Create activity</BaseButton>
-        <!-- <BaseButton>Save activity</BaseButton> -->
+      <fieldset class="form__fieldset form__fieldset--buttons">
+        <BaseButton :onClick="generateActivity" icon="cogs" type="generate"
+          >Create activity</BaseButton
+        >
+        <BaseButton
+          :onClick="saveActivity"
+          icon="save"
+          type="save"
+          :isDisabled="numbers.length === 0 ? true : false"
+          >Save activity</BaseButton
+        >
       </fieldset>
     </form>
 
@@ -50,6 +58,7 @@
   </div>
 </template>
 <script>
+import WrkstService from '@/services/WrkstService.js'
 export default {
   name: 'Generator100Board',
   props: {
@@ -64,6 +73,7 @@ export default {
     }
   },
   methods: {
+    // GENERATE ACTIVITY
     generateActivity() {
       this.title = true
       this.numbers = []
@@ -94,6 +104,15 @@ export default {
         numbersArray[n] = 0
       }
       return numbersArray
+    },
+    // SAVE ACTIVITY
+    saveActivity() {
+      const activity = {
+        title: 'findAWayToAddName',
+        generator: this.$options.name,
+        numbers: this.numbers.length === 0 ? 'disable the button' : this.numbers
+      }
+      WrkstService.saveActivity(activity)
     }
   },
   computed: {

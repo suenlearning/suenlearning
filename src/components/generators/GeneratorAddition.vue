@@ -62,13 +62,14 @@
 
       <!-- BUTTON - generate worksheet: later on - should it be submit? -->
       <fieldset class="form__fieldset form__fieldset--buttons">
-        <BaseButton
-          :onClick="generateActivity"
-          icon="cogs"
-          additionalClass="generate"
+        <BaseButton :onClick="generateActivity" icon="cogs" type="generate"
           >Create activity</BaseButton
         >
-        <BaseButton :onClick="saveActivity" icon="save" additionalClass="save"
+        <BaseButton
+          :onClick="saveActivity"
+          icon="save"
+          type="save"
+          :isDisabled="numbers.length === 0 ? true : false"
           >Save activity</BaseButton
         >
       </fieldset>
@@ -207,10 +208,6 @@ export default {
         generator: this.$options.name,
         numbers: this.numbers.length === 0 ? 'disable the button' : this.numbers
       }
-      console.log(this.numbers)
-      console.log('Activity to save:', activity)
-      const activityInJson = JSON.stringify(activity)
-      console.log(activityInJson)
       WrkstService.saveActivity(activity)
     }
   },

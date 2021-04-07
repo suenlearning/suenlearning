@@ -1,5 +1,10 @@
 <template>
-  <button @click="onClick" :class="classObject" :disabled="isDisabled">
+  <button
+    @click="onClick"
+    class="btn"
+    :class="`btn--${type}`"
+    :disabled="isDisabled"
+  >
     <font-awesome-icon :icon="icon" class="icon" />
     <slot>Button</slot>
   </button>
@@ -13,7 +18,7 @@ export default {
       type: Function,
       required: true
     },
-    additionalClass: {
+    type: {
       type: String
     },
     isDisabled: {
@@ -24,20 +29,16 @@ export default {
       type: String
     }
   },
-  data() {
-    return {
-      // icons,
-      classObject: {
-        btn: true,
-        'btn--generate': this.additionalClass === 'generate' ? true : false,
-        'btn--save': this.additionalClass === 'save' ? true : false,
-        'btn--disabled': this.isDisabled
-      }
-    }
-  },
-  method: {
-    updateClass() {
-      return (this.classObject[this.additionalClass] = true)
+  computed: {
+    buttonClass() {
+      return `btn--${this.additionalClass}`
+      // return {
+      //   btn: true,
+      //   'btn--generate': this.additionalClass === 'generate' ? true : false,
+      //   'btn--save': this.additionalClass === 'save' ? true : false,
+      //   'btn--disabled': this.isDisabled ? true : false
+      // }
+      // return this.isDisabled ? 'btn--disabled' : `btn--${this.additionalClass}`
     }
   }
 }
@@ -64,6 +65,11 @@ export default {
   font-family: var(--fontMain);
 }
 
+.btn:disabled {
+  background-color: #d8d8d8;
+  cursor: default;
+}
+
 .btn--generate {
   background-color: var(--colorDetails);
 }
@@ -72,9 +78,9 @@ export default {
   background-color: var(--colorFooter);
 }
 
-.btn--disabled {
+/* .btn--disabled {
   background-color: var(--colorBorder);
-}
+} */
 
 .icon {
   display: block;

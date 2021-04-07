@@ -107,8 +107,16 @@
         </select>
       </fieldset>
       <fieldset class="form__fieldset">
-        <BaseButton :onClick="generateActivity">Create activity</BaseButton>
-        <!-- <BaseButton>Save activity</BaseButton> -->
+        <BaseButton :onClick="generateActivity" icon="cogs" type="generate"
+          >Create activity</BaseButton
+        >
+        <BaseButton
+          :onClick="saveActivity"
+          icon="save"
+          type="save"
+          :isDisabled="numberLines.length === 0 ? true : false"
+          >Save activity</BaseButton
+        >
       </fieldset>
     </form>
 
@@ -137,6 +145,7 @@
   </div>
 </template>
 <script>
+import WrkstService from '@/services/WrkstService.js'
 export default {
   name: 'GeneratorNumberLine',
   props: {
@@ -150,12 +159,13 @@ export default {
       numberPerLine: '',
       numberPerLineOptions: [8, 9, 10],
       ascendingOrder: null,
-      firstNumberRange: 0,
+      firstNumberRange: null,
       optionalRange: { min: null, max: null },
       title: false
     }
   },
   methods: {
+    // GENERATE ACTIVITY
     generateActivity() {
       this.title = true
       this.numberLines = []
@@ -226,6 +236,18 @@ export default {
       min = Math.ceil(min)
       max = Math.floor(max)
       return Math.floor(Math.random() * (max - min + 1)) + min
+    },
+    // SAVE ACTIVITY
+    saveActivity() {
+      const activity = {
+        title: 'findAWayToAddName',
+        generator: this.$options.name,
+        numberLines:
+          this.numberLines.length === 0
+            ? 'disable the button'
+            : this.numberLines
+      }
+      WrkstService.saveActivity(activity)
     }
   },
   computed: {
