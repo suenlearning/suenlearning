@@ -1,7 +1,7 @@
 {
   "worksheet-types": [
     {
-      "id": "m-bo-add-001",
+      "id": 1,
       "category": "math",
       "name": "addition",
       "slug": "addition",
@@ -13,7 +13,7 @@
       }
     },
     {
-      "id": "m-lc-hb-001",
+      "id": 2,
       "category": "math",
       "name": "100 board",
       "slug": "100-board",
@@ -25,7 +25,7 @@
       }
     },
     {
-      "id": "m-lc-nl-001",
+      "id": 3,
       "category": "math",
       "name": "number line",
       "slug": "number-line",
@@ -39,22 +39,77 @@
   ],
   "my-activities": [
     {
-      "id": "gen-m-bo-add",
+      "title": "findAWayToAddName",
       "generator": "GeneratorAddition",
-      "type": "addition",
-      "activities": []
+      "numbers": "disable the button",
+      "id": 1
     },
     {
-      "id": "gen-m-lc-hb",
-      "generator": "Generator100Board",
-      "type": "100-board",
-      "activities": []
-    },
-    {
-      "id": "gen-m-lc-nl",
-      "generator": "GeneratorNumberLine",
-      "type": "number-line",
-      "activities": []
+      "title": "findAWayToAddName",
+      "generator": "GeneratorAddition",
+      "numbers": [
+        {
+          "firstAddend": 297,
+          "secondAddend": 102,
+          "result": 399
+        },
+        {
+          "firstAddend": 223,
+          "secondAddend": 103,
+          "result": 326
+        },
+        {
+          "firstAddend": 241,
+          "secondAddend": 635,
+          "result": 876
+        },
+        {
+          "firstAddend": 598,
+          "secondAddend": 201,
+          "result": 799
+        },
+        {
+          "firstAddend": 407,
+          "secondAddend": 532,
+          "result": 939
+        },
+        {
+          "firstAddend": 886,
+          "secondAddend": 113,
+          "result": 999
+        },
+        {
+          "firstAddend": 412,
+          "secondAddend": 350,
+          "result": 762
+        },
+        {
+          "firstAddend": 806,
+          "secondAddend": 141,
+          "result": 947
+        },
+        {
+          "firstAddend": 610,
+          "secondAddend": 334,
+          "result": 944
+        },
+        {
+          "firstAddend": 306,
+          "secondAddend": 451,
+          "result": 757
+        },
+        {
+          "firstAddend": 201,
+          "secondAddend": 420,
+          "result": 621
+        },
+        {
+          "firstAddend": 541,
+          "secondAddend": 427,
+          "result": 968
+        }
+      ],
+      "id": 2
     }
   ]
 }

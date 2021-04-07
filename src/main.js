@@ -3,6 +3,16 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+// fontawesome
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faSave, faCogs } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(faSave, faCogs)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
 // base component global registration
 
 import upperFirst from 'lodash/upperFirst'

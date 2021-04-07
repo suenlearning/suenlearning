@@ -61,9 +61,16 @@
       </fieldset>
 
       <!-- BUTTON - generate worksheet: later on - should it be submit? -->
-      <fieldset class="form__fieldset">
-        <BaseButton :onClick="generateWorksheet">generate worksheet</BaseButton>
-        <!-- <BaseButton>save</BaseButton> -->
+      <fieldset class="form__fieldset form__fieldset--buttons">
+        <BaseButton
+          :onClick="generateActivity"
+          icon="cogs"
+          additionalClass="generate"
+          >Create activity</BaseButton
+        >
+        <BaseButton :onClick="saveActivity" icon="save" additionalClass="save"
+          >Save activity</BaseButton
+        >
       </fieldset>
     </form>
 
@@ -90,6 +97,7 @@
 </template>
 
 <script>
+import WrkstService from '@/services/WrkstService.js'
 export default {
   name: 'GeneratorAddition',
   props: {
@@ -107,7 +115,8 @@ export default {
     }
   },
   methods: {
-    generateWorksheet() {
+    // GENERATE ACTIVITY
+    generateActivity() {
       this.title = true
       this.numbers = []
       for (let i = 0; i < this.numberOfEquations; i++) {
@@ -190,6 +199,19 @@ export default {
         singleNumber += arr[i] * Math.pow(10, arr.length - 1 - i)
       }
       return singleNumber
+    },
+    // SAVE ACTIVITY
+    saveActivity() {
+      const activity = {
+        title: 'findAWayToAddName',
+        generator: this.$options.name,
+        numbers: this.numbers.length === 0 ? 'disable the button' : this.numbers
+      }
+      console.log(this.numbers)
+      console.log('Activity to save:', activity)
+      const activityInJson = JSON.stringify(activity)
+      console.log(activityInJson)
+      WrkstService.saveActivity(activity)
     }
   },
   computed: {

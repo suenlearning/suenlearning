@@ -17,4 +17,8 @@ const getWorksheets = () => {
 //   return apiClient.get("/events/" + id);
 // };
 
-export default { getWorksheets }
+const saveActivity = data => {
+  return apiClient.post('/my-activities/', data)
+}
+
+export default { getWorksheets, saveActivity }

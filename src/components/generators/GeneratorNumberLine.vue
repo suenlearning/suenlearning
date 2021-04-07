@@ -107,8 +107,8 @@
         </select>
       </fieldset>
       <fieldset class="form__fieldset">
-        <BaseButton :onClick="generateWorksheet">generate worksheet</BaseButton>
-        <!-- <BaseButton>save</BaseButton> -->
+        <BaseButton :onClick="generateActivity">Create activity</BaseButton>
+        <!-- <BaseButton>Save activity</BaseButton> -->
       </fieldset>
     </form>
 
@@ -156,7 +156,7 @@ export default {
     }
   },
   methods: {
-    generateWorksheet() {
+    generateActivity() {
       this.title = true
       this.numberLines = []
       for (let i = 0; i < this.numberOfLines; i++) {

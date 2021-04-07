@@ -150,4 +150,12 @@ input[type='radio'] {
 .form__options--input::placeholder {
   color: var(--colorMain-shadow);
 }
+
+/* --> buttons <-- */
+
+.form__fieldset--buttons {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 20px;
+}
 </style>
