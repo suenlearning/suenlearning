@@ -36,5 +36,25 @@
         "alt": "number line generator"
       }
     }
+  ],
+  "my-activities": [
+    {
+      "id": "gen-m-bo-add",
+      "generator": "GeneratorAddition",
+      "type": "addition",
+      "activities": []
+    },
+    {
+      "id": "gen-m-lc-hb",
+      "generator": "Generator100Board",
+      "type": "100-board",
+      "activities": []
+    },
+    {
+      "id": "gen-m-lc-nl",
+      "generator": "GeneratorNumberLine",
+      "type": "number-line",
+      "activities": []
+    }
   ]
 }
