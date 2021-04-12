@@ -51,6 +51,18 @@
             type="text"
             placeholder="max"
           />
+          <!-- <input
+            type="text"
+            placeholder="min"
+            v-model="optionalRange.min"
+            class="form__options--input"
+          />
+          <input
+            type="text"
+            placeholder="max"
+            v-model="optionalRange.max"
+            class="form__options--input"
+          /> -->
         </div>
       </fieldset>
       <!-- ascending vs descending -->
@@ -80,7 +92,7 @@
       </fieldset>
       <!-- how many lines -->
       <fieldset class="form__fieldset">
-        <select
+        <!-- <select
           id="numberOfLines"
           v-model.number="numberOfLines"
           class="form__options--select"
@@ -89,11 +101,16 @@
           <option v-for="option in numberOfLinesOptions" :key="option">{{
             option
           }}</option>
-        </select>
+        </select> -->
+        <BaseSelect
+          :options="numberOfLinesOptions"
+          v-model.number="numberOfLines"
+          ><option value="" disabled>How many problems</option></BaseSelect
+        >
       </fieldset>
       <!-- how many numbers per line -->
       <fieldset class="form__fieldset">
-        <select
+        <!-- <select
           id="numberPerLine"
           v-model.number="numberPerLine"
           class="form__options--select"
@@ -102,7 +119,14 @@
           <option v-for="option in numberPerLineOptions" :key="option">{{
             option
           }}</option>
-        </select>
+        </select> -->
+        <BaseSelect
+          :options="numberPerLineOptions"
+          v-model.number="numberPerLine"
+          ><option value="" disabled
+            >How many numbers per line</option
+          ></BaseSelect
+        >
       </fieldset>
       <fieldset class="form__fieldset">
         <BaseButton :onClick="generateActivity" icon="cogs" type="generate"
