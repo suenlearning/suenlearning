@@ -41,17 +41,15 @@
           <label for="custom" class="options__radio--label"
             >custom value:</label
           >
-          <input
+          <BaseInput
+            v-model="optionalRange.min"
             type="text"
             placeholder="min"
-            v-model="optionalRange.min"
-            class="form__options--input"
           />
-          <input
+          <BaseInput
+            v-model="optionalRange.max"
             type="text"
             placeholder="max"
-            v-model="optionalRange.max"
-            class="form__options--input"
           />
         </div>
       </fieldset>
