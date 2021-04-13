@@ -3,24 +3,25 @@
     <h3 class="generator__title">{{ worksheetTitle }} worksheet generator</h3>
 
     <!-- CHOICE SELECTORS FOR TEACHERS -->
-    <form action="" method="" class="generator__options" v-on:submit.prevent>
+    <form
+      action=""
+      method=""
+      class="generator__options"
+      v-on:submit.prevent
+      @change="generateActivity()"
+    >
       <!-- how many digits -->
       <fieldset class="form__fieldset">
-        <select
-          id="numberOfDigits"
-          name="numberOfDigits"
+        <BaseSelect
+          label="How many digits"
+          :options="numberOfDigitsOptions"
           v-model.number="numberOfDigits"
-          class="form__options--select"
-        >
-          <option value="" disabled>How many digits</option>
-          <option v-for="option in numberOfDigitsOptions" :key="option">{{
-            option
-          }}</option>
-        </select>
+        />
       </fieldset>
 
       <!-- regrouping vs no regrouping -->
       <fieldset class="form__fieldset">
+        <legend class="form__fieldset--legend">Dis/allow regrouping</legend>
         <div class="form__options--radio">
           <input
             type="radio"
@@ -48,30 +49,25 @@
 
       <!-- how many problems -->
       <fieldset class="form__fieldset">
-        <select
-          id="numberOfEquations"
+        <BaseSelect
+          label="How many problems"
+          :options="numberOfEquationsOptions"
           v-model.number="numberOfEquations"
-          class="form__options--select"
-        >
-          <option value="" disabled>How many problems</option>
-          <option v-for="option in numberOfEquationsOptions" :key="option">{{
-            option
-          }}</option>
-        </select>
+        />
       </fieldset>
 
       <!-- BUTTON - generate worksheet: later on - should it be submit? -->
       <fieldset class="form__fieldset form__fieldset--buttons">
         <BaseButton :onClick="generateActivity" icon="cogs" type="generate"
-          >Create activity</BaseButton
+          >Refresh</BaseButton
         >
-        <BaseButton
+        <!-- <BaseButton
           :onClick="saveActivity"
           icon="save"
           type="save"
           :isDisabled="numbers.length === 0 ? true : false"
           >Save activity</BaseButton
-        >
+        > -->
       </fieldset>
     </form>
 
@@ -107,11 +103,11 @@ export default {
   data() {
     return {
       numbers: [],
-      numberOfDigits: '',
+      numberOfDigits: 2,
       numberOfDigitsOptions: [1, 2, 3, 4],
-      numberOfEquations: '',
+      numberOfEquations: 8,
       numberOfEquationsOptions: [4, 8, 12, 16, 20],
-      regrouping: null,
+      regrouping: false,
       title: false
     }
   },
@@ -224,6 +220,9 @@ export default {
       }
       return this.title ? createWorksheetTitle() : ''
     }
+  },
+  created() {
+    this.generateActivity()
   }
 }
 </script>
