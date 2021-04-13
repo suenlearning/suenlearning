@@ -36,6 +36,7 @@
   /* 20px */
   font-size: 1.25rem;
   font-weight: 500;
+  text-transform: capitalize;
 }
 
 .about__text {

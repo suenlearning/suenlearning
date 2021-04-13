@@ -1,59 +1,32 @@
 <template>
   <main class="main__home">
-    <!-- <ul class="home__cards--container">
-      <li class="home__cards--item">
-        <router-link :to="{ name: 'generators' }" class="card__link">
-          <article class="card">
-            <img
-              class="card__thumb"
-              :src="require(`@/assets/img/generator.png`)"
-              alt="worksheet generator"
-            />
-            <h3 class="card__title">generator</h3>
-            <p class="card__description">create your own worksheets</p>
-          </article>
-        </router-link>
-      </li>
-      <li class="home__cards--item">
-        <router-link :to="{ name: 'about' }" class="card__link">
-          <article class="card">
-            <img
-              class="card__thumb"
-              :src="require(`@/assets/img/solids.png`)"
-              alt="browse database"
-            />
-            <h3 class="card__title">browse</h3>
-            <p class="card__description">explore our database</p>
-          </article>
-        </router-link>
-      </li>
-    </ul> -->
-    <ul class="fiveReasons">
+    <ul class="reasons">
       <li class="reasons__reason">
-        <h2 class="reasons__title">Fast & Easy</h2>
+        <h2 class="reasons__title">Fast & easy</h2>
         <p class="reasons__text">
-          Prepare engaging activities within just few moments - choose the
-          conditions and click "create"
+          Prepare activities for your students in just few moments & simple
+          steps
         </p>
       </li>
       <li class="reasons__reason">
-        <h2 class="reasons__title">Build Your Collection</h2>
+        <h2 class="reasons__title">Share with students</h2>
+        <p class="reasons__text">
+          You can send a direct link to your students or download the activity
+          as a pdf
+        </p>
+      </li>
+      <li class="reasons__reason">
+        <h2 class="reasons__title">Build your collection</h2>
         <p class="reasons__text">
           Save created activities in the cloud to have easy access whenever
           needed
         </p>
       </li>
       <li class="reasons__reason">
-        <h2 class="reasons__title">No More Printing</h2>
+        <h2 class="reasons__title">Browse our database</h2>
         <p class="reasons__text">
-          Send assignment directly to your students. And add something more so
-          it makes two lines
-        </p>
-      </li>
-      <li class="reasons__reason">
-        <h2 class="reasons__title">Share With Others</h2>
-        <p class="reasons__text">
-          And browse what other teachers have created
+          Don't reinvent the wheel - check and use what other teachers have
+          created
         </p>
       </li>
     </ul>
@@ -80,7 +53,7 @@
   align-items: center;
 }
 
-.fiveReasons {
+.reasons {
   width: 40vw;
 }
 
@@ -93,6 +66,7 @@
   /* 20px */
   font-size: 1.25rem;
   font-weight: 500;
+  /* text-transform: capitalize; */
 }
 
 .reasons__text {

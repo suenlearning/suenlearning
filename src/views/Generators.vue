@@ -82,12 +82,13 @@ export default {
       })
   },
   methods: {
+    // when accessing the page without params we get an error - that's why I added an '' as an option
     assignSelectedWorksheet() {
-      console.log(this.worksheets)
-      const worksheet = this.worksheets.find(
-        element => element.slug === this.$route.params.generatorType
-      )
-      console.log('hello: ', worksheet)
+      const worksheet = this.$route.params.generatorType
+        ? this.worksheets.find(
+            element => element.slug === this.$route.params.generatorType
+          )
+        : ''
       this.selectedWorksheet = worksheet
     }
   }

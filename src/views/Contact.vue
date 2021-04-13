@@ -28,7 +28,7 @@
 }
 
 .contact {
-  width: 20vw;
+  width: 30vw;
 }
 
 .contact__title {
