@@ -101,7 +101,6 @@
       <!-- how many lines -->
       <fieldset class="form__fieldset">
         <BaseSelect
-          :onChange="generateActivity"
           label="How many problems"
           :options="numberOfLinesOptions"
           v-model.number="numberOfLines"

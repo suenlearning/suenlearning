@@ -2,10 +2,16 @@
   <div class="generator">
     <h3 class="generator__title">{{ worksheetTitle }} worksheet generator</h3>
     <!-- CHOICE SELECTORS FOR TEACHERS -->
-    <form action="" method="" class="generator__options" v-on:submit.prevent>
+    <form
+      action=""
+      method=""
+      class="generator__options"
+      v-on:submit.prevent
+      @change="generateActivity()"
+    >
       <!-- how many numbers visible -->
       <fieldset class="form__fieldset">
-        <select
+        <!-- <select
           id="numbersVisible"
           v-model.number="numbersVisible"
           class="form__options--select"
@@ -14,21 +20,26 @@
           <option v-for="option in numbersVisibleOptions" :key="option">{{
             option
           }}</option>
-        </select>
+        </select> -->
+        <BaseSelect
+          label="How many numbers visible"
+          :options="numbersVisibleOptions"
+          v-model.number="numbersVisible"
+        />
       </fieldset>
 
       <!-- BUTTON - generate worksheet: later on - should it be submit? -->
       <fieldset class="form__fieldset form__fieldset--buttons">
         <BaseButton :onClick="generateActivity" icon="cogs" type="generate"
-          >Create activity</BaseButton
+          >Refresh</BaseButton
         >
-        <BaseButton
+        <!-- <BaseButton
           :onClick="saveActivity"
           icon="save"
           type="save"
           :isDisabled="numbers.length === 0 ? true : false"
           >Save activity</BaseButton
-        >
+        > -->
       </fieldset>
     </form>
 
@@ -66,7 +77,7 @@ export default {
   },
   data() {
     return {
-      numbersVisible: '',
+      numbersVisible: '60',
       numbersVisibleOptions: [20, 40, 60, 80],
       numbers: [],
       title: false
@@ -119,6 +130,9 @@ export default {
     getPreviewWorksheetTitle() {
       return this.title ? this.worksheetTitle : ''
     }
+  },
+  created() {
+    this.generateActivity()
   }
 }
 </script>
