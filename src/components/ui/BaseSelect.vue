@@ -1,13 +1,12 @@
 <template>
   <div>
-    <label v-if="label">{{ label }}</label>
+    <label v-if="label" class="form__options--label">{{ label }}</label>
     <select
       :value="value"
       @change="updateValue"
       v-bind="$attrs"
       class="form__options--select"
     >
-      <slot />
       <option
         v-for="option in options"
         :value="option"

@@ -55,13 +55,6 @@ ul {
   --colorDetails: #a4d001;
   --colorTextMain: #4b473c;
   --colorTextHeader: #4254a5;
-  /* --colorMain: #521818;
-  --colorMain-shadow: rgba(82, 24, 24, 0.5);
-  --colorHeader: #f04f4b;
-  --colorFooter: #30b2e7;
-  --colorFooter-shadow: rgba(48, 179, 231, 0.5);
-  --colorBorder: #fdbe59;
-  --colorDetails: #bcc63f; */
 
   --fontMain: Lato, sans-serif;
 }
@@ -69,9 +62,23 @@ ul {
 /* GLOBAL FORM STYLES */
 
 .form__fieldset {
-  padding: 1vw 0.7vw;
+  /* padding: 1vw 0.7vw; */
+  padding: 12px 0;
   border: none;
   border-top: 1px solid #d8d8d8;
+}
+
+.form__fieldset--legend {
+  margin-bottom: 6px;
+  float: left;
+  width: 100%;
+  color: var(--colorMain);
+}
+
+.form__options--label {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--colorMain);
 }
 
 /* --> select <-- */
@@ -81,8 +88,6 @@ ul {
   /* 14px */
   font-size: 0.875rem;
   font-family: var(--fontMain);
-  /* font-weight: ; */
-  color: var(--colorMain);
   line-height: 1.3;
   width: 50%;
   max-width: 220px;
@@ -98,10 +103,6 @@ ul {
 
 .form__options--select:focus {
 }
-
-/* .form__options--select:disabled {
-  color: var(--colorMain-shadow);
-} */
 
 /* --> radio buttons <-- */
 
@@ -119,7 +120,6 @@ input[type='radio'] {
   /* 14px */
   font-size: 0.875rem;
   padding: 0 0.4em;
-  color: var(--colorMain);
 }
 
 /* --> input-text <-- */
@@ -129,7 +129,6 @@ input[type='radio'] {
   /* 14px */
   font-size: 0.875rem;
   font-family: var(--fontMain);
-  color: var(--colorMain);
   line-height: 1.3;
   width: 20%;
   max-width: 50px;

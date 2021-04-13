@@ -3,9 +3,16 @@
     <h3 class="generator__title">{{ worksheetTitle }} worksheet generator</h3>
 
     <!-- CHOICE SELECTORS FOR TEACHERS -->
-    <form action="" method="" class="generator__options" v-on:submit.prevent>
+    <form
+      action=""
+      method=""
+      class="generator__options"
+      v-on:submit.prevent
+      @change="generateActivity()"
+    >
       <!-- first number in line range -->
       <fieldset class="form__fieldset">
+        <legend class="form__fieldset--legend">Choose numbers range</legend>
         <div class="form__options--radio">
           <input
             type="radio"
@@ -67,6 +74,7 @@
       </fieldset>
       <!-- ascending vs descending -->
       <fieldset class="form__fieldset">
+        <legend class="form__fieldset--legend">Choose order</legend>
         <div class="form__options--radio">
           <input
             type="radio"
@@ -92,53 +100,32 @@
       </fieldset>
       <!-- how many lines -->
       <fieldset class="form__fieldset">
-        <!-- <select
-          id="numberOfLines"
-          v-model.number="numberOfLines"
-          class="form__options--select"
-        >
-          <option value="" disabled>How many problems</option>
-          <option v-for="option in numberOfLinesOptions" :key="option">{{
-            option
-          }}</option>
-        </select> -->
         <BaseSelect
+          :onChange="generateActivity"
+          label="How many problems"
           :options="numberOfLinesOptions"
           v-model.number="numberOfLines"
-          ><option value="" disabled>How many problems</option></BaseSelect
-        >
+        />
       </fieldset>
       <!-- how many numbers per line -->
       <fieldset class="form__fieldset">
-        <!-- <select
-          id="numberPerLine"
-          v-model.number="numberPerLine"
-          class="form__options--select"
-        >
-          <option value="" disabled>How many numbers per line</option>
-          <option v-for="option in numberPerLineOptions" :key="option">{{
-            option
-          }}</option>
-        </select> -->
         <BaseSelect
+          label="How many numbers per line"
           :options="numberPerLineOptions"
           v-model.number="numberPerLine"
-          ><option value="" disabled
-            >How many numbers per line</option
-          ></BaseSelect
-        >
+        />
       </fieldset>
       <fieldset class="form__fieldset">
         <BaseButton :onClick="generateActivity" icon="cogs" type="generate"
-          >Create activity</BaseButton
+          >Refresh</BaseButton
         >
-        <BaseButton
+        <!-- <BaseButton
           :onClick="saveActivity"
           icon="save"
           type="save"
           :isDisabled="numberLines.length === 0 ? true : false"
           >Save activity</BaseButton
-        >
+        > -->
       </fieldset>
     </form>
 
@@ -176,13 +163,13 @@ export default {
   data() {
     return {
       numberLines: [],
-      numberOfLines: '',
+      numberOfLines: 5,
       numberOfLinesOptions: [3, 4, 5, 6, 7, 8, 9],
-      numberPerLine: '',
+      numberPerLine: 10,
       numberPerLineOptions: [8, 9, 10],
-      ascendingOrder: null,
-      firstNumberRange: null,
-      optionalRange: { min: null, max: null },
+      ascendingOrder: true,
+      firstNumberRange: 0,
+      optionalRange: { min: 0, max: 100 },
       title: false
     }
   },
@@ -276,6 +263,9 @@ export default {
     getPreviewWorksheetTitle() {
       return this.title ? this.worksheetTitle : ''
     }
+  },
+  created() {
+    this.generateActivity()
   }
 }
 </script>

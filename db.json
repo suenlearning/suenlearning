@@ -124,6 +124,73 @@
         }
       ],
       "id": 1
+    },
+    {
+      "title": "findAWayToAddName",
+      "generator": "GeneratorAddition",
+      "numbers": [
+        {
+          "firstAddend": 85,
+          "secondAddend": 13,
+          "result": 98
+        },
+        {
+          "firstAddend": 38,
+          "secondAddend": 21,
+          "result": 59
+        },
+        {
+          "firstAddend": 35,
+          "secondAddend": 14,
+          "result": 49
+        },
+        {
+          "firstAddend": 28,
+          "secondAddend": 70,
+          "result": 98
+        },
+        {
+          "firstAddend": 79,
+          "secondAddend": 10,
+          "result": 89
+        },
+        {
+          "firstAddend": 33,
+          "secondAddend": 20,
+          "result": 53
+        },
+        {
+          "firstAddend": 73,
+          "secondAddend": 25,
+          "result": 98
+        },
+        {
+          "firstAddend": 54,
+          "secondAddend": 23,
+          "result": 77
+        },
+        {
+          "firstAddend": 27,
+          "secondAddend": 21,
+          "result": 48
+        },
+        {
+          "firstAddend": 72,
+          "secondAddend": 16,
+          "result": 88
+        },
+        {
+          "firstAddend": 11,
+          "secondAddend": 87,
+          "result": 98
+        },
+        {
+          "firstAddend": 80,
+          "secondAddend": 10,
+          "result": 90
+        }
+      ],
+      "id": 2
     }
   ]
 }
