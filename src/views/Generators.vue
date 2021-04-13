@@ -76,9 +76,20 @@ export default {
       .then(response => {
         this.worksheets = response.data
       })
+      .then(this.assignSelectedWorksheet)
       .catch(error => {
         console.log('There was an error:' + error.response)
       })
+  },
+  methods: {
+    assignSelectedWorksheet() {
+      console.log(this.worksheets)
+      const worksheet = this.worksheets.find(
+        element => element.slug === this.$route.params.generatorType
+      )
+      console.log('hello: ', worksheet)
+      this.selectedWorksheet = worksheet
+    }
   }
 }
 </script>
@@ -89,13 +100,9 @@ export default {
   min-height: calc(100vh - 60px);
   margin-top: 60px;
   padding: 0 20px;
-  /* additional padding to accomodate footer images */
-  /* padding-bottom: 9vh; */
   display: flex;
   flex-direction: column;
   align-content: center;
-  /* position: relative; */
-  /* top: 0px; */
 }
 
 /* INTRO */
@@ -164,9 +171,7 @@ export default {
 
 /* WORKSHEET GENERATOR */
 
-/* temporary, to imitate a full page */
 .workspace__generator {
-  /* min-height: 100vh; */
   margin-bottom: 6vw;
 }
 
