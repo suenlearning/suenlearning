@@ -7,7 +7,7 @@
     <nav>
       <ul class="header__nav">
         <li class="header__nav--item">
-          <router-link :to="{ name: 'home' }" class="nav__link"
+          <router-link :to="{ name: 'home' }" exact class="nav__link"
             >home</router-link
           >
         </li>
@@ -78,7 +78,7 @@ export default {
   font-size: 17px;
 }
 
-.header__nav a.router-link-exact-active {
+.header__nav a.router-link-active {
   color: var(--colorFooter);
 }
 
