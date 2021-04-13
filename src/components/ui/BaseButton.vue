@@ -1,44 +1,33 @@
 <template>
   <button
     @click="onClick"
+    v-bind="$attrs"
     class="btn"
-    :class="`btn--${type}`"
-    :disabled="isDisabled"
+    :class="`btn--${classModifier}`"
   >
     <font-awesome-icon :icon="icon" class="icon" />
-    <slot>Button</slot>
+    <slot />
   </button>
 </template>
 
 <script setup>
 // import { icons } from '@/assets/icons'
 export default {
+  inheritAttrs: false,
   props: {
     onClick: {
       type: Function,
       required: true
     },
-    type: {
+    classModifier: {
       type: String
     },
-    isDisabled: {
-      type: Boolean,
-      default: false
-    },
+    // isDisabled: {
+    //   type: Boolean,
+    //   default: false
+    // },
     icon: {
       type: String
-    }
-  },
-  computed: {
-    buttonClass() {
-      return `btn--${this.additionalClass}`
-      // return {
-      //   btn: true,
-      //   'btn--generate': this.additionalClass === 'generate' ? true : false,
-      //   'btn--save': this.additionalClass === 'save' ? true : false,
-      //   'btn--disabled': this.isDisabled ? true : false
-      // }
-      // return this.isDisabled ? 'btn--disabled' : `btn--${this.additionalClass}`
     }
   }
 }

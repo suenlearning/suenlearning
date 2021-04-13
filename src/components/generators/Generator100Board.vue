@@ -30,14 +30,17 @@
 
       <!-- BUTTON - generate worksheet: later on - should it be submit? -->
       <fieldset class="form__fieldset form__fieldset--buttons">
-        <BaseButton :onClick="generateActivity" icon="cogs" type="generate"
+        <BaseButton
+          :onClick="generateActivity"
+          icon="cogs"
+          classModifier="generate"
           >Refresh</BaseButton
         >
         <!-- <BaseButton
           :onClick="saveActivity"
           icon="save"
-          type="save"
-          :isDisabled="numbers.length === 0 ? true : false"
+          classModifier="save"
+          disabled="numbers.length === 0 ? true : false"
           >Save activity</BaseButton
         > -->
       </fieldset>
