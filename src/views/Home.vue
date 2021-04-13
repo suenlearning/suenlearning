@@ -4,8 +4,8 @@
       <li class="reasons__reason">
         <h2 class="reasons__title">Fast & easy</h2>
         <p class="reasons__text">
-          Prepare activities for your students in just few moments & simple
-          steps
+          Prepare activities for your students in just a few minutes and in
+          simple steps
         </p>
       </li>
       <li class="reasons__reason">
@@ -29,6 +29,12 @@
           created
         </p>
       </li>
+      <li class="reasons__reason">
+        <h2 class="reasons__title">Free to use</h2>
+        <p class="reasons__text">
+          No hidden fees. No trial period. Free unlimited access.
+        </p>
+      </li>
     </ul>
     <figure class="infographic">
       <img
@@ -47,10 +53,10 @@
   margin-top: 30px;
   width: 100%;
   height: calc(100vh - 30px);
-  /* height: 100%; /* to fill whole main element */
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .reasons {
@@ -85,7 +91,7 @@
   height: 100%;
 }
 
-.home__cards--container {
+/* .home__cards--container {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -100,8 +106,8 @@
   width: 134px;
   border: 1px solid var(--colorBorder);
   border-radius: 10px;
-  /* height: 250px; */
-}
+  /* height: 250px; 
+} */
 
 /* .card {
   width: 100%;

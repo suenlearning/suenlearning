@@ -3,7 +3,11 @@
     <div class="about">
       <h2 class="about__title">About us</h2>
       <p class="about__text">
-        Lorem ipsum addem mas tardem
+        <!-- While most education systems are public, most  -->
+        Developed with and for teachers.
+      </p>
+      <p class="claim">
+        Because we care
       </p>
     </div>
 
@@ -29,6 +33,8 @@
 
 .about {
   width: 30vw;
+  display: flex;
+  flex-direction: column;
 }
 
 .about__title {
@@ -43,6 +49,14 @@
   font-size: 16px;
   line-height: 1.3;
   font-weight: 300;
+}
+
+.claim {
+  width: 100%;
+  text-transform: uppercase;
+  font-size: 18px;
+  margin-top: 22px;
+  /* text-align: center; */
 }
 
 .infographic {

@@ -2,9 +2,9 @@
   <main class="main__workspace">
     <div class="workspace__intro">
       <h3 class="intro__title">Choose a generator</h3>
-      <p class="intro__text">
+      <!-- <p class="intro__text">
         Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-      </p>
+      </p> -->
     </div>
 
     <ul class="workspace__cards--container">
