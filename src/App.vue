@@ -130,7 +130,6 @@ input[type='radio'] {
   font-size: 0.875rem;
   font-family: var(--fontMain);
   line-height: 1.3;
-  width: 20%;
   max-width: 50px;
   padding: 0.6em 0.4em;
   margin-right: 1vw;

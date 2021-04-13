@@ -12,7 +12,7 @@
     >
       <!-- first number in line range -->
       <fieldset class="form__fieldset">
-        <legend class="form__fieldset--legend">Choose numbers range</legend>
+        <legend class="form__fieldset--legend">Choose range</legend>
         <div class="form__options--radio">
           <input
             type="radio"
@@ -37,7 +37,7 @@
             >from 50 to 100</label
           >
         </div>
-        <div class="form__options--radio">
+        <div class="form__options--radio custom">
           <input
             type="radio"
             id="custom"
@@ -292,6 +292,10 @@ export default {
 
 .generator__options {
   grid-area: options;
+}
+
+.custom {
+  display: inline-flex;
 }
 
 /* -- preview -- */

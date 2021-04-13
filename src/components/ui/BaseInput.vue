@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="form__options--container">
     <label v-if="label" class="form__options--label">{{ label }}</label>
     <input
       type="text"
