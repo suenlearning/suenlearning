@@ -114,7 +114,7 @@
           v-model.number="numberPerLine"
         />
       </fieldset>
-      <fieldset class="form__fieldset">
+      <fieldset class="form__fieldset form__fieldset--buttons">
         <BaseButton :onClick="generateActivity" icon="cogs" type="generate"
           >Refresh</BaseButton
         >
