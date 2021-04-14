@@ -11,16 +11,6 @@
     >
       <!-- how many numbers visible -->
       <fieldset class="form__fieldset">
-        <!-- <select
-          id="numbersVisible"
-          v-model.number="numbersVisible"
-          class="form__options--select"
-        >
-          <option value="" disabled>How many numbers visible</option>
-          <option v-for="option in numbersVisibleOptions" :key="option">{{
-            option
-          }}</option>
-        </select> -->
         <BaseSelect
           label="How many numbers visible"
           :options="numbersVisibleOptions"
@@ -28,7 +18,7 @@
         />
       </fieldset>
 
-      <!-- BUTTON - generate worksheet: later on - should it be submit? -->
+      <!-- BUTTONS -->
       <fieldset class="form__fieldset form__fieldset--buttons">
         <BaseButton
           :onClick="generateActivity"
@@ -36,13 +26,6 @@
           classModifier="generate"
           >Refresh</BaseButton
         >
-        <!-- <BaseButton
-          :onClick="saveActivity"
-          icon="save"
-          classModifier="save"
-          disabled="numbers.length === 0 ? true : false"
-          >Save activity</BaseButton
-        > -->
       </fieldset>
     </form>
 
@@ -72,7 +55,6 @@
   </div>
 </template>
 <script>
-import WrkstService from '@/services/WrkstService.js'
 export default {
   name: 'Generator100Board',
   props: {
@@ -118,15 +100,6 @@ export default {
         numbersArray[n] = 0
       }
       return numbersArray
-    },
-    // SAVE ACTIVITY
-    saveActivity() {
-      const activity = {
-        title: 'findAWayToAddName',
-        generator: this.$options.name,
-        numbers: this.numbers.length === 0 ? 'disable the button' : this.numbers
-      }
-      WrkstService.saveActivity(activity)
     }
   },
   computed: {

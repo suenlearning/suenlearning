@@ -62,10 +62,13 @@ ul {
 /* GLOBAL FORM STYLES */
 
 .form__fieldset {
-  /* padding: 1vw 0.7vw; */
   padding: 12px 0;
   border: none;
   border-top: 1px solid #d8d8d8;
+}
+
+.form__fieldset--grid {
+  display: grid;
 }
 
 .form__fieldset--legend {
@@ -98,21 +101,14 @@ ul {
   background-image: linear-gradient(to bottom, #ffffff 0%, #f5f5f5 100%);
 }
 
-.form__options--select:hover {
-}
-
-.form__options--select:focus {
-}
-
 /* --> radio buttons <-- */
+.form__options--radio {
+}
 
 /* to vertically align in the middle */
 input[type='radio'] {
   margin-top: -1px;
   vertical-align: middle;
-}
-
-.form__options--radio {
 }
 
 .options__radio--label {
@@ -155,5 +151,41 @@ input[type='radio'] {
   display: flex;
   justify-content: space-evenly;
   padding-top: 20px;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem;
+  text-transform: uppercase;
+  outline: none;
+  color: white;
+  /* 14px */
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: 0 0 4px 0 rgb(0 0 0 / 10%);
+  cursor: pointer;
+  font-family: var(--fontMain);
+}
+
+.btn:disabled {
+  background-color: #d8d8d8;
+  cursor: default;
+}
+
+.btn--generate {
+  background-color: var(--colorDetails);
+}
+
+.btn--save {
+  background-color: var(--colorFooter);
+}
+
+.icon {
+  display: block;
+  margin-right: 6px;
 }
 </style>

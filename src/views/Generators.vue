@@ -1,10 +1,7 @@
 <template>
   <main class="main__workspace">
     <div class="workspace__intro">
-      <h3 class="intro__title">Choose a generator</h3>
-      <!-- <p class="intro__text">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-      </p> -->
+      <h3 class="intro__title">Choose an activity</h3>
     </div>
 
     <ul class="workspace__cards--container">
@@ -38,9 +35,6 @@
         >
       </li>
     </ul>
-
-    <!-- router-view might be needed if I introduce the general Generator.vue view within which I'll be rendering single generators; with the v-if however, it is not needed -->
-    <!-- <router-view :key="$route.path" /> -->
 
     <section v-if="selectedWorksheet" class="workspace__generator">
       <component
@@ -132,9 +126,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  /* display: grid;
-  justify-items: center;
-  grid-template-columns: repeat(5, 1fr); */
   text-align: center;
 }
 

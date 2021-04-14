@@ -1,7 +1,6 @@
 <template>
   <section class="preview">
     <h4 class="preview__word">Preview</h4>
-    <!-- <p v-show="title">{{ noOfDigits }}-digit addition</p> -->
     <div>
       <h2 v-show="isTitle" class="activity__title">
         {{ previewWorksheetTitle }}

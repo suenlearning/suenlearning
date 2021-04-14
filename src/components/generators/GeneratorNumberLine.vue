@@ -11,7 +11,7 @@
       @change="generateActivity()"
     >
       <!-- first number in line range -->
-      <fieldset class="form__fieldset">
+      <fieldset class="form__fieldset form__fieldset--grid">
         <legend class="form__fieldset--legend">Choose range</legend>
         <div class="form__options--radio">
           <input
@@ -46,7 +46,7 @@
             v-model="firstNumberRange"
           />
           <label for="custom" class="options__radio--label"
-            >custom value:</label
+            >custom range:</label
           >
           <BaseInput
             v-model="optionalRange.min"
@@ -58,18 +58,6 @@
             type="text"
             placeholder="max"
           />
-          <!-- <input
-            type="text"
-            placeholder="min"
-            v-model="optionalRange.min"
-            class="form__options--input"
-          />
-          <input
-            type="text"
-            placeholder="max"
-            v-model="optionalRange.max"
-            class="form__options--input"
-          /> -->
         </div>
       </fieldset>
       <!-- ascending vs descending -->
@@ -101,17 +89,17 @@
       <!-- how many lines -->
       <fieldset class="form__fieldset">
         <BaseSelect
-          label="How many problems"
-          :options="numberOfLinesOptions"
-          v-model.number="numberOfLines"
+          label="How many rows"
+          :options="numberOfRowsOptions"
+          v-model.number="numberOfRows"
         />
       </fieldset>
       <!-- how many numbers per line -->
       <fieldset class="form__fieldset">
         <BaseSelect
-          label="How many numbers per line"
-          :options="numberPerLineOptions"
-          v-model.number="numberPerLine"
+          label="How many numbers per row"
+          :options="numberPerRowOptions"
+          v-model.number="numberPerRow"
         />
       </fieldset>
       <fieldset class="form__fieldset form__fieldset--buttons">
@@ -121,13 +109,6 @@
           classModifier="generate"
           >Refresh</BaseButton
         >
-        <!-- <BaseButton
-          :onClick="saveActivity"
-          icon="save"
-          classModifier="save"
-          disabled="numberLines.length === 0 ? true : false"
-          >Save activity</BaseButton
-        > -->
       </fieldset>
     </form>
 
@@ -156,7 +137,6 @@
   </div>
 </template>
 <script>
-import WrkstService from '@/services/WrkstService.js'
 export default {
   name: 'GeneratorNumberLine',
   props: {
@@ -165,10 +145,10 @@ export default {
   data() {
     return {
       numberLines: [],
-      numberOfLines: 5,
-      numberOfLinesOptions: [3, 4, 5, 6, 7, 8, 9],
-      numberPerLine: 10,
-      numberPerLineOptions: [8, 9, 10],
+      numberOfRows: 4,
+      numberOfRowsOptions: [3, 4, 5, 6, 7, 8, 9],
+      numberPerRow: 10,
+      numberPerRowOptions: [8, 9, 10],
       ascendingOrder: true,
       firstNumberRange: 0,
       optionalRange: { min: 0, max: 100 },
@@ -180,7 +160,7 @@ export default {
     generateActivity() {
       this.title = true
       this.numberLines = []
-      for (let i = 0; i < this.numberOfLines; i++) {
+      for (let i = 0; i < this.numberOfRows; i++) {
         const newSingleLine = this.createSingleLine()
         this.numberLines.push(newSingleLine)
       }
@@ -190,12 +170,12 @@ export default {
       const elementsToHide = this.createArrayOfIndexesToHide()
       if (this.ascendingOrder) {
         const n = this.setNumbersRangeAscending()
-        for (let i = 0; i < this.numberPerLine; i++) {
+        for (let i = 0; i < this.numberPerRow; i++) {
           newSingleLine.push(n + i)
         }
       } else {
         const n = this.setNumbersRangeDescending()
-        for (let i = 0; i < this.numberPerLine; i++) {
+        for (let i = 0; i < this.numberPerRow; i++) {
           newSingleLine.push(n - i)
         }
       }
@@ -204,8 +184,8 @@ export default {
     // numbers to hide - these are the numbers the kids will have to fill in
     createArrayOfIndexesToHide() {
       const newArrayOfIndexes = []
-      while (newArrayOfIndexes.length < this.numberPerLine - 3) {
-        const newIndex = Math.floor(Math.random() * this.numberPerLine)
+      while (newArrayOfIndexes.length < this.numberPerRow - 3) {
+        const newIndex = Math.floor(Math.random() * this.numberPerRow)
         if (newArrayOfIndexes.indexOf(newIndex) === -1) {
           newArrayOfIndexes.push(newIndex)
         }
@@ -227,7 +207,7 @@ export default {
         ;(x = 50), (y = 90)
       } else {
         ;(x = parseInt(this.optionalRange.min)),
-          (y = parseInt(this.optionalRange.max) - parseInt(this.numberPerLine))
+          (y = parseInt(this.optionalRange.max) - parseInt(this.numberPerRow))
       }
       return this.getRandomNumber(x, y)
     },
@@ -238,7 +218,7 @@ export default {
       } else if (this.firstNumberRange === 1) {
         ;(x = 60), (y = 100)
       } else {
-        ;(x = parseInt(this.optionalRange.min) + parseInt(this.numberPerLine)),
+        ;(x = parseInt(this.optionalRange.min) + parseInt(this.numberPerRow)),
           (y = parseInt(this.optionalRange.max))
       }
       return this.getRandomNumber(x, y)
@@ -247,18 +227,6 @@ export default {
       min = Math.ceil(min)
       max = Math.floor(max)
       return Math.floor(Math.random() * (max - min + 1)) + min
-    },
-    // SAVE ACTIVITY
-    saveActivity() {
-      const activity = {
-        title: 'findAWayToAddName',
-        generator: this.$options.name,
-        numberLines:
-          this.numberLines.length === 0
-            ? 'disable the button'
-            : this.numberLines
-      }
-      WrkstService.saveActivity(activity)
     }
   },
   computed: {

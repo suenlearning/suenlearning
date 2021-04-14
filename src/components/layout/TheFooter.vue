@@ -1,10 +1,16 @@
 <template>
   <footer class="footer">
     <div>
-      <p>© marcjnn 2021</p>
-      <!-- <p class="patreon">
-        support on 🤍 <a href="" class="nav__link">patreon</a>
-      </p> -->
+      <p>
+        ©
+        <a
+          href="https://github.com/marcjnn"
+          class="nav__link"
+          title="visit my github"
+          >marcjnn</a
+        >
+        2021
+      </p>
     </div>
     <nav>
       <ul class="footer__nav">
@@ -66,20 +72,4 @@ export default {}
 .footer .patreon .nav__link {
   padding-left: 4px;
 }
-
-/* it has to have height, otherwise background doesn't appear; for now height arbitrary, search if I can find  */
-/* .footer::before {
-  content: '';
-  height: 9vh;
-  width: 100%;
-  background: url(../../assets/img/wrkst-bottom-right.png) no-repeat bottom
-      right 20px / auto 90%,
-    url(../../assets/img/wrkst-bottom-left.png) no-repeat bottom left 20px /
-      auto 90%;
-  border-bottom: 4px solid var(--colorFooter);
-  position: absolute;
-  /* -height -border */
-/* top: calc(-9vh - 4px);
-  left: 0;
-} */
 </style>

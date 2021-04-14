@@ -3,7 +3,6 @@
     <div class="about">
       <h2 class="about__title">About us</h2>
       <p class="about__text">
-        <!-- While most education systems are public, most  -->
         Developed with and for teachers.
       </p>
       <p class="claim">
@@ -56,7 +55,6 @@
   text-transform: uppercase;
   font-size: 18px;
   margin-top: 22px;
-  /* text-align: center; */
 }
 
 .infographic {
