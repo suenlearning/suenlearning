@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import '@/assets/style/variables.css'
 import TheNavigation from '@/components/layout/TheNavigation'
 import TheFooter from '@/components/layout/TheFooter.vue'
 export default {
@@ -43,21 +44,6 @@ ul {
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
-
-:root {
-  --colorMain: #9b054c;
-  --colorMain-shadow: rgba(155, 5, 75, 0.5);
-  --colorHeader: #f40905;
-  --colorFooter: #00c6d1;
-  --colorFooter-shadow: rgba(0, 198, 209, 0.5);
-  --colorBorder: #fe6902;
-  --colorBorder-shadow: rgba(254, 105, 2, 0.5);
-  --colorDetails: #a4d001;
-  --colorTextMain: #4b473c;
-  --colorTextHeader: #4254a5;
-
-  --fontMain: Lato, sans-serif;
-}
 
 /* GLOBAL FORM STYLES */
 
