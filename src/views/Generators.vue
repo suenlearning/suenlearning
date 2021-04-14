@@ -50,7 +50,7 @@ import GeneratorAddition from '@/components/generators/GeneratorAddition.vue'
 import Generator100Board from '@/components/generators/Generator100Board.vue'
 import GeneratorNumberLine from '@/components/generators/GeneratorNumberLine.vue'
 
-import WrkstService from '@/services/WrkstService.js'
+import data from '@/store/data.json'
 
 export default {
   name: 'Workspace',
@@ -61,19 +61,9 @@ export default {
   },
   data() {
     return {
-      worksheets: [],
+      worksheets: data.worksheetTypes,
       selectedWorksheet: ''
     }
-  },
-  created() {
-    WrkstService.getWorksheets()
-      .then(response => {
-        this.worksheets = response.data
-      })
-      .then(this.assignSelectedWorksheet)
-      .catch(error => {
-        console.log('There was an error:' + error.response)
-      })
   },
   methods: {
     // when accessing the page without params we get an error - that's why I added an '' as an option
