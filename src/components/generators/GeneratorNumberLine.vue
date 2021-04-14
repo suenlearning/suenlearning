@@ -11,7 +11,7 @@
       @change="generateActivity()"
     >
       <!-- first number in line range -->
-      <fieldset class="form__fieldset form__fieldset--grid">
+      <fieldset class="form__fieldset">
         <legend class="form__fieldset--legend">Choose range</legend>
         <div class="form__options--radio">
           <input
@@ -104,7 +104,7 @@
       </fieldset>
       <fieldset class="form__fieldset form__fieldset--buttons">
         <BaseButton
-          :onClick="generateActivity"
+          @click="generateActivity"
           icon="cogs"
           classModifier="generate"
           >Refresh</BaseButton

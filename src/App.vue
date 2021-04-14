@@ -62,13 +62,10 @@ ul {
 /* GLOBAL FORM STYLES */
 
 .form__fieldset {
+  /* padding: 1vw 0.7vw; */
   padding: 12px 0;
   border: none;
   border-top: 1px solid #d8d8d8;
-}
-
-.form__fieldset--grid {
-  display: grid;
 }
 
 .form__fieldset--legend {
@@ -102,8 +99,6 @@ ul {
 }
 
 /* --> radio buttons <-- */
-.form__options--radio {
-}
 
 /* to vertically align in the middle */
 input[type='radio'] {

@@ -21,7 +21,7 @@
       <!-- BUTTONS -->
       <fieldset class="form__fieldset form__fieldset--buttons">
         <BaseButton
-          :onClick="generateActivity"
+          @click="generateActivity"
           icon="cogs"
           classModifier="generate"
           >Refresh</BaseButton

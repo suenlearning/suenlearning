@@ -1,6 +1,6 @@
 <template>
   <button
-    @click="onClick"
+    v-on="$listeners"
     v-bind="$attrs"
     class="btn"
     :class="`btn--${classModifier}`"
@@ -14,10 +14,6 @@
 export default {
   inheritAttrs: false,
   props: {
-    onClick: {
-      type: Function,
-      required: true
-    },
     classModifier: {
       type: String
     },
