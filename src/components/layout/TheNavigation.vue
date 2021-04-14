@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <h1 class="hidden">Worksheet Generator</h1>
+    <h1 class="hidden">Suen Learning - create activities for your students</h1>
     <router-link to="/" class="nav__link"
       ><img :src="imagePath" alt="logo" class="logo"
     /></router-link>
