@@ -65,6 +65,9 @@ export default {
       selectedWorksheet: ''
     }
   },
+  created() {
+    this.assignSelectedWorksheet()
+  },
   methods: {
     // when accessing the page without params we get an error - that's why I added an '' as an option
     assignSelectedWorksheet() {
