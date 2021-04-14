@@ -157,7 +157,7 @@ input[type='radio'] {
   cursor: default;
 }
 
-.btn--generate {
+.btn--create {
   background-color: var(--colorDetails);
 }
 
