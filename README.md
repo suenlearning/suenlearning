@@ -1,4 +1,4 @@
-# WRKST
+# Suen
 
 A SPA created with Vue.js + Axios for teachers and educators to create personalised materials for their students.
 

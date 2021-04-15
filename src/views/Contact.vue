@@ -9,7 +9,7 @@
 
     <figure class="infographic">
       <img
-        src="@/assets/img/contact.png"
+        src="@/assets/images/contact.png"
         alt="infographic"
         class="infographic__image"
       />

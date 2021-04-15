@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <TheNavigation :image-path="require('./assets/img/logo.png')" />
+    <TheNavigation :image-path="require('./assets/images/logo.png')" />
     <router-view />
     <TheFooter />
   </div>

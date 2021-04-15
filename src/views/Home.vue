@@ -38,7 +38,7 @@
     </ul>
     <figure class="infographic">
       <img
-        src="@/assets/img/edu.png"
+        src="@/assets/images/edu.png"
         alt="infographic"
         class="infographic__image"
       />

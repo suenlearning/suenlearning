@@ -27,7 +27,7 @@
           >
             <img
               class="card__thumb"
-              :src="require(`@/assets/img/${worksheet.image.src}`)"
+              :src="require(`@/assets/images/${worksheet.image.src}`)"
               :alt="worksheet.image.alt"
             />
             <h3 class="card__title">{{ worksheet.name }}</h3>

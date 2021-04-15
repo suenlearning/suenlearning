@@ -12,7 +12,7 @@
 
     <figure class="infographic">
       <img
-        src="@/assets/img/aboutus.png"
+        src="@/assets/images/aboutus.png"
         alt="infographic"
         class="infographic__image"
       />
