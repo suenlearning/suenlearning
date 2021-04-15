@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import '@/assets/style/variables.css'
+import '@/assets/style/main.css'
 import TheNavigation from '@/components/layout/TheNavigation'
 import TheFooter from '@/components/layout/TheFooter.vue'
 export default {
@@ -19,17 +19,6 @@ export default {
 </script>
 
 <style>
-/* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-ul {
-  list-style-type: none;
-}
-
 /* APP */
 
 #app {
