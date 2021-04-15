@@ -29,4 +29,28 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.form__options--input {
+  display: inline-block;
+  /* 14px */
+  font-size: 0.875rem;
+  font-family: var(--fontMain);
+  line-height: 1.3;
+  max-width: 50px;
+  padding: 0.6em 0.4em;
+  margin-right: 1vw;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0px 0px 0px 1px var(--colorFooter-shadow);
+  background-image: linear-gradient(to bottom, #ffffff 0%, #f5f5f5 100%);
+}
+
+.form__options--input:focus {
+  outline: none;
+  border: 1px solid var(--colorFooter);
+}
+
+.form__options--input::placeholder {
+  color: var(--colorMain-shadow);
+}
+</style>

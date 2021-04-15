@@ -56,21 +56,11 @@ export default {
   color: var(--colorMain);
 }
 
-/* --> select <-- */
-
-.form__options--select {
-  display: block;
-  /* 14px */
-  font-size: 0.875rem;
-  font-family: var(--fontMain);
-  line-height: 1.3;
-  width: 50%;
-  max-width: 220px;
-  padding: 0.6em 0.4em;
-  border: none;
-  border-radius: 8px;
-  box-shadow: 0px 0px 0px 1px var(--colorFooter-shadow);
-  background-image: linear-gradient(to bottom, #ffffff 0%, #f5f5f5 100%);
+/* specific display for buttons */
+.form__fieldset--buttons {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 20px;
 }
 
 /* --> radio buttons <-- */
@@ -86,76 +76,5 @@ input[type='radio'] {
   /* 14px */
   font-size: 0.875rem;
   padding: 0 0.4em;
-}
-
-/* --> input-text <-- */
-
-.form__options--input {
-  display: inline-block;
-  /* 14px */
-  font-size: 0.875rem;
-  font-family: var(--fontMain);
-  line-height: 1.3;
-  max-width: 50px;
-  padding: 0.6em 0.4em;
-  margin-right: 1vw;
-  border: none;
-  border-radius: 8px;
-  box-shadow: 0px 0px 0px 1px var(--colorFooter-shadow);
-  background-image: linear-gradient(to bottom, #ffffff 0%, #f5f5f5 100%);
-}
-
-.form__options--input:focus,
-.form__options--select:focus {
-  outline: none;
-  border: 1px solid var(--colorFooter);
-}
-
-.form__options--input::placeholder {
-  color: var(--colorMain-shadow);
-}
-
-/* --> buttons <-- */
-
-.form__fieldset--buttons {
-  display: flex;
-  justify-content: space-evenly;
-  padding-top: 20px;
-}
-
-.btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  border-radius: 8px;
-  padding: 0.7rem;
-  text-transform: uppercase;
-  outline: none;
-  color: white;
-  /* 14px */
-  font-size: 0.875rem;
-  font-weight: 700;
-  box-shadow: 0 0 4px 0 rgb(0 0 0 / 10%);
-  cursor: pointer;
-  font-family: var(--fontMain);
-}
-
-.btn:disabled {
-  background-color: #d8d8d8;
-  cursor: default;
-}
-
-.btn--create {
-  background-color: var(--colorDetails);
-}
-
-.btn--save {
-  background-color: var(--colorFooter);
-}
-
-.icon {
-  display: block;
-  margin-right: 6px;
 }
 </style>
