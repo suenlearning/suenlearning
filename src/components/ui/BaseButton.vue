@@ -1,5 +1,13 @@
 <template>
+  <router-link
+    v-if="tag === 'router'"
+    :to="`${{ name: to }}`"
+    class="btn"
+    :class="`btn--${classModifier}`"
+    ><font-awesome-icon :icon="icon" class="icon"/> <slot
+  /></router-link>
   <button
+    v-else-if="tag === 'button'"
     v-on="$listeners"
     v-bind="$attrs"
     class="btn"
@@ -11,6 +19,7 @@
 </template>
 
 <script setup>
+const availableTags = ['button', 'a', 'router']
 export default {
   inheritAttrs: false,
   props: {
@@ -19,7 +28,24 @@ export default {
     },
     icon: {
       type: String
+    },
+    tag: {
+      type: String,
+      default: 'button',
+      validator: value => availableTags.includes(value)
+    },
+    to: {
+      type: String,
+      required: false,
+      default: 'home'
     }
+    // to: {
+    //   type: Object,
+    //   required: false,
+    //   default() {
+    //     return { name: 'home' }
+    //   }
+    // }
   }
 }
 </script>
@@ -54,6 +80,10 @@ export default {
 
 .btn--save {
   background-color: var(--colorFooter);
+}
+
+.btn--link {
+  background-color: var(--colorDetails);
 }
 
 .icon {

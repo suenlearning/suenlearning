@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <h1 class="hidden">Suen Learning - create activities for your students</h1>
-    <router-link to="/" class="nav__link"
+    <router-link :to="{ name: 'home' }" class="nav__link"
       ><img :src="imagePath" alt="logo" class="logo"
     /></router-link>
     <nav>

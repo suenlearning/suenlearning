@@ -8,8 +8,7 @@
         Protocol (HTTP) standard response code, in computer network
         communications, to indicate that the browser was able to communicate
         with a given server, but the server could not find what was requested.
-        The error may also be used when a server does not wish to disclose
-        whether it has the requested information.
+        (...)
       </p>
       <p class="notfound__text">
         The website hosting server will typically generate a "404 Not Found" web
@@ -23,12 +22,15 @@
           >Wikipedia</a
         ></small
       >
+      <BaseButton tag="router" icon="cogs" classModifier="link"
+        >Home</BaseButton
+      >
     </div>
 
     <figure class="infographic">
       <img
         src="@/assets/images/pagenotfound.png"
-        alt="infographic"
+        alt="Page not found"
         class="infographic__image"
       />
     </figure>
@@ -65,6 +67,7 @@ export default {}
   font-size: 16px;
   line-height: 1.3;
   font-weight: 300;
+  margin-top: 12px;
 }
 
 .notfound__text--small {
@@ -73,6 +76,7 @@ export default {}
   font-weight: 300;
   display: block;
   text-align: right;
+  margin: 12px;
 }
 
 .notfound__link {
