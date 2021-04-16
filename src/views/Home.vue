@@ -90,50 +90,6 @@
   height: 100%;
 }
 
-/* .home__cards--container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.home__cards--item {
-  margin: 12px 0;
-  padding: 16px 8px;
-  width: 134px;
-  border: 1px solid var(--colorBorder);
-  border-radius: 10px;
-  /* height: 250px; 
-} */
-
-/* .card {
-  width: 100%;
-} */
-
-.card__thumb {
-  /* options: use only images of the same size and alpha background or set fixed height to the lowest of the images */
-  /* width: 100%; */
-  max-height: 70px;
-}
-
-.card__title {
-  font-size: 16px;
-  margin: 10px 0;
-  font-weight: 600;
-}
-
-.card__description {
-  font-weight: 300;
-  font-size: 16px;
-}
-
-.card__link {
-  text-decoration: none;
-  color: var(--colorMain);
-}
-
 @media screen and (min-width: 768px) {
   .home__cards--container {
     flex-direction: row;
