@@ -57,7 +57,7 @@ export default {
 }
 
 /* specific display for buttons */
-.form__fieldset--buttons {
+.buttons {
   display: flex;
   justify-content: space-evenly;
   padding-top: 20px;

@@ -57,7 +57,7 @@
       </fieldset>
 
       <!-- BUTTONS -->
-      <fieldset class="form__fieldset form__fieldset--buttons">
+      <fieldset class="form__fieldset buttons">
         <BaseButton @click="generateActivity" icon="cogs" classModifier="create"
           >Refresh</BaseButton
         >

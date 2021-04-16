@@ -1,10 +1,10 @@
 <template>
   <router-link
     v-if="tag === 'router'"
-    :to="`${{ name: to }}`"
+    :to="{ name: to }"
     class="btn"
     :class="`btn--${classModifier}`"
-    ><font-awesome-icon :icon="icon" class="icon"/> <slot
+    ><font-awesome-icon :icon="icon" class="icon"/><slot
   /></router-link>
   <button
     v-else-if="tag === 'button'"
@@ -84,6 +84,7 @@ export default {
 
 .btn--link {
   background-color: var(--colorDetails);
+  text-decoration: none;
 }
 
 .icon {
