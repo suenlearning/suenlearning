@@ -34,6 +34,45 @@ export default {
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
 
+/* STYLES SHARED BY VIEWS: Home, About, Contact & PageNotFound */
+
+.main__view {
+  margin-top: 30px;
+  width: 100%;
+  height: calc(100vh - 30px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.view__description {
+  width: 30vw;
+}
+
+.description__title {
+  color: var(--colorTextHeader);
+  /* 20px */
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.description__paragraph {
+  font-size: 16px;
+  line-height: 1.3;
+  font-weight: 300;
+}
+
+.view__image-container {
+  height: 60vh;
+  max-height: 300px;
+  margin-left: 3vw;
+}
+
+.view__image {
+  height: 100%;
+}
+
 /* GLOBAL FORM STYLES */
 
 .form__fieldset {
