@@ -1,22 +1,42 @@
 <template>
   <section class="preview">
     <h4 class="preview__word">Preview</h4>
-    <div>
+    <PreviewTabs :selectedTab="selectedTab" v-on:click="updateTab" />
+    <div v-show="selectedTab === 'online'">
       <h2 v-show="isTitle" class="activity__title">
         {{ previewWorksheetTitle }}
       </h2>
       <slot></slot>
     </div>
+    <div v-show="selectedTab === 'pdf'">
+      <!-- <h2 v-show="isTitle" class="activity__title">
+        {{ previewWorksheetTitle }}
+      </h2> -->
+      <p>we're working on it</p>
+      <!-- <slot></slot> -->
+    </div>
   </section>
 </template>
 
 <script setup>
+import PreviewTabs from '@/components/PreviewTabs.vue'
 export default {
+  components: { PreviewTabs },
   props: {
     previewWorksheetTitle: String,
     isTitle: {
       type: Boolean,
       default: false
+    }
+  },
+  data() {
+    return {
+      selectedTab: 'online'
+    }
+  },
+  methods: {
+    updateTab(tab) {
+      this.selectedTab = tab
     }
   }
 }
