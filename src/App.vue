@@ -32,6 +32,11 @@ export default {
   display: none;
 }
 
+.icon {
+  display: block;
+  margin-right: 6px;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
 
 /* STYLES SHARED BY VIEWS: Home, About, Contact & PageNotFound */

@@ -86,9 +86,4 @@ export default {
   background-color: var(--colorDetails);
   text-decoration: none;
 }
-
-.icon {
-  display: block;
-  margin-right: 6px;
-}
 </style>

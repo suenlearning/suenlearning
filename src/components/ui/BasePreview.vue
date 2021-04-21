@@ -52,6 +52,7 @@ export default {
   font-weight: 300;
   /* 18px */
   font-size: 1.125rem;
+  margin-bottom: 12px;
 }
 .activity__title {
   /* 18px */

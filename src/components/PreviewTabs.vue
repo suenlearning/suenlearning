@@ -2,12 +2,13 @@
   <ul class="preview-tabs">
     <li
       class="tab"
-      :class="{ 'tab--selected': selectedTab === tab }"
-      v-for="(tab, index) in tabs"
-      :key="index"
-      @click="updateTab(tab)"
+      :class="{ 'tab--selected': selectedTab === tab.tab }"
+      v-for="tab in tabs"
+      :key="tab.tab"
+      @click="updateTab(tab.tab)"
     >
-      {{ tab }}
+      <font-awesome-icon :icon="tab.icon" class="icon" />
+      {{ tab.tab }}
     </li>
   </ul>
 </template>
@@ -22,7 +23,10 @@ export default {
   },
   data() {
     return {
-      tabs: ['online', 'pdf']
+      tabs: [
+        { tab: 'online', icon: 'wifi' },
+        { tab: 'pdf', icon: 'file-pdf' }
+      ]
     }
   },
   methods: {
@@ -34,15 +38,28 @@ export default {
 </script>
 <style scoped>
 .preview-tabs {
-  display: inline-flex;
+  display: flex;
+  margin-top: 6px;
+  box-shadow: 0px -1px 0px 0px #d8d8d8 inset;
 }
 .tab {
   cursor: pointer;
-  padding: 6px;
-  border-radius: 6px;
+  padding: 6px 12px;
+  border-bottom: 1px solid #d8d8d8;
+  background-color: #e8e8e8;
+  font-size: 14px;
+  border-radius: 10px 10px 0 0;
 }
 
 .tab--selected {
-  background-color: var(--colorDetails);
+  background-color: white;
+  border: 1px solid #d8d8d8;
+  border-bottom: transparent;
+  font-weight: 500;
+}
+
+.icon {
+  display: inline-block;
+  margin-right: 2px;
 }
 </style>

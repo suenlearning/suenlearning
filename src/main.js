@@ -6,10 +6,16 @@ import store from './store'
 // fontawesome
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSave, faCogs, faHome } from '@fortawesome/free-solid-svg-icons'
+import {
+  faSave,
+  faCogs,
+  faHome,
+  faWifi,
+  faFilePdf
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faSave, faCogs, faHome)
+library.add(faSave, faCogs, faHome, faWifi, faFilePdf)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
