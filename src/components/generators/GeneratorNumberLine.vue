@@ -272,7 +272,7 @@ export default {
 .activity {
   display: grid;
   gap: 24px;
-  padding: 0 16px;
+  /* padding: 0 16px; */
 }
 
 .numberLine {

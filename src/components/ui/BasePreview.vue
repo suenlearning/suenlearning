@@ -2,7 +2,7 @@
   <section class="preview">
     <h4 class="preview__word">Preview</h4>
     <PreviewTabs :selectedTab="selectedTab" v-on:click="updateTab" />
-    <div v-show="selectedTab === 'online'">
+    <div v-show="selectedTab === 'online'" class="activity__area">
       <h2 v-show="isTitle" class="activity__title">
         {{ previewWorksheetTitle }}
       </h2>
@@ -54,10 +54,16 @@ export default {
   font-size: 1.125rem;
   margin-bottom: 12px;
 }
+.activity__area {
+  border: 1px solid #d8d8d8;
+  border-top: none;
+  padding: 18px;
+  border-radius: 0 0 12px 12px;
+}
 .activity__title {
   /* 18px */
   font-size: 1.125rem;
-  margin: 12px 0 24px;
+  margin: 0 0 18px;
   text-align: center;
 }
 .activity__title::first-letter {
