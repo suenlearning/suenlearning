@@ -36,6 +36,12 @@ const routes = [
       import(/* webpackChunkName: "contact" */ '../views/Contact.vue')
   },
   {
+    path: '/addition-activity',
+    name: 'addition-activity',
+    component: () =>
+      import(/* webpackChunkName: "contact" */ '../views/ActivityAddition.vue')
+  },
+  {
     path: '*',
     name: 'pageNotFound',
     component: () =>

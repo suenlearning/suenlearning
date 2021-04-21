@@ -11,11 +11,12 @@ import {
   faCogs,
   faHome,
   faWifi,
-  faFilePdf
+  faFilePdf,
+  faAngleDoubleRight
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faSave, faCogs, faHome, faWifi, faFilePdf)
+library.add(faSave, faCogs, faHome, faWifi, faFilePdf, faAngleDoubleRight)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

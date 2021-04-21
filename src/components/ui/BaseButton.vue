@@ -78,7 +78,8 @@ export default {
   background-color: var(--colorDetails);
 }
 
-.btn--save {
+.btn--save,
+.btn--next {
   background-color: var(--colorFooter);
 }
 
