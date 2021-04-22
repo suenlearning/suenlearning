@@ -20,6 +20,10 @@ export default {
       default: ''
     },
     value: [String, Number]
+    // ref: {
+    //   type: String,
+    //   default: ''
+    // }
   },
   methods: {
     updateValue(event) {
