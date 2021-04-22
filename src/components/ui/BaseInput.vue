@@ -2,12 +2,12 @@
   <div class="form__options--container">
     <label v-if="label" class="form__options--label">{{ label }}</label>
     <input
-      type="text"
+      :type="type"
       :value="value"
       @input="updateValue"
       v-bind="$attrs"
+      v-focus="focus"
       class="form__options--input"
-      :ref="reference"
     />
   </div>
 </template>
@@ -20,38 +20,40 @@ export default {
       type: String,
       default: ''
     },
+    type: {
+      type: String,
+      default: 'text'
+    },
     value: [String, Number],
     // reference: {
     //   type: String,
     //   default: ''
     // },
-    autofocus: {
+    focus: {
       type: Boolean,
       default: false
     }
   },
-  data() {
-    return {
-      reference: 'baseInput'
-    }
-  },
-  mounted() {
-    this.updateRefAttribute()
-    if (this.autofocus) this.autofocusInput()
-    console.log(this.$refs)
-  },
-  updated() {
-    console.log(this.$refs)
-  },
+  // data() {
+  //   return {
+  //     reference: ''
+  //   }
+  // },
+
   methods: {
     updateValue(event) {
       this.$emit('input', event.target.value)
-    },
-    updateRefAttribute() {
-      this.refer = this.reference
-    },
-    autofocusInput() {
-      return this.$refs[this.reference].focus()
+    }
+  },
+  directives: {
+    focus: {
+      // TODO: when looping v-for through numbers/problems add focus as a string and bind to that string
+      // https://jsfiddle.net/simplesmiler/zak1t6o8/
+      // https://github.com/simplesmiler/vue-focus/tree/master/dist
+      inserted: function(el, binding) {
+        // binding.value ? el.focus() : el.blur()
+        if (binding.value) el.focus()
+      }
     }
   }
 }
@@ -80,5 +82,18 @@ export default {
 
 .form__options--input::placeholder {
   color: var(--colorMain-shadow);
+}
+
+/* Remove arrows */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
 }
 </style>

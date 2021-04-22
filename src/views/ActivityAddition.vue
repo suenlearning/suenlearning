@@ -1,29 +1,36 @@
 <template>
   <main class="main__view">
     <div>progress bar</div>
-    <!-- <ul>
-      <li>{{ numbers[0].first }}</li>
-      <li>{{ numbers[0].second }}</li>
-      <li><input type="text" v-model.number="numbers[0].answer" /></li>
-    </ul> -->
-    <!-- <ul>
-      <li>{{ numbers[0].first }}</li>
-      <li>{{ numbers[0].second }}</li>
-      <li><input type="text" ref="input" /></li>
-    </ul> -->
-    <!-- if I iterate I get an array in refs -->
     <ul>
       <li v-for="(number, index) in numbers" :key="index">
         <ul v-if="index === currentProblem">
           <li>{{ numbers[index].first }}</li>
           <li>{{ numbers[index].second }}</li>
-          <!-- <li><input type="text" v-model.number="numbers[index].answer" /></li> -->
-          <li><input type="number" ref="digitFour" /></li>
-          <li><input type="number" ref="digitThree" /></li>
-          <li><input type="number" ref="digitTwo" /></li>
-          <li><input type="number" ref="digitOne" /></li>
-          <li><BaseInput /></li>
-          <li><BaseInput :autofocus="true" /></li>
+          <li>
+            <BaseInput
+              v-model.number="numbers[index].digits[0]"
+              type="number"
+            />
+          </li>
+          <li>
+            <BaseInput
+              v-model.number="numbers[index].digits[1]"
+              type="number"
+            />
+          </li>
+          <li>
+            <BaseInput
+              v-model.number="numbers[index].digits[2]"
+              type="number"
+            />
+          </li>
+          <li>
+            <BaseInput
+              v-model.number="numbers[index].digits[3]"
+              type="number"
+              :focus="true"
+            />
+          </li>
         </ul>
       </li>
     </ul>
@@ -49,7 +56,13 @@ export default {
   data() {
     return {
       numbers: [
-        { first: 2345, second: 1203, result: 3548, answer: null },
+        {
+          first: 2345,
+          second: 1203,
+          result: 3548,
+          answer: null,
+          digits: [null, null, null, null]
+        },
         { first: 1122, second: 6633, result: 7755, answer: null },
         { first: 3829, second: 5140, result: 8969, answer: null }
       ],
@@ -57,35 +70,10 @@ export default {
     }
   },
   methods: {
-    autofocusInput() {
-      return this.$refs.digitOne[0].focus()
-    },
     nextProblem() {
       if (this.currentProblem !== this.numbers.length - 1)
         return (this.currentProblem += 1)
     }
-  },
-  // mounted() {
-  //   this.$nextTick(() => {
-  //     this.autofocusInput()
-  //   })
-  // }
-  mounted() {
-    console.log(this.$refs.input)
-    console.log(this.$refs.digitOne[0])
-    // console.log(this.$refs.baseInput)
-    // console.log(this.$refs.baseInput[0])
-    // console.log(this.$refs.baseInput[0].$el)
-    // this.autofocusInput()
-    // this.$nextTick(() => {
-    //   this.autofocusInput()
-    // })
-    this.$nextTick(() => {
-      console.log(this.$refs)
-    })
-  },
-  updated() {
-    this.autofocusInput()
   }
 }
 </script>
