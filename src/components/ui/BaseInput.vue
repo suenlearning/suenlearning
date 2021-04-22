@@ -7,6 +7,7 @@
       @input="updateValue"
       v-bind="$attrs"
       class="form__options--input"
+      :ref="reference"
     />
   </div>
 </template>
@@ -19,15 +20,38 @@ export default {
       type: String,
       default: ''
     },
-    value: [String, Number]
-    // ref: {
+    value: [String, Number],
+    // reference: {
     //   type: String,
     //   default: ''
-    // }
+    // },
+    autofocus: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data() {
+    return {
+      reference: 'baseInput'
+    }
+  },
+  mounted() {
+    this.updateRefAttribute()
+    if (this.autofocus) this.autofocusInput()
+    console.log(this.$refs)
+  },
+  updated() {
+    console.log(this.$refs)
   },
   methods: {
     updateValue(event) {
       this.$emit('input', event.target.value)
+    },
+    updateRefAttribute() {
+      this.refer = this.reference
+    },
+    autofocusInput() {
+      return this.$refs[this.reference].focus()
     }
   }
 }

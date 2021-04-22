@@ -6,23 +6,24 @@
       <li>{{ numbers[0].second }}</li>
       <li><input type="text" v-model.number="numbers[0].answer" /></li>
     </ul> -->
-    <ul>
+    <!-- <ul>
       <li>{{ numbers[0].first }}</li>
       <li>{{ numbers[0].second }}</li>
       <li><input type="text" ref="input" /></li>
-    </ul>
+    </ul> -->
     <!-- if I iterate I get an array in refs -->
     <ul>
       <li v-for="(number, index) in numbers" :key="index">
         <ul v-if="index === currentProblem">
           <li>{{ numbers[index].first }}</li>
           <li>{{ numbers[index].second }}</li>
-          <li><input type="text" v-model.number="numbers[index].answer" /></li>
+          <!-- <li><input type="text" v-model.number="numbers[index].answer" /></li> -->
           <li><input type="number" ref="digitFour" /></li>
           <li><input type="number" ref="digitThree" /></li>
           <li><input type="number" ref="digitTwo" /></li>
           <li><input type="number" ref="digitOne" /></li>
-          <li><BaseInput ref="digit1" /></li>
+          <li><BaseInput /></li>
+          <li><BaseInput :autofocus="true" /></li>
         </ul>
       </li>
     </ul>
@@ -56,7 +57,7 @@ export default {
     }
   },
   methods: {
-    focusInput() {
+    autofocusInput() {
       return this.$refs.digitOne[0].focus()
     },
     nextProblem() {
@@ -66,20 +67,25 @@ export default {
   },
   // mounted() {
   //   this.$nextTick(() => {
-  //     this.focusInput()
+  //     this.autofocusInput()
   //   })
   // }
   mounted() {
-    console.log(this.$refs)
     console.log(this.$refs.input)
     console.log(this.$refs.digitOne[0])
-    this.focusInput()
+    // console.log(this.$refs.baseInput)
+    // console.log(this.$refs.baseInput[0])
+    // console.log(this.$refs.baseInput[0].$el)
+    // this.autofocusInput()
     // this.$nextTick(() => {
-    //   this.focusInput()
+    //   this.autofocusInput()
     // })
+    this.$nextTick(() => {
+      console.log(this.$refs)
+    })
   },
   updated() {
-    this.focusInput()
+    this.autofocusInput()
   }
 }
 </script>
