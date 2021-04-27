@@ -87,7 +87,8 @@ export default {
 
 .form__options--input:focus {
   outline: none;
-  border: 1px solid var(--colorFooter);
+  /* border: 1px solid var(--colorFooter); */
+  box-shadow: 0 0 3px 1px var(--colorFooter);
 }
 
 .form__options--input::placeholder {
