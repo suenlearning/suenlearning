@@ -54,7 +54,17 @@ export default {
         // binding.value ? el.focus() : el.blur()
         if (binding.value) el.focus()
       }
+      // update: function(el, binding) {
+      //   // binding.value ? el.focus() : el.blur()
+      //   if (binding.value) el.focus()
+      // }
     }
+  },
+  mounted() {
+    console.log('mounted input')
+  },
+  updated() {
+    console.log('updated input')
   }
 }
 </script>
