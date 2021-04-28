@@ -43,7 +43,7 @@ export default {
 .main__view {
   margin-top: 80px;
   width: 100%;
-  height: calc(100vh - 80px);
+  min-height: calc(100vh - 80px);
   display: flex;
   justify-content: center;
   align-items: center;
