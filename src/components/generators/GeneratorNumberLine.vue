@@ -275,6 +275,11 @@ export default {
   /* padding: 0 16px; */
 }
 
+/* >>> - deep selector to access scoped styles of a child */
+.form__options--container >>> .form__options--input {
+  width: 50px;
+}
+
 .numberLine {
   list-style-type: none;
   display: flex;

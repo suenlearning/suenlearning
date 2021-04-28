@@ -42,9 +42,9 @@ export default {
 /* STYLES SHARED BY VIEWS: Home, About, Contact & PageNotFound */
 
 .main__view {
-  margin-top: 30px;
+  margin-top: 80px;
   width: 100%;
-  height: calc(100vh - 30px);
+  height: calc(100vh - 80px);
   display: flex;
   justify-content: center;
   align-items: center;

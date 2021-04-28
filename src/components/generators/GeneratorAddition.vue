@@ -72,7 +72,7 @@
     >
       <div class="activity">
         <div
-          class="singleProblem"
+          class="singleEquation"
           v-for="number in numbers"
           :key="number.index"
         >
@@ -244,7 +244,7 @@ export default {
   row-gap: 2vw;
 }
 
-.singleProblem {
+.singleEquation {
   display: grid;
   grid-template-columns: repeat(2, auto);
   grid-template-rows: repeat(3, 1fr);
@@ -255,7 +255,7 @@ export default {
   align-items: center;
 }
 
-.activity .singleProblem {
+.activity .singleEquation {
   width: 25%;
 }
 
@@ -268,7 +268,7 @@ export default {
 
 .addend--second {
   grid-area: secondAddend;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--colorTextMain);
 }
 
 .operationSign {
