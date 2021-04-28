@@ -59,12 +59,6 @@ export default {
       //   if (binding.value) el.focus()
       // }
     }
-  },
-  mounted() {
-    console.log('mounted input')
-  },
-  updated() {
-    console.log('updated input')
   }
 }
 </script>

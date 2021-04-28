@@ -1,6 +1,6 @@
 <template>
   <main class="main__view">
-    <h2>{{ activityTitle }}</h2>
+    <h2 class="activity__title">{{ activityTitle }}</h2>
     <div v-if="currentStep === 1">
       <BaseInput v-model.number="student.name" /><BaseButton
         classModifier="next"
@@ -121,15 +121,6 @@ export default {
       }
     }
   },
-  mounted() {
-    console.log('mounted')
-    console.log(
-      this.activity.numbers[this.currentProblem].first.toString().length
-    )
-  },
-  updated() {
-    console.log('updated')
-  },
   methods: {
     nextStep() {
       return this.currentStep++
@@ -171,5 +162,12 @@ ul {
 
 .main__view {
   flex-direction: column;
+}
+
+/* my styles; the above might need to remove */
+
+.activity__title {
+  /* 22px */
+  font-size: 1.375rem;
 }
 </style>
