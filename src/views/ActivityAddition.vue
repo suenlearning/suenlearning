@@ -9,40 +9,38 @@
       /><BaseButton
         classModifier="next"
         icon="angle-double-right"
+        iconSide="right"
         @click="nextStep"
         :disabled="!student.name"
         >Start</BaseButton
       >
     </div>
     <div v-if="currentStep === 2" class="step2__container">
-      <div>progress bar</div>
+      <div>&#60;&#60; progress bar &#62;&#62;</div>
       <div class="singleEquation">
-        <ul class="singleNumber addend addend--first">
+        <ul class="singleEquation__number addend addend--first">
           <li
             v-for="(number, index) in singleProblem.first.toString()"
             :key="index"
-            class="singleNumber__singleDigit"
           >
             {{ number }}
           </li>
         </ul>
         <p class="operationSign">+</p>
-        <ul class="singleNumber addend addend--second">
+        <ul class="singleEquation__number addend addend--second">
           <li
             v-for="(number, index) in singleProblem.second.toString()"
             :key="index"
-            class="singleNumber__singleDigit"
           >
             {{ number }}
           </li>
         </ul>
         <!-- I need to provide a unique key so the input rerenders when computed singleProblem changes -->
 
-        <ul class="singleNumber result">
+        <ul class="singleEquation__number result">
           <li
             v-for="(d, i) in activity.numberOfDigits"
             :key="`${singleProblem.id}-${i}`"
-            class="singleNumber__singleDigit"
           >
             <BaseInput
               v-model.number="singleProblem.answer[i]"
@@ -65,6 +63,7 @@
           v-if="currentProblem !== activity.numbers.length - 1"
           classModifier="next"
           icon="angle-double-right"
+          iconSide="right"
           @click="nextProblem"
           >Next</BaseButton
         >
@@ -200,11 +199,10 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 .singleEquation {
   font-size: 1.375rem;
-  width: auto;
   display: grid;
   grid-template-columns: repeat(2, auto);
   grid-template-rows: repeat(3, auto);
@@ -214,10 +212,17 @@ export default {
     'emptySpace2 result';
   align-items: center;
   row-gap: 2vw;
+  border: 1px solid #d8d8d8;
+  padding: 36px 24px;
+  border-radius: 12px 24px 12px 24px;
 }
 
 .addend {
   font-weight: 500;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 2vw;
+  justify-items: center;
 }
 .addend--first {
   grid-area: firstAddend;
@@ -225,8 +230,6 @@ export default {
 
 .addend--second {
   grid-area: secondAddend;
-  /* padding-bottom: 2vw; */
-  /* border-bottom: 1px solid var(--colorTextMain); */
 }
 
 .operationSign {
@@ -240,13 +243,11 @@ export default {
   border-top: 1px solid var(--colorTextMain);
 }
 
-.singleNumber {
+.singleEquation__number {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 2vw;
   justify-items: center;
-}
-.singleNumber__singleDigit {
 }
 
 .result >>> .form__options--input {
@@ -254,10 +255,16 @@ export default {
   width: 10vw;
   padding: 0.4em 0.2em;
   min-width: 46px;
-  box-shadow: 0px 0px 3px 1px var(--colorTextMain);
+  box-shadow: 0px 0px 2px 1px #928b77;
   font-size: 1.375rem;
   color: var(--colorTextMain);
   text-align: center;
+}
+
+.result >>> .form__options--input:focus {
+  outline: none;
+  /* border: 1px solid var(--colorFooter); */
+  box-shadow: 0 0 3px 1px var(--colorFooter);
 }
 
 .buttons {

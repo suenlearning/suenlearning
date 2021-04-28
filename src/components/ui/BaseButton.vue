@@ -6,8 +6,9 @@
     :class="`btn--${classModifier}`"
     ><font-awesome-icon :icon="icon" class="icon"/><slot
   /></router-link>
+  <!-- button - icon left side -->
   <button
-    v-else-if="tag === 'button'"
+    v-else-if="tag === 'button' && iconSide === 'left'"
     v-on="$listeners"
     v-bind="$attrs"
     class="btn"
@@ -15,6 +16,16 @@
   >
     <font-awesome-icon :icon="icon" class="icon" />
     <slot />
+  </button>
+  <!-- button - icon right side -->
+  <button
+    v-else-if="tag === 'button' && iconSide === 'right'"
+    v-on="$listeners"
+    v-bind="$attrs"
+    class="btn"
+    :class="`btn--${classModifier}`"
+  >
+    <slot /><font-awesome-icon :icon="icon" class="icon" />
   </button>
 </template>
 
@@ -28,6 +39,10 @@ export default {
     },
     icon: {
       type: String
+    },
+    iconSide: {
+      type: String,
+      default: 'left'
     },
     tag: {
       type: String,
@@ -53,6 +68,7 @@ export default {
 <style scoped>
 .btn {
   display: flex;
+  gap: 6px;
   justify-content: center;
   align-items: center;
   border: none;

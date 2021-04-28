@@ -34,7 +34,6 @@ export default {
 
 .icon {
   display: block;
-  margin-right: 6px;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
