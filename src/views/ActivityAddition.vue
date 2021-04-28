@@ -1,14 +1,6 @@
 <template>
   <main class="main__view">
-    <!-- <p v-for="(digit, index) in number" :key="index">
-      {{ digit }} and
-      <BaseInput
-        v-model.number="number[index]"
-        type="number"
-        :reference="index"
-      />
-    </p> -->
-    <h2>4-digits addition without regrouping</h2>
+    <h2>{{ activityTitle }}</h2>
     <div v-if="currentStep === 1">
       <BaseInput v-model.number="student.name" /><BaseButton
         classModifier="next"
@@ -41,16 +33,19 @@
       <!-- I need to provide a unique key so the input rerenders when computed singleProblem changes -->
       <div>
         <ul>
-          <li v-for="(d, i) in digits" :key="`${singleProblem.id}-${i}`">
+          <li
+            v-for="(d, i) in activity.numberOfDigits"
+            :key="`${singleProblem.id}-${i}`"
+          >
             <BaseInput
               v-model.number="singleProblem.answer[i]"
               type="number"
               :reference="i"
-              :focus="digits - 1 === i ? true : false"
+              :focus="activity.numberOfDigits - 1 === i ? true : false"
             />
             <div>{{ i }}</div>
             <div>
-              {{ digits - 1 === i ? 'true' : 'false' }}
+              {{ activity.numberOfDigits - 1 === i ? 'true' : 'false' }}
             </div>
           </li>
         </ul>
@@ -98,7 +93,7 @@ export default {
       student: { name: null },
       activity: {
         type: 'addition',
-        digits: 4,
+        numberOfDigits: 4,
         regrouping: false,
         numbers: [
           {
@@ -155,11 +150,14 @@ export default {
     singleProblem() {
       return this.activity.numbers[this.currentProblem]
     },
-    // use max between first and second
-    digits() {
-      return this.activity.numbers[this.currentProblem].first.toString().length
+    activityTitle() {
+      const withOrWithout = this.activity.regrouping ? 'with' : 'without'
+      const digitsWord = this.activity.numberOfDigits === 1 ? 'digit' : 'digits'
+      return `${this.activity.numberOfDigits.toString()}-${digitsWord} ${
+        this.activity.type
+      }
+           ${withOrWithout} regrouping`
     }
-    // inputFocus() {}
   }
 }
 </script>

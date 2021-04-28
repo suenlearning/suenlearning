@@ -191,10 +191,10 @@ export default {
   computed: {
     getPreviewWorksheetTitle() {
       const withOrWithout = this.regrouping ? 'with' : 'without'
-      const digits = this.numberOfDigits === 1 ? 'digit' : 'digits'
+      const digitsWord = this.numberOfDigits === 1 ? 'digit' : 'digits'
       const createWorksheetTitle = () => {
         return this.numberOfDigits
-          ? `${this.numberOfDigits.toString()}-${digits} ${
+          ? `${this.numberOfDigits.toString()}-${digitsWord} ${
               this.worksheetTitle
             } ${withOrWithout} regrouping`
           : ''
