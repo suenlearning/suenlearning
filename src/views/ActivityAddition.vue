@@ -53,12 +53,12 @@
           </li>
         </ul>
       </div>
-      <div>
+      <div class="buttons">
         <BaseButton
-          v-show="currentProblem !== 0"
           classModifier="next"
           icon="angle-double-left"
           @click="previousProblem"
+          :disabled="currentProblem === 0"
           >Previous</BaseButton
         >
         <BaseButton
@@ -71,9 +71,9 @@
         <BaseButton
           v-else-if="currentProblem === activity.numbers.length - 1"
           classModifier="create"
-          icon="angle-double-right"
+          icon="check"
           @click="fakeSubmit"
-          >Submit answers</BaseButton
+          >Submit</BaseButton
         >
       </div>
     </div>
@@ -258,5 +258,9 @@ export default {
   font-size: 1.375rem;
   color: var(--colorTextMain);
   text-align: center;
+}
+
+.buttons {
+  width: 100%;
 }
 </style>

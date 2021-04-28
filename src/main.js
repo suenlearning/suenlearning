@@ -13,7 +13,8 @@ import {
   faWifi,
   faFilePdf,
   faAngleDoubleRight,
-  faAngleDoubleLeft
+  faAngleDoubleLeft,
+  faCheck
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -24,7 +25,8 @@ library.add(
   faWifi,
   faFilePdf,
   faAngleDoubleRight,
-  faAngleDoubleLeft
+  faAngleDoubleLeft,
+  faCheck
 )
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
