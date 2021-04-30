@@ -1,7 +1,9 @@
 <template>
   <main class="main__view">
-    <h2 class="activity__title">{{ activityTitle }}</h2>
-    <div v-if="currentStep === 1" class="step__container step__studentInfo">
+    <h2 class="activity__title">
+      {{ currentStep === 2 ? 'Check your answers' : activityTitle }}
+    </h2>
+    <div v-if="currentStep === 0" class="step__container step__studentInfo">
       <BaseInput
         v-model.number="student.name"
         label="Your name"
@@ -15,7 +17,7 @@
         >Start</BaseButton
       >
     </div>
-    <div v-if="currentStep === 2" class="step__container step__mainActivity">
+    <div v-if="currentStep === 1" class="step__container step__mainActivity">
       <div>&#60;&#60; progress bar &#62;&#62;</div>
       <div class="singleEquation">
         <ul class="singleEquation__number addend addend--first">
@@ -42,7 +44,7 @@
             :key="`${singleProblem.id}-${i}`"
           >
             <BaseInput
-              v-model.number="singleProblem.answer[i]"
+              v-model.number="singleProblem.answerInArray[i]"
               type="number"
               :reference="i"
               :focus="activity.numberOfDigits - 1 === i ? true : false"
@@ -75,8 +77,8 @@
         >
       </div>
     </div>
-    <div v-if="currentStep === 3" class="step__container step__finalResults">
-      <h3 class="studentsName">Name: {{ student.name }}</h3>
+    <div v-if="currentStep === 2" class="step__container step__finalResults">
+      <!-- <h3 class="studentsName">Name: {{ student.name }}</h3> -->
       <ul class="finalResults">
         <li
           v-for="(n, i) in activity.numbers"
@@ -90,9 +92,17 @@
           <p class="singleEquation__number addend addend--second">
             {{ n.second }}
           </p>
-          <p class="singleEquation__number result">
-            {{ n.result }}
-          </p>
+          <div class="result">
+            <p
+              class="singleEquation__number"
+              :class="{ 'result--error': n.result !== n.answer }"
+            >
+              {{ n.answer }}
+            </p>
+            <p v-show="n.result !== n.answer" class="result--correct">
+              {{ n.result }}
+            </p>
+          </div>
         </li>
       </ul>
     </div>
@@ -103,7 +113,7 @@
 export default {
   data() {
     return {
-      currentStep: 3,
+      currentStep: 0,
       currentProblem: 0,
       student: { name: null },
       activity: {
@@ -116,140 +126,152 @@ export default {
             first: 2345,
             second: 1203,
             result: 3548,
-            answer: [null, null, null, null]
+            answerInArray: [null, null, null, null],
+            answer: null,
+            correct: null
           },
           {
             id: 1,
             first: 1122,
             second: 6633,
             result: 7755,
-            answer: [null, null, null, null]
+            answerInArray: [null, null, null, null],
+            answer: null,
+            correct: null
           },
           {
             id: 2,
             first: 3829,
             second: 5140,
             result: 8969,
-            answer: [null, null, null, null]
+            answerInArray: [null, null, null, null],
+            answer: null,
+            correct: null
           },
           {
             id: 3,
             first: 2345,
             second: 1203,
             result: 3548,
-            answer: [null, null, null, null]
-          },
-          {
-            id: 4,
-            first: 1122,
-            second: 6633,
-            result: 7755,
-            answer: [null, null, null, null]
-          },
-          {
-            id: 5,
-            first: 3829,
-            second: 5140,
-            result: 8969,
-            answer: [null, null, null, null]
-          },
-          {
-            id: 6,
-            first: 2345,
-            second: 1203,
-            result: 3548,
-            answer: [null, null, null, null]
-          },
-          {
-            id: 7,
-            first: 1122,
-            second: 6633,
-            result: 7755,
-            answer: [null, null, null, null]
+            answerInArray: [null, null, null, null],
+            answer: null,
+            correct: null
           }
+          // {
+          //   id: 4,
+          //   first: 1122,
+          //   second: 6633,
+          //   result: 7755,
+          //   answerInArray: [null, null, null, null],
+          //   answer: null, correct: null
+          // },
+          // {
+          //   id: 5,
+          //   first: 3829,
+          //   second: 5140,
+          //   result: 8969,
+          //   answerInArray: [null, null, null, null],
+          //   answer: null, correct: null
+          // },
+          // {
+          //   id: 6,
+          //   first: 2345,
+          //   second: 1203,
+          //   result: 3548,
+          //   answerInArray: [null, null, null, null],
+          //   answer: null, correct: null
+          // },
+          // {
+          //   id: 7,
+          //   first: 1122,
+          //   second: 6633,
+          //   result: 7755,
+          //   answerInArray: [null, null, null, null],
+          //   answer: null, correct: null
+          // }
           // {
           //   id: 8,
           //   first: 3829,
           //   second: 5140,
           //   result: 8969,
-          //   answer: [null, null, null, null]
+          //   answerInArray: [null, null, null, null], answer: null, correct: null
           // },
           // {
           //   id: 9,
           //   first: 2345,
           //   second: 1203,
           //   result: 3548,
-          //   answer: [null, null, null, null]
+          //   answerInArray: [null, null, null, null], answer: null, correct: null
           // },
           // {
           //   id: 10,
           //   first: 1122,
           //   second: 6633,
           //   result: 7755,
-          //   answer: [null, null, null, null]
+          //   answerInArray: [null, null, null, null], answer: null, correct: null
           // },
           // {
           //   id: 11,
           //   first: 3829,
           //   second: 5140,
           //   result: 8969,
-          //   answer: [null, null, null, null]
+          //   answerInArray: [null, null, null, null], answer: null, correct: null
           // },
           // {
           //   id: 12,
           //   first: 2345,
           //   second: 1203,
           //   result: 3548,
-          //   answer: [null, null, null, null]
+          //   answerInArray: [null, null, null, null], answer: null, correct: null
           // },
           // {
           //   id: 13,
           //   first: 1122,
           //   second: 6633,
           //   result: 7755,
-          //   answer: [null, null, null, null]
+          //   answerInArray: [null, null, null, null], answer: null, correct: null
           // },
           // {
           //   id: 14,
           //   first: 3829,
           //   second: 5140,
           //   result: 8969,
-          //   answer: [null, null, null, null]
+          //   answerInArray: [null, null, null, null], answer: null, correct: null
           // },
           // {
           //   id: 15,
           //   first: 2345,
           //   second: 1203,
           //   result: 3548,
-          //   answer: [null, null, null, null]
+          //   answerInArray: [null, null, null, null], answer: null, correct: null
           // },
           // {
           //   id: 16,
           //   first: 1122,
           //   second: 6633,
           //   result: 7755,
-          //   answer: [null, null, null, null]
+          //   answerInArray: [null, null, null, null], answer: null, correct: null
           // },
           // {
           //   id: 17,
           //   first: 3829,
           //   second: 5140,
           //   result: 8969,
-          //   answer: [null, null, null, null]
+          //   answerInArray: [null, null, null, null], answer: null, correct: null
           // },
           // {
           //   id: 18,
           //   first: 1122,
           //   second: 6633,
           //   result: 7755,
-          //   answer: [null, null, null, null]
+          //   answerInArray: [null, null, null, null], answer: null, correct: null
           // },
           // {
           //   id: 19,
           //   first: 3829,
           //   second: 5140,
           //   result: 8969,
-          //   answer: [null, null, null, null]
+          //   answerInArray: [null, null, null, null], answer: null, correct: null
           // }
         ]
       }
@@ -266,9 +288,23 @@ export default {
       if (this.currentProblem !== this.activity.numbers.length - 1)
         return (this.currentProblem += 1)
     },
+    // takes in an array of numbers and returns a number; copied from GeneratorAddition
+    createSingleNumber(arr) {
+      console.log('hmm...')
+      let singleNumber = 0
+      for (let i = arr.length - 1; i >= 0; i--) {
+        singleNumber += arr[i] * Math.pow(10, arr.length - 1 - i)
+      }
+      console.log(singleNumber)
+      return singleNumber
+    },
     fakeSubmit() {
+      for (let problem of this.activity.numbers) {
+        problem.answer = this.createSingleNumber(problem.answerInArray)
+        problem.correct = problem.answer === problem.result ? true : false
+      }
+      this.nextStep()
       console.log(this.activity.numbers)
-      this.currentStep = 3
     }
   },
   computed: {
@@ -419,7 +455,7 @@ export default {
   font-size: 1rem;
   display: grid;
   grid-template-columns: repeat(2, auto);
-  grid-template-rows: repeat(3, auto);
+  grid-template-rows: repeat(3, minmax(min-content, max-content));
   grid-template-areas:
     'emptySpace1 firstAddend'
     'operationSign secondAddend'
@@ -453,6 +489,14 @@ export default {
   /* padding: 4vw 0; */
   padding-top: 1vw;
   border-top: 1px solid var(--colorTextMain);
+}
+
+.result--error {
+  color: red;
+  text-decoration: line-through;
+}
+.result--correct {
+  color: green;
 }
 
 /* .step__finalResults .singleEquation__number {
