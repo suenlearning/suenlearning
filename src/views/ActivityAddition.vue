@@ -76,7 +76,7 @@
       </div>
     </div>
     <div v-if="currentStep === 3" class="step__container step__finalResults">
-      <h3>Name: {{ student.name }}</h3>
+      <h3 class="studentsName">Name: {{ student.name }}</h3>
       <ul class="finalResults">
         <li
           v-for="(n, i) in activity.numbers"
@@ -103,7 +103,7 @@
 export default {
   data() {
     return {
-      currentStep: 2,
+      currentStep: 3,
       currentProblem: 0,
       student: { name: null },
       activity: {
@@ -398,6 +398,10 @@ export default {
 
 /* step 3 - results */
 
+.step__container.step__finalResults {
+  justify-content: flex-start;
+}
+
 .step__finalResults .finalResults {
   width: 100%;
   display: grid;
@@ -405,7 +409,7 @@ export default {
   text-align: center;
   justify-items: center;
   column-gap: 2vw;
-  row-gap: 6vw;
+  row-gap: 10vw;
   border: 1px solid #d8d8d8;
   padding: 12px 6px;
   border-radius: 12px;
@@ -457,4 +461,8 @@ export default {
   column-gap: 2vw;
   justify-items: center;
 } */
+
+.studentsName {
+  margin: 12px;
+}
 </style>
