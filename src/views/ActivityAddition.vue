@@ -46,8 +46,11 @@
             <BaseInput
               v-model.number="singleProblem.answerInArray[i]"
               type="number"
-              :reference="i"
-              :focus="activity.numberOfDigits - 1 === i ? true : false"
+              :reference="`${singleProblem.id}-${i}`"
+              :focus="i === focusedInput"
+              @keydown.left.prevent="nextDigit"
+              @keydown.right.prevent="prevDigit"
+              @focus="changeFocus(i)"
             />
           </li>
         </ul>
@@ -115,6 +118,7 @@ export default {
     return {
       currentStep: 0,
       currentProblem: 0,
+      focusedInput: 3,
       student: { name: null },
       activity: {
         type: 'addition',
@@ -287,6 +291,18 @@ export default {
     nextProblem() {
       if (this.currentProblem !== this.activity.numbers.length - 1)
         return (this.currentProblem += 1)
+    },
+    changeFocus(i) {
+      this.focusedInput = i
+    },
+    nextDigit() {
+      this.focusedInput = Math.max(this.focusedInput - 1, 0)
+    },
+    prevDigit() {
+      this.focusedInput = Math.min(
+        this.focusedInput + 1,
+        this.activity.numberOfDigits - 1
+      )
     },
     // takes in an array of numbers and returns a number; copied from GeneratorAddition
     createSingleNumber(arr) {

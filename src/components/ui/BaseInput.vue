@@ -5,6 +5,8 @@
       :type="type"
       :value="value"
       @input="updateValue"
+      @keydown="emitKeydownEvent"
+      @focus="focusElement"
       v-bind="$attrs"
       v-focus="focus"
       class="form__options--input"
@@ -41,8 +43,14 @@ export default {
   // },
 
   methods: {
-    updateValue(event) {
-      this.$emit('input', event.target.value)
+    updateValue(ev) {
+      this.$emit('input', ev.target.value)
+    },
+    emitKeydownEvent(ev) {
+      this.$emit('keydown', ev)
+    },
+    focusElement() {
+      this.$emit('focus')
     }
   },
   directives: {
@@ -53,11 +61,19 @@ export default {
       inserted: function(el, binding) {
         // binding.value ? el.focus() : el.blur()
         if (binding.value) el.focus()
+      },
+      componentUpdated: function(el, binding) {
+        // it was included in the original function in the codepen but I don't see why wee need it...
+        // if (binding.modifiers.lazy) {
+        //   if (Boolean(binding.value) === Boolean(binding.oldValue)) {
+        //     return
+        //   }
+        // }
+
+        // if (binding.value) el.focus()
+        // else el.blur()
+        if (binding.value) el.focus()
       }
-      // update: function(el, binding) {
-      //   // binding.value ? el.focus() : el.blur()
-      //   if (binding.value) el.focus()
-      // }
     }
   }
 }
